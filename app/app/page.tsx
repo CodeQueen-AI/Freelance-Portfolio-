@@ -5,6 +5,7 @@ import Skill from "./components/Skills"
 import Banner from "./components/Banner"
 import Banner1 from "./components/Banner1"
 import Services from "./components/Services"
+import Hirebanner from "./components/Hirebanner"
 export default function Page() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function Page() {
       <Banner/>
       <Banner1/>
       <Services/>
+      <Hirebanner/>
     </>
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Poppins } from "next/font/google";
+import Image from "next/image";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
 
@@ -163,10 +164,11 @@ export default function Services() {
                         {service.description}
                       </p>
                       <div className="hidden lg:block ml-auto">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        <Image
                           src={service.image}
                           alt={service.title}
+                          width={160}
+                          height={96}
                           className="w-40 h-24 object-cover rounded-xl opacity-80"
                         />
                       </div>

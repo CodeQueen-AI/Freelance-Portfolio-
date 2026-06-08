@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand:        #007979;
+  --brand-light:  #eaf7f7;
+  --brand-dark:   #005f5f;
+  --background:   #ffffff;
+  --foreground:   #111111;
+  --muted:        #6b7280;
+  --border:       #e5e7eb;
+  --radius-card:  1.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* prevent layout shift from scrollbar appearing */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -17,9 +30,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* ─── Marquee ─────────────────────────────────────────── */
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: var(--brand);
+  color: white;
+}
+
+/* ─── Scrollbar (webkit) ────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 10px;
+  opacity: 0.6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-dark);
+}
+
+/* ─── Focus ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Marquee ────────────────────────────────────────────── */
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -34,7 +79,6 @@ body {
   animation-play-state: paused;
 }
 
-/* Outline text for marquee banner */
 .marquee-outline {
   color: transparent;
   -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.75);
@@ -46,13 +90,42 @@ body {
   -webkit-text-stroke: 0px transparent;
 }
 
-/* ─── Smooth scroll ────────────────────────────────────── */
-html {
-  scroll-behavior: smooth;
+/* ─── Smooth section transitions ────────────────────────── */
+section {
+  position: relative;
 }
 
-/* ─── Selection color ──────────────────────────────────── */
-::selection {
-  background: #007979;
-  color: white;
+/* ─── Image optimisation ────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── Utility: visually hidden (a11y) ───────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
 }

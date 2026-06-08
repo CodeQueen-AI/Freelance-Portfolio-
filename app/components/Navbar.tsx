@@ -61,7 +61,7 @@ export default function Navbar() {
         <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
           <Link href="/" aria-label="Home" className="shrink-0">
             <Image
-              src="/logo.png"
+              src="/Logo Img.png"
               alt="Logo"
               width={90}
               height={90}

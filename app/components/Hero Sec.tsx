@@ -106,9 +106,9 @@ export default function Hero() {
           >
             <motion.p variants={itemVariants} className="leading-[1.85] font-serif text-gray-600 text-[15px]">
               I am a Freelance Full Stack &amp; AI Developer focused on building modern,
-              scalable and user-friendly products. I create fast, clean web applications
+              scalable and user-friendly products I create fast, clean web applications
               with AI-powered features that deliver real value and help businesses grow
-              globally.
+              globally
             </motion.p>
 
             <motion.div variants={itemVariants}>
@@ -134,14 +134,14 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex gap-8 pt-1">
               {[
                 { num: "2+",  label: "Years Building" },
-                { num: "10+", label: "Projects Done" },
-                { num: "5+",  label: "Global Clients" },
+                { num: "30+", label: "Projects Done" },
+                { num: "20+",  label: "Technologies" },
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col">
-                  <span className={`text-2xl font-black text-[#007979] ${poppins.className}`}>
+                  <span className={`text-2xl font-serif font-semibold text-[#007979] ${poppins.className}`}>
                     {stat.num}
                   </span>
-                  <span className="text-[11px] text-gray-400 tracking-wide uppercase mt-0.5">
+                  <span className="text-[11px]  tracking-wide uppercase mt-0.5">
                     {stat.label}
                   </span>
                 </div>
@@ -192,7 +192,7 @@ export default function Hero() {
                 key={i}
                 variants={itemVariants}
                 whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                className="flex items-center gap-4 py-4 border-b border-gray-100 cursor-default group"
+                className="flex items-center gap-4 py-4 border-b border-gray-100 group cursor-default"
               >
                 <motion.span
                   whileHover={{ rotate: 12, scale: 1.25 }}
@@ -217,7 +217,7 @@ export default function Hero() {
           className="flex justify-center pb-10 mt-16"
         >
           <div className="flex flex-col items-center gap-2">
-            <span className={`text-[10px] tracking-[4px] uppercase text-gray-400 ${poppins.className}`}>
+            <span className={`text-[10px] tracking-[4px] uppercase text-gray-500 ${poppins.className}`}>
               Scroll
             </span>
             {/* Mouse icon */}

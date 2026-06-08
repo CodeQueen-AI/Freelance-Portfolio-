@@ -303,7 +303,7 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="uppercase tracking-[5px] text-[#007979] text-xs font-bold mb-4"
+          className="uppercase tracking-[5px] text-[#007979] text-xs font-bold mb-4 font-serif"
         >
           My Expertise
         </motion.p>
@@ -313,7 +313,7 @@ export default function SkillsSection() {
             initial={{ y: 80, opacity: 0 }}
             animate={headerInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className={`${grotesk.className} font-bold text-black leading-none`}
+            className={`${grotesk.className} font-semibold font-serif text-black leading-none`}
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
           >
             Tech Stack
@@ -324,10 +324,10 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed"
+          className="max-w-xl mx-auto text-base leading-relaxed text-gray-500"
         >
-          A curated set of technologies I use to design, build, and ship
-          modern web products and intelligent AI systems.
+          A curated set of technologies I use to design, build and ship
+          modern web products and intelligent AI systems
         </motion.p>
 
         {/* animated dashes */}
@@ -478,121 +478,9 @@ export default function SkillsSection() {
                 })}
               </div>
             </motion.div>
-
-            {/* Card 3 — What I Build */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.7, delay: 0.19, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-2xl overflow-hidden border border-gray-100 bg-white
-                shadow-[0_2px_12px_rgba(0,0,0,0.04)]
-                hover:shadow-[0_8px_32px_rgba(0,121,121,0.10)]
-                transition-shadow duration-300"
-            >
-              <div className="px-6 py-5 flex items-center justify-between border-b border-gray-50">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: "#6366f115", border: "1.5px solid #6366f130" }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
-                      <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className={`${grotesk.className} text-[15px] font-bold text-black leading-none`}>What I Build</h3>
-                    <p className={`${poppins.className} text-[11px] text-gray-400 mt-1`}>Services I offer</p>
-                  </div>
-                </div>
-                <span className={`${poppins.className} text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded-full`}
-                  style={{ backgroundColor: "#6366f115", color: "#6366f1" }}>
-                  {SERVICES.length} services
-                </span>
-              </div>
-              <div className="px-6 py-2">
-                {SERVICES.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ x: 5 }}
-                    className="group flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 cursor-default"
-                  >
-                    <div>
-                      <p className={`${grotesk.className} text-[13px] font-semibold text-black group-hover:text-[#007979] transition-colors duration-200`}>
-                        {item.label}
-                      </p>
-                      <p className={`${poppins.className} text-[10px] text-gray-400 mt-0.5`}>{item.desc}</p>
-                    </div>
-                    <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center
-                      text-gray-300 group-hover:border-[#007979] group-hover:text-[#007979]
-                      transition-colors duration-200 shrink-0 ml-4">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Card 4 — Availability */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.7, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-2xl overflow-hidden border border-[#007979]/20 bg-gradient-to-br from-[#007979] to-[#009090]
-                shadow-[0_8px_32px_rgba(0,121,121,0.22)]
-                hover:shadow-[0_16px_48px_rgba(0,121,121,0.32)]
-                transition-shadow duration-300"
-            >
-              <div className="px-6 py-5">
-                {/* top row */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-                    <span className={`${poppins.className} text-[10px] font-bold uppercase tracking-[3px] text-white/70`}>
-                      Status
-                    </span>
-                  </div>
-                  <span className={`${poppins.className} text-[9px] font-bold uppercase tracking-[2px] px-2.5 py-1 rounded-full bg-white/20 text-white`}>
-                    Open to Work
-                  </span>
-                </div>
-
-                {/* heading */}
-                <h3 className={`${grotesk.className} text-xl font-bold text-white leading-tight mb-2`}>
-                  Available for Projects
-                </h3>
-                <p className={`${poppins.className} text-sm text-white/65 leading-relaxed mb-6`}>
-                  Open to freelance, remote contracts, and full-time opportunities worldwide.
-                </p>
-
-                {/* cta */}
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-[#007979]
-                    text-sm font-bold tracking-wide
-                    hover:bg-[#007979] hover:text-white hover:border-2 hover:border-white
-                    transition-all duration-250 shadow-sm"
-                >
-                  Let&apos;s Work Together
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </motion.a>
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </div>
-
     </section>
   );
 }

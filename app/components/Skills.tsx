@@ -1,283 +1,342 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Space_Grotesk, Poppins, Playfair_Display } from "next/font/google";
-import {SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,SiHtml5, SiCss, SiNodedotjs, SiExpress, SiPython,SiMongodb, SiFirebase, SiPostgresql, SiGit, SiGithub,SiVercel, SiNetlify, SiStreamlit, SiOpenai, SiFastapi,SiPandas, SiNumpy,} from "react-icons/si";
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,
+  SiHtml5, SiCss, SiNodedotjs, SiExpress, SiPython, SiMongodb,
+  SiFirebase, SiPostgresql, SiGit, SiGithub, SiVercel, SiNetlify,
+  SiStreamlit, SiOpenai, SiFastapi, SiPandas, SiNumpy,
+} from "react-icons/si";
 import { FaBrain, FaRobot, FaDatabase } from "react-icons/fa";
 import { TbApi } from "react-icons/tb";
 
-const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["700"],
-  style: ["italic"],
-});
+const grotesk  = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const poppins  = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], style: ["italic"] });
 
-/* ─── skill groups ───────────────────────────────────── */
+/* ─── Data ──────────────────────────────────────────── */
 const GROUPS = [
   {
     id: "frontend",
     label: "Frontend",
-    tagline: "Pixel-perfect, blazing fast interfaces",
-    icon: SiReact,
-    bg: "bg-[#eaf7f7]",
-    border: "border-[#007979]/20",
+    tagline: "Pixel-perfect, blazing-fast interfaces",
+    Icon: SiReact,
     accent: "#007979",
+    lightBg: "#edfafa",
+    borderColor: "rgba(0,121,121,0.15)",
     skills: [
-      { name: "React",        icon: SiReact,        level: 95 },
-      { name: "Next.js",      icon: SiNextdotjs,    level: 92 },
-      { name: "TypeScript",   icon: SiTypescript,   level: 88 },
-      { name: "Tailwind CSS", icon: SiTailwindcss,  level: 95 },
-      { name: "JavaScript",   icon: SiJavascript,   level: 90 },
-      { name: "HTML5",        icon: SiHtml5,        level: 98 },
-      { name: "CSS3",         icon: SiCss,          level: 95 },
+      { name: "React",        Icon: SiReact,       },
+      { name: "Next.js",      Icon: SiNextdotjs,   },
+      { name: "TypeScript",   Icon: SiTypescript,  },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, },
+      { name: "JavaScript",   Icon: SiJavascript,  },
+      { name: "HTML5",        Icon: SiHtml5,       },
+      { name: "CSS3",         Icon: SiCss,        },
     ],
+    span: "lg:col-span-2", // wider card
   },
   {
     id: "backend",
-    label: "Backend",
-    tagline: "Scalable APIs and robust databases",
-    icon: SiNodedotjs,
-    bg: "bg-[#f5f5ff]",
-    border: "border-[#6366f1]/20",
+    label: "Backend & DB",
+    tagline: "Scalable APIs & robust data layers",
+    Icon: SiNodedotjs,
     accent: "#6366f1",
+    lightBg: "#f3f3ff",
+    borderColor: "rgba(99,102,241,0.15)",
     skills: [
-      { name: "Node.js",    icon: SiNodedotjs,  level: 85 },
-      { name: "Express",    icon: SiExpress,    level: 82 },
-      { name: "Python",     icon: SiPython,     level: 88 },
-      { name: "FastAPI",    icon: SiFastapi,    level: 78 },
-      { name: "MongoDB",    icon: SiMongodb,    level: 85 },
-      { name: "PostgreSQL", icon: SiPostgresql, level: 75 },
-      { name: "Firebase",   icon: SiFirebase,   level: 80 },
+      { name: "Node.js",    Icon: SiNodedotjs,  },
+      { name: "Express",    Icon: SiExpress,    },
+      { name: "Python",     Icon: SiPython,     },
+      { name: "FastAPI",    Icon: SiFastapi,    },
+      { name: "MongoDB",    Icon: SiMongodb,    },
+      { name: "PostgreSQL", Icon: SiPostgresql, },
+      { name: "Firebase",   Icon: SiFirebase,   },
     ],
+    span: "lg:col-span-2",
   },
   {
     id: "ai",
     label: "AI & Automation",
-    tagline: "Intelligent agents and ML pipelines",
-    icon: FaBrain,
-    bg: "bg-[#fff5f7]",
-    border: "border-[#e879a0]/20",
-    accent: "#e879a0",
+    tagline: "Intelligent agents & ML pipelines",
+    Icon: FaBrain,
+    accent: "#c026d3",
+    lightBg: "#fdf4ff",
+    borderColor: "rgba(192,38,211,0.15)",
     skills: [
-      { name: "OpenAI SDK",   icon: SiOpenai,   level: 90 },
-      { name: "LangChain",    icon: FaBrain,    level: 85 },
-      { name: "Agentic AI",   icon: FaRobot,    level: 88 },
-      { name: "RAG Systems",  icon: FaDatabase, level: 82 },
-      { name: "Chainlit",     icon: TbApi,      level: 78 },
-      { name: "Pandas",       icon: SiPandas,   level: 80 },
-      { name: "NumPy",        icon: SiNumpy,    level: 75 },
+      { name: "OpenAI SDK",  Icon: SiOpenai,   },
+      { name: "LangChain",   Icon: FaBrain,    },
+      { name: "Agentic AI",  Icon: FaRobot,    },
+      { name: "RAG Systems", Icon: FaDatabase, },
+      { name: "Chainlit",    Icon: TbApi,      },
+      { name: "Pandas",      Icon: SiPandas,   },
+      { name: "NumPy",       Icon: SiNumpy,    },
     ],
+    span: "lg:col-span-2",
   },
   {
     id: "tools",
     label: "Tools & Deploy",
-    tagline: "From code to cloud in record time",
-    icon: SiGit,
-    bg: "bg-[#f5fff5]",
-    border: "border-[#22c55e]/20",
-    accent: "#22c55e",
+    tagline: "From commit to cloud in minutes",
+    Icon: SiVercel,
+    accent: "#059669",
+    lightBg: "#f0fdf8",
+    borderColor: "rgba(5,150,105,0.15)",
     skills: [
-      { name: "Git",       icon: SiGit,       level: 95 },
-      { name: "GitHub",    icon: SiGithub,    level: 95 },
-      { name: "Vercel",    icon: SiVercel,    level: 90 },
-      { name: "Netlify",   icon: SiNetlify,   level: 88 },
-      { name: "Streamlit", icon: SiStreamlit, level: 82 },
+      { name: "Git",       Icon: SiGit,       },
+      { name: "GitHub",    Icon: SiGithub,    },
+      { name: "Vercel",    Icon: SiVercel,    },
+      { name: "Netlify",   Icon: SiNetlify,   },
+      { name: "Streamlit", Icon: SiStreamlit, },
     ],
+    span: "lg:col-span-2",
   },
 ];
 
-/* marquee items */
-const ALL_SKILLS = GROUPS.flatMap((g) => g.skills.map((s) => ({ ...s, accent: g.accent })));
+const ALL_SKILLS = GROUPS.flatMap((g) =>
+  g.skills.map((s) => ({ ...s, accent: g.accent }))
+);
 
-/* ─── progress bar ───────────────────────────────────── */
-function Bar({ level, accent, inView }: { level: number; accent: string; inView: boolean }) {
-  return (
-    <div className="h-[5px] w-full rounded-full bg-black/8 overflow-hidden">
-      <motion.div
-        initial={{ width: 0 }}
-        animate={inView ? { width: `${level}%` } : { width: 0 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="h-full rounded-full"
-        style={{ backgroundColor: accent }}
-      />
-    </div>
-  );
-}
+// const PROOF_POINTS = [
+//   {
+//     icon: "⚡",
+//     title: "33+ Technologies",
+//     desc: "A full-spectrum toolkit covering frontend, backend, AI and cloud",
+//   },
+//   {
+//     icon: "🎯",
+//     title: "Production-Grade",
+//     desc: "Every skill applied in real shipped products, not just tutorials",
+//   },
+//   {
+//     icon: "🔄",
+//     title: "Always Learning",
+//     desc: "Continuously expanding with the latest AI and web technologies",
+//   },
+// ];
 
-/* ─── single skill row inside card ──────────────────── */
-function SkillRow({
-  skill,
+/* ─── Skill chip ────────────────────────────────────── */
+function SkillChip({
+  name,
+  Icon,
   accent,
   delay,
   inView,
 }: {
-  skill: { name: string; icon: React.ElementType; level: number };
+  name: string;
+  Icon: React.ElementType;
   accent: string;
   delay: number;
   inView: boolean;
 }) {
-  const Icon = skill.icon;
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -16 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group"
+      initial={{ opacity: 0, y: 14, scale: 0.92 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ delay, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl cursor-default select-none transition-all duration-200"
+      style={{
+        background: hovered ? `${accent}10` : "white",
+        border: `1.5px solid ${hovered ? accent + "50" : "#e5e7eb"}`,
+        boxShadow: hovered
+          ? `0 6px 20px ${accent}20, 0 2px 8px rgba(0,0,0,0.04)`
+          : "0 1px 4px rgba(0,0,0,0.04)",
+        transform: hovered ? "translateY(-3px)" : "translateY(0)",
+      }}
     >
-      <div className="flex items-center justify-between mb-1.5">
-        <div className="flex items-center gap-2">
-          <Icon size={14} style={{ color: accent }} className="shrink-0" />
-          <span className={`${poppins.className} text-xs font-semibold text-gray-700 group-hover:text-black transition-colors`}>
-            {skill.name}
-          </span>
-        </div>
-        <span className={`${poppins.className} text-[10px] font-mono text-gray-400`}>
-          {skill.level}%
-        </span>
+      {/* Icon container */}
+      <div
+        className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition-all duration-200"
+        style={{
+          background: hovered ? `${accent}18` : `${accent}0d`,
+          border: `1px solid ${hovered ? accent + "35" : accent + "18"}`,
+        }}
+      >
+        <Icon size={13} style={{ color: accent }} />
       </div>
-      <Bar level={skill.level} accent={accent} inView={inView} />
+
+      {/* Name */}
+      <span
+        className={`${poppins.className} text-[11.5px] font-semibold leading-none transition-colors duration-200`}
+        style={{ color: hovered ? accent : "#374151" }}
+      >
+        {name}
+      </span>
+
+      {/* Glow dot on hover */}
+      {hovered && (
+        <motion.span
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="w-[5px] h-[5px] rounded-full ml-auto shrink-0"
+          style={{ backgroundColor: accent, boxShadow: `0 0 6px ${accent}` }}
+          aria-hidden="true"
+        />
+      )}
     </motion.div>
   );
 }
 
-/* ─── category card ──────────────────────────────────── */
-function CategoryCard({ group, index }: { group: typeof GROUPS[number]; index: number }) {
+/* ─── Category card ─────────────────────────────────── */
+function CategoryCard({
+  group,
+  index,
+}: {
+  group: (typeof GROUPS)[number];
+  index: number;
+}) {
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-8%" });
-  const [open, setOpen] = useState(false); // all closed by default
-  const Icon = group.icon;
+  const CatIcon = group.Icon;
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_32px_rgba(0,121,121,0.10)] transition-shadow duration-400"
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className={`relative bg-white rounded-2xl overflow-hidden group ${group.span}`}
+      style={{
+        border: `1.5px solid ${group.borderColor}`,
+        boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
+      }}
     >
-      {/* ── header button ── */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-6 py-5 text-left"
-      >
-        {/* left side */}
-        <div className="flex items-center gap-4">
-          {/* coloured icon pill */}
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.2 }}
-            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${group.accent}15`, border: `1.5px solid ${group.accent}30` }}
-          >
-            <Icon size={20} style={{ color: group.accent }} />
-          </motion.div>
-
-          <div>
-            <div className="flex items-center gap-2.5">
-              <h3 className={`${grotesk.className} text-[15px] font-bold text-black leading-none`}>
-                {group.label}
-              </h3>
-              {/* skill count badge */}
-              <span
-                className={`${poppins.className} text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded-full`}
-                style={{ backgroundColor: `${group.accent}15`, color: group.accent }}
-              >
-                {group.skills.length} skills
-              </span>
-            </div>
-            <p className={`${poppins.className} text-[11px] text-gray-400 mt-1`}>
-              {group.tagline}
-            </p>
-          </div>
-        </div>
-
-        {/* right side — animated chevron */}
-        <motion.div
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center ml-3 transition-colors duration-200"
-          style={{
-            backgroundColor: open ? `${group.accent}15` : "#f9f9f9",
-            border: `1.5px solid ${open ? group.accent + "40" : "#e5e7eb"}`,
-          }}
-        >
-          <svg
-            width="12" height="12" viewBox="0 0 12 12" fill="none"
-            style={{ color: open ? group.accent : "#9ca3af" }}
-          >
-            <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
-      </button>
-
-      {/* ── top border that draws in when open ── */}
+      {/* Animated top gradient bar */}
       <motion.div
-        animate={{ scaleX: open ? 1 : 0 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="h-[2px] mx-6 rounded-full origin-left"
-        style={{ backgroundColor: group.accent, opacity: 0.3 }}
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.9, delay: 0.2 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute top-0 left-0 right-0 h-[3px] origin-left"
+        style={{
+          background: `linear-gradient(90deg, ${group.accent}, ${group.accent}60, transparent)`,
+        }}
+        aria-hidden="true"
       />
 
-      {/* ── skills list ── */}
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 pt-4 pb-6 space-y-4">
-              {group.skills.map((skill, si) => (
-                <SkillRow
-                  key={skill.name}
-                  skill={skill}
-                  accent={group.accent}
-                  delay={si * 0.06}
-                  inView={open && inView}
-                />
-              ))}
+      {/* Large watermark icon */}
+      <div
+        className="absolute -right-6 -bottom-6 pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+        aria-hidden="true"
+      >
+        <CatIcon
+          size={120}
+          style={{ color: group.accent, opacity: 0.055 }}
+        />
+      </div>
+
+      {/* Soft corner glow */}
+      <div
+        className="absolute top-0 right-0 w-40 h-40 rounded-full blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ background: `${group.accent}12` }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 p-6">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-5">
+          <div className="flex items-center gap-3">
+            {/* Icon pill */}
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+              style={{
+                background: group.lightBg,
+                border: `1.5px solid ${group.accent}30`,
+                boxShadow: `0 2px 10px ${group.accent}15`,
+              }}
+            >
+              <CatIcon size={19} style={{ color: group.accent }} />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            <div>
+              <h3
+                className={`${grotesk.className} font-bold text-gray-900 text-[15px] leading-none`}
+              >
+                {group.label}
+              </h3>
+              <p className={`${poppins.className} text-gray-400 text-[11px] mt-0.5 font-light`}>
+                {group.tagline}
+              </p>
+            </div>
+          </div>
+
+          {/* Count badge */}
+          <span
+            className={`${poppins.className} shrink-0 text-[9px] font-bold uppercase tracking-[2px] px-2.5 py-1.5 rounded-full`}
+            style={{
+              background: group.lightBg,
+              color: group.accent,
+              border: `1px solid ${group.accent}30`,
+            }}
+          >
+            {group.skills.length} skills
+          </span>
+        </div>
+
+        {/* Divider */}
+        <div
+          className="h-px mb-5"
+          style={{ background: `linear-gradient(90deg, ${group.accent}20, transparent)` }}
+          aria-hidden="true"
+        />
+
+        {/* Skill chips */}
+        <div className="flex flex-wrap gap-2">
+          {group.skills.map((skill, si) => (
+            <SkillChip
+              key={skill.name}
+              name={skill.name}
+              Icon={skill.Icon}
+              accent={group.accent}
+              delay={0.1 + si * 0.045}
+              inView={inView}
+            />
+          ))}
+        </div>
+      </div>
     </motion.div>
   );
 }
 
-/* ─── right panel data ───────────────────────────────── */
-const FEATURED = [
-  { name: "React & Next.js", level: 94, accent: "#007979", icon: SiReact  },
-  { name: "AI & Agents",     level: 88, accent: "#e879a0", icon: FaBrain  },
-  { name: "Python & ML",     level: 86, accent: "#6366f1", icon: SiPython },
-  { name: "DevOps & Tools",  level: 92, accent: "#22c55e", icon: SiGit    },
-];
-
-const SERVICES = [
-  { label: "Full Stack Web Apps",  desc: "Next.js · React · Node.js"    },
-  { label: "AI Agent Development", desc: "LangChain · OpenAI SDK · RAG" },
-  { label: "UI/UX Design Systems", desc: "Tailwind · Framer Motion"     },
-  { label: "Cloud & Deployment",   desc: "Vercel · Netlify · GitHub CI" },
-];
-
-/* ─── marquee strip ──────────────────────────────────── */
+/* ─── Marquee ───────────────────────────────────────── */
 function MarqueeStrip() {
   const doubled = [...ALL_SKILLS, ...ALL_SKILLS];
   return (
-    <div className="overflow-hidden py-10 border-y border-gray-100">
-      <div className="flex w-max marquee-track gap-8">
+    <div className="relative overflow-hidden py-5 border-y border-gray-100/80">
+      {/* Fade masks */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, #f8fffe, transparent)" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, #f8fffe, transparent)" }}
+        aria-hidden="true"
+      />
+      <div className="flex w-max marquee-track gap-5">
         {doubled.map((s, i) => {
-          const Icon = s.icon;
+          const Icon = s.Icon;
           return (
-            <div key={i} className="flex items-center gap-2 shrink-0 text-gray-300 hover:text-[#007979] transition-colors duration-200 cursor-default">
-              <Icon size={18} />
-              <span className={`${poppins.className} text-sm font-medium whitespace-nowrap`}>{s.name}</span>
-              <span className="ml-4 text-gray-200">·</span>
+            <div
+              key={i}
+              className="flex items-center gap-2 shrink-0 cursor-default group px-1"
+            >
+              <Icon
+                size={14}
+                style={{ color: s.accent, opacity: 0.7 }}
+                className="group-hover:opacity-100 transition-opacity duration-200"
+              />
+              <span
+                className={`${poppins.className} text-[12px] font-medium whitespace-nowrap text-gray-400 group-hover:text-gray-600 transition-colors duration-200`}
+              >
+                {s.name}
+              </span>
+              <span className="ml-2 text-gray-200 text-xs" aria-hidden="true">·</span>
             </div>
           );
         })}
@@ -286,205 +345,193 @@ function MarqueeStrip() {
   );
 }
 
-/* ─── main section ───────────────────────────────────── */
+/* ─── Main section ──────────────────────────────────── */
 export default function SkillsSection() {
-  const sectionRef   = useRef<HTMLElement>(null);
   const headerRef    = useRef<HTMLDivElement>(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-10%" });
 
   return (
     <section
-      ref={sectionRef}
       id="skills"
-      className={`${poppins.className} bg-white relative overflow-hidden`}
+      className={`${poppins.className} relative overflow-hidden`}
+      style={{ background: "linear-gradient(160deg, #f0fafa 0%, #ffffff 50%, #f8f8ff 100%)" }}
     >
-      {/* ambient glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#007979]/4 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#007979]/3 blur-[100px] rounded-full pointer-events-none" />
-
-      {/* ── header ── */}
-      <div ref={headerRef} className="relative max-w-6xl mx-auto px-6 lg:px-10 pt-24 pb-16 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="uppercase tracking-[5px] text-[#007979] text-xs font-bold mb-4 font-serif"
-        >
-          My Expertise
-        </motion.p>
-
-        <div className="overflow-visible mb-4 pb-3">
-          <motion.h2
-            initial={{ y: 80, opacity: 0 }}
-            animate={headerInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className={`${playfair.className} text-black`}
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontStyle: "italic", lineHeight: 1.15 }}
-          >
-            Tech Stack
-          </motion.h2>
-        </div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.35, duration: 0.6 }}
-          className="max-w-xl mx-auto text-base leading-relaxed text-gray-500"
-        >
-          A curated set of technologies I use to design, build and ship
-          modern web products and intelligent AI systems
-        </motion.p>
-
-        {/* animated dashes */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={headerInView ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{ duration: 0.7, delay: 0.45 }}
-          className="flex items-center justify-center gap-1.5 mt-6"
-        >
-          <span className="w-8 h-[3px] rounded-full bg-[#007979]" />
-          <span className="w-3 h-[3px] rounded-full bg-[#007979]/40" />
-        </motion.div>
+      {/* ── Background decoration ── */}
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.09) 1px, transparent 1px)",
+          backgroundSize: "38px 38px",
+          opacity: 0.5,
+        }}
+        aria-hidden="true"
+      />
+      {/* Top-right teal orb */}
+      <div
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: "rgba(0,121,121,0.07)" }}
+        aria-hidden="true"
+      />
+      {/* Bottom-left indigo orb */}
+      <div
+        className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none"
+        style={{ background: "rgba(99,102,241,0.05)" }}
+        aria-hidden="true"
+      />
+      {/* Geometric ring — top left */}
+      <div
+        className="absolute top-20 left-10 pointer-events-none opacity-[0.05]"
+        aria-hidden="true"
+      >
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="90" stroke="#007979" strokeWidth="1" strokeDasharray="5 7" />
+          <circle cx="100" cy="100" r="60" stroke="#007979" strokeWidth="0.75" />
+          <circle cx="100" cy="100" r="30" stroke="#007979" strokeWidth="0.5" strokeDasharray="3 6" />
+        </svg>
+      </div>
+      {/* Geometric ring — bottom right */}
+      <div
+        className="absolute bottom-16 right-10 pointer-events-none opacity-[0.04]"
+        aria-hidden="true"
+      >
+        <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
+          <circle cx="75" cy="75" r="68" stroke="#6366f1" strokeWidth="1" strokeDasharray="4 8" />
+          <circle cx="75" cy="75" r="44" stroke="#6366f1" strokeWidth="0.75" />
+        </svg>
       </div>
 
-      {/* ── marquee ── */}
+      {/* ── Section header ── */}
+      <div
+        ref={headerRef}
+        className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 pt-24 pb-14"
+      >
+        {/* Two-column header: heading left, description + CTA right */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+
+          {/* Left */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={headerInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-5"
+            >
+              <motion.span
+                initial={{ width: 0 }}
+                animate={headerInView ? { width: 36 } : {}}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="h-px bg-[#007979] block"
+                aria-hidden="true"
+              />
+              <span
+                className={`${poppins.className} text-[11px] tracking-[5px] uppercase font-semibold text-[#007979]`}
+              >
+                My Expertise
+              </span>
+            </motion.div>
+
+            <div className="overflow-visible pb-4">
+              <motion.h2
+                initial={{ y: 64, opacity: 0 }}
+                animate={headerInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                className={`${playfair.className} text-gray-900`}
+                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", fontStyle: "italic", lineHeight: 1.12 }}
+              >
+                Tech{" "}
+                <span className="relative inline-block" style={{ color: "#007979" }}>
+                  Stack
+                  <motion.span
+                    initial={{ scaleX: 0 }}
+                    animate={headerInView ? { scaleX: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute left-0 -bottom-1 w-full h-[4px] rounded-full origin-left"
+                    style={{ background: "linear-gradient(90deg, #007979, #00c4c4)" }}
+                    aria-hidden="true"
+                  />
+                </span>
+              </motion.h2>
+            </div>
+
+            {/* Category count pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={headerInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.42, duration: 0.55 }}
+              className="flex flex-wrap gap-2 mt-1"
+            >
+              {GROUPS.map((g) => (
+                <span
+                  key={g.id}
+                  className={`${poppins.className} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold`}
+                  style={{
+                    background: g.lightBg,
+                    color: g.accent,
+                    border: `1px solid ${g.accent}25`,
+                  }}
+                >
+                  <g.Icon size={11} />
+                  {g.label}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35, duration: 0.6 }}
+            className="lg:max-w-xs space-y-4"
+          >
+            <p
+              className={`${poppins.className} text-gray-500 text-[14px] leading-relaxed font-light`}
+            >
+              A curated toolkit of technologies I use to build modern web
+              products and intelligent AI systems — from idea to deployment.
+            </p>
+            <div className="flex items-center gap-2">
+              <span
+                className={`${grotesk.className} text-3xl font-bold text-[#007979]`}
+              >
+                33+
+              </span>
+              <span
+                className={`${poppins.className} text-gray-400 text-[12px] font-light leading-tight`}
+              >
+                technologies<br />across 4 domains
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── Marquee ── */}
       <MarqueeStrip />
 
-      {/* ── two column: cards + badge cloud ── */}
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-10 py-20">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-
-          {/* left — accordion category cards */}
-          <div className="space-y-4">
-            {GROUPS.map((group, i) => (
-              <CategoryCard key={group.id} group={group} index={i} />
-            ))}
-          </div>
-
-          {/* ── RIGHT — 4 cards matching left structure ── */}
-          <div className="space-y-4">
-
-            {/* Card 1 — Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-2xl overflow-hidden border border-gray-100 bg-white
-                shadow-[0_2px_12px_rgba(0,0,0,0.04)]
-                hover:shadow-[0_8px_32px_rgba(0,121,121,0.10)]
-                transition-shadow duration-300"
-            >
-              <div className="px-6 py-5 flex items-center justify-between border-b border-gray-50">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: "#007979" + "15", border: "1.5px solid #00797930" }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007979" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 20V10M18 20V4M6 20v-6" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className={`${grotesk.className} text-[15px] font-bold text-black leading-none`}>By the Numbers</h3>
-                    <p className={`${poppins.className} text-[11px] text-gray-400 mt-1`}>Experience at a glance</p>
-                  </div>
-                </div>
-                <span className={`${poppins.className} text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded-full`}
-                  style={{ backgroundColor: "#00797915", color: "#007979" }}>
-                  Stats
-                </span>
-              </div>
-              <div className="grid grid-cols-3 divide-x divide-gray-50 px-2 py-2">
-                {[
-                  { num: "33+", label: "Technologies", icon: "⚡" },
-                  { num: "2+",  label: "Years Coding",  icon: "🗓" },
-                  { num: "10+", label: "Projects",      icon: "🚀" },
-                ].map((s, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col items-center py-4 px-2 cursor-default rounded-xl hover:bg-[#007979]/4 transition-colors duration-200"
-                  >
-                    <span className="text-xl mb-1">{s.icon}</span>
-                    <p className={`${grotesk.className} text-2xl font-bold text-[#007979] leading-none`}>{s.num}</p>
-                    <p className={`${poppins.className} text-[10px] text-gray-400 mt-1.5 text-center leading-tight`}>{s.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Card 2 — Core Proficiency rings */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-2xl overflow-hidden border border-gray-100 bg-white
-                shadow-[0_2px_12px_rgba(0,0,0,0.04)]
-                hover:shadow-[0_8px_32px_rgba(0,121,121,0.10)]
-                transition-shadow duration-300"
-            >
-              <div className="px-6 py-5 flex items-center justify-between border-b border-gray-50">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: "#e879a015", border: "1.5px solid #e879a030" }}>
-                    <FaBrain size={18} color="#e879a0" />
-                  </div>
-                  <div>
-                    <h3 className={`${grotesk.className} text-[15px] font-bold text-black leading-none`}>Core Proficiency</h3>
-                    <p className={`${poppins.className} text-[11px] text-gray-400 mt-1`}>Key skill levels</p>
-                  </div>
-                </div>
-                <span className={`${poppins.className} text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded-full`}
-                  style={{ backgroundColor: "#e879a015", color: "#e879a0" }}>
-                  4 skills
-                </span>
-              </div>
-              <div className="px-6 py-4 space-y-3">
-                {FEATURED.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: 16 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.07, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                      whileHover={{ x: 4 }}
-                      className="group flex items-center gap-3 cursor-default"
-                    >
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200"
-                        style={{ backgroundColor: item.accent + "15" }}>
-                        <Icon size={14} style={{ color: item.accent }} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className={`${poppins.className} text-xs font-semibold text-gray-700 group-hover:text-black transition-colors`}>
-                            {item.name}
-                          </span>
-                          <span className={`${poppins.className} text-[10px] font-mono shrink-0 ml-2`}
-                            style={{ color: item.accent }}>
-                            {item.level}%
-                          </span>
-                        </div>
-                        <div className="h-[5px] w-full rounded-full bg-gray-100 overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full"
-                            style={{ backgroundColor: item.accent }}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${item.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.1, delay: 0.1 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                          />
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </div>
+      {/* ── Bento grid ── */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {GROUPS.map((group, i) => (
+            <CategoryCard key={group.id} group={group} index={i} />
+          ))}
         </div>
+
+        {/* ── Proof strip ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-8%" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100 rounded-2xl overflow-hidden"
+          style={{
+            border: "1.5px solid rgba(0,121,121,0.12)",
+            background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 100%)",
+            boxShadow: "0 2px 20px rgba(0,121,121,0.06)",
+          }}
+        >
+        </motion.div>
       </div>
     </section>
   );

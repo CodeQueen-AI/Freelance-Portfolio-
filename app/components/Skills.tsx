@@ -2,13 +2,18 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Space_Grotesk, Poppins } from "next/font/google";
+import { Space_Grotesk, Poppins, Playfair_Display } from "next/font/google";
 import {SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,SiHtml5, SiCss, SiNodedotjs, SiExpress, SiPython,SiMongodb, SiFirebase, SiPostgresql, SiGit, SiGithub,SiVercel, SiNetlify, SiStreamlit, SiOpenai, SiFastapi,SiPandas, SiNumpy,} from "react-icons/si";
 import { FaBrain, FaRobot, FaDatabase } from "react-icons/fa";
 import { TbApi } from "react-icons/tb";
 
 const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["700"],
+  style: ["italic"],
+});
 
 /* ─── skill groups ───────────────────────────────────── */
 const GROUPS = [
@@ -308,13 +313,13 @@ export default function SkillsSection() {
           My Expertise
         </motion.p>
 
-        <div className="overflow-hidden mb-4">
+        <div className="overflow-visible mb-4 pb-3">
           <motion.h2
             initial={{ y: 80, opacity: 0 }}
             animate={headerInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className={`${grotesk.className} font-semibold font-serif text-black leading-none`}
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+            className={`${playfair.className} text-black`}
+            style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontStyle: "italic", lineHeight: 1.15 }}
           >
             Tech Stack
           </motion.h2>

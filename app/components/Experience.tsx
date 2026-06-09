@@ -1,12 +1,18 @@
 "use client";
 
-import { Poppins } from "next/font/google";
+import { Poppins, Playfair_Display } from "next/font/google";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["700"],
+  style: ["italic"],
 });
 
 const experiences = [
@@ -133,12 +139,13 @@ export default function Experience() {
               </span>
             </motion.div>
 
-            <div className="overflow-hidden">
+            <div className="overflow-visible pb-4">
               <motion.h1
                 initial={{ y: 80, opacity: 0 }}
                 animate={headerInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                className="uppercase font-black leading-[0.9] font-serif"
+                className={`${playfair.className} leading-[1.1]`}
+                style={{ fontStyle: "italic" }}
               >
                 <span className="block text-[14vw] lg:text-[9vw] text-black">Technical</span>
                 <span className="block text-[14vw] lg:text-[9vw] text-[#007979]">Experience.</span>

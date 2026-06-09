@@ -2,10 +2,16 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Poppins } from "next/font/google";
+import { Poppins, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["800"],
+  style: ["italic"],
+});
 
 const services = [
   {
@@ -66,12 +72,17 @@ export default function Services() {
             >
               What I Do
             </motion.p>
-            <div className="overflow-hidden">
+            <div className="overflow-visible pb-3">
               <motion.h2
                 initial={{ y: 60, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className="text-5xl md:text-7xl font-black text-black uppercase leading-none"
+                className={`${playfair.className} text-black`}
+                style={{
+                  fontSize: "clamp(3.5rem, 10vw, 7rem)",
+                  fontStyle: "italic",
+                  lineHeight: 1.15,
+                }}
               >
                 Services
               </motion.h2>

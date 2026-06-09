@@ -2,11 +2,16 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Space_Grotesk, Poppins } from "next/font/google";
+import { Space_Grotesk, Poppins, Playfair_Display } from "next/font/google";
 import { FiExternalLink, FiGithub, FiArrowUpRight } from "react-icons/fi";
 
 const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const poppins  = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["700"],
+  style: ["italic"],
+});
 
 /* ─── data ───────────────────────────────────────────── */
 const PROJECTS = [
@@ -255,13 +260,13 @@ function Header() {
       </motion.p>
 
       {/* main heading */}
-      <div className="overflow-hidden mb-5">
+      <div className="overflow-visible mb-5 pb-3">
         <motion.h2
           initial={{ y: 80, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className={`${grotesk.className} font-bold text-black leading-none`}
-          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)" }}
+          className={`${playfair.className} text-black`}
+          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", fontStyle: "italic", lineHeight: 1.15 }}
         >
           Projects I&apos;ve{" "}
           <span className="relative inline-block">

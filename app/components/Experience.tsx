@@ -448,51 +448,59 @@ export default function Experience() {
             <div
               className="relative rounded-2xl overflow-hidden flex-shrink-0"
               style={{
-                background: "linear-gradient(135deg, #007979 0%, #005f5f 100%)",
-                boxShadow: "0 16px 56px rgba(0,121,121,0.28)",
+                background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 60%, #edf9f9 100%)",
+                border: "1px solid rgba(0,121,121,0.14)",
+                boxShadow: "0 4px 24px rgba(0,121,121,0.08), 0 1px 4px rgba(0,0,0,0.04)",
               }}
             >
-              {/* Mesh lines inside the card */}
+              {/* Subtle dot grid */}
               <div
-                className="absolute inset-0 opacity-[0.08]"
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
+                  backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.18) 1px, transparent 1px)",
+                  backgroundSize: "28px 28px",
+                  opacity: 0.35,
                 }}
                 aria-hidden="true"
               />
-              {/* Corner circles */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-white/10" aria-hidden="true" />
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full border border-white/10" aria-hidden="true" />
+              {/* Soft teal radial glow — top right */}
+              <div
+                className="absolute -top-16 -right-16 w-52 h-52 rounded-full blur-3xl pointer-events-none"
+                style={{ background: "rgba(0,121,121,0.07)" }}
+                aria-hidden="true"
+              />
+              {/* Corner rings — now teal on light */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-[#007979]/10" aria-hidden="true" />
+              <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full border border-[#007979]/08" aria-hidden="true" />
 
               <div className="relative z-10 p-7">
                 {/* Top: name + orbit */}
                 <div className="flex items-start justify-between mb-5">
                   <div>
-                    <p className={`${poppins.className} text-white text-[10px] tracking-[3px] uppercase mb-1.5`}>
+                    <p className={`${poppins.className} text-[#007979] text-[10px] tracking-[3px] uppercase font-semibold mb-1.5`}>
                       Developer Profile
                     </p>
-                    <h3 className={`${grotesk.className} text-white text-xl font-bold leading-tight`}>
+                    <h3 className={`${grotesk.className} text-gray-900 text-xl font-bold leading-tight`}>
                       Sumbal Naz
                     </h3>
-                    <p className={`${poppins.className} text-[#a7e8e8] text-[13px] mt-0.5`}>
+                    <p className={`${poppins.className} text-[#007979] text-[13px] font-medium mt-0.5`}>
                       Full Stack &amp; AI Engineer
                     </p>
                   </div>
-                  <motion.div style={{ y: orbitY }} className="shrink-0 opacity-80" aria-hidden="true">
+                  <motion.div style={{ y: orbitY }} className="shrink-0" aria-hidden="true">
                     <svg width="60" height="60" viewBox="0 0 64 64" fill="none">
-                      <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.18)" strokeWidth="1" strokeDasharray="4 5" />
-                      <circle cx="32" cy="32" r="18" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-                      <circle cx="32" cy="32" r="7"  fill="rgba(255,255,255,0.22)" />
-                      <circle cx="32" cy="4"  r="3"  fill="rgba(167,232,232,0.9)" />
+                      <circle cx="32" cy="32" r="28" stroke="rgba(0,121,121,0.2)"  strokeWidth="1" strokeDasharray="4 5" />
+                      <circle cx="32" cy="32" r="18" stroke="rgba(0,121,121,0.14)" strokeWidth="1" />
+                      <circle cx="32" cy="32" r="7"  fill="rgba(0,121,121,0.12)" />
+                      <circle cx="32" cy="4"  r="3"  fill="#007979" />
                     </svg>
                   </motion.div>
                 </div>
 
                 {/* Short professional bio */}
-                <p className="text-white text-[13px] leading-[1.85] mb-5 font-light font-seri f">
+                <p className={`${poppins.className} text-gray-500 text-[13px] leading-[1.85] mb-5 font-light`}>
                   I design and build modern web applications and intelligent AI systems that help
-                  businesses scale — with a relentless focus on performance, clarity and results
+                  businesses scale — with a relentless focus on performance, clarity and results.
                 </p>
 
                 {/* Expertise tags */}
@@ -502,14 +510,14 @@ export default function Experience() {
                       key={tag.label}
                       className={`${poppins.className} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold`}
                       style={{
-                        background: "rgba(255,255,255,0.10)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        color: "rgba(255,255,255,0.85)",
+                        background: `${tag.color}0d`,
+                        border: `1px solid ${tag.color}28`,
+                        color: tag.color,
                       }}
                     >
                       <span
                         className="w-[5px] h-[5px] rounded-full shrink-0"
-                        style={{ backgroundColor: tag.color, boxShadow: `0 0 6px ${tag.color}` }}
+                        style={{ backgroundColor: tag.color, boxShadow: `0 0 5px ${tag.color}80` }}
                         aria-hidden="true"
                       />
                       {tag.label}

@@ -141,10 +141,10 @@ const valuePillars = [
 const expertiseTags = [
   { label: "Next.js & React",   color: "#007979" },
   { label: "AI / LLM Systems",  color: "#7c3aed" },
-  { label: "TypeScript",        color: "#0891b2" },
-  { label: "Node.js & APIs",    color: "#059669" },
-  { label: "Tailwind CSS",      color: "#0d9488" },
-  { label: "Python & FastAPI",  color: "#b45309" },
+  { label: "TS & JS",        color: "#35bddf" },
+  { label: "Node.js & APIs",    color: "#49de1c" },
+  { label: "Tailwind CSS",      color: "#bd2793" },
+  { label: "Python & FastAPI",  color: "#8b63da" },
 ];
 
 /* ─── Animation variants ────────────────────────────── */

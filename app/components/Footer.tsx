@@ -10,7 +10,6 @@ import {
   FiLinkedin,
   FiTwitter,
   FiInstagram,
-  FiArrowUpRight,
   FiHeart,
 } from "react-icons/fi";
 
@@ -49,67 +48,8 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
-      className={`${poppins.className} relative bg-black text-white overflow-hidden`}
+      className={`${poppins.className} relative text-black overflow-hidden`}
     >
-      {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#007979]/60 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[#007979]/8 blur-[80px] rounded-full pointer-events-none" />
-
-      {/* Big CTA row */}
-      <div className="relative border-b border-white/[0.06] py-20 px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
-
-          <div className="text-center lg:text-left">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
-              className="text-xs uppercase tracking-[5px] text-[#007979] font-bold mb-4"
-            >
-              Open to Work
-            </motion.p>
-            <div className="overflow-hidden">
-              <motion.h2
-                initial={{ y: 60, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className={`${grotesk.className} text-4xl md:text-5xl lg:text-6xl font-bold leading-tight`}
-              >
-                Have a project?
-                <br />
-                <span className="text-[#007979]">Let&apos;s build it.</span>
-              </motion.h2>
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 px-8 py-4 rounded-full bg-[#007979] text-white font-semibold text-sm tracking-wide hover:shadow-[0_12px_40px_rgba(0,121,121,0.5)] transition-shadow duration-300"
-            >
-              Start a Project
-              <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                <FiArrowUpRight size={16} />
-              </motion.span>
-            </motion.a>
-            <motion.a
-              href="mailto:sumbalnaz@email.com"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 text-white/80 font-semibold text-sm tracking-wide hover:border-[#007979] hover:text-[#007979] transition-colors duration-300"
-            >
-              Send an Email
-            </motion.a>
-          </motion.div>
-        </div>
-      </div>
 
       {/* Main footer grid */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16">
@@ -124,14 +64,14 @@ export default function Footer() {
           >
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/logo.png"
+                src="/Logo Img.png"
                 alt="Sumbal Naz Logo"
                 width={80}
                 height={80}
-                className="object-contain brightness-[10] opacity-90"
+                className="object-contain opacity-90"
               />
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed max-w-[220px]">
+            <p className="text-sm leading-relaxed max-w-[220px]">
               Full Stack &amp; AI Developer crafting modern digital products with clean code and creative design.
             </p>
 
@@ -151,7 +91,7 @@ export default function Footer() {
                     transition={{ delay: 0.4 + i * 0.07 }}
                     whileHover={{ y: -4, scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/40 hover:text-[#007979] hover:border-[#007979]/40 hover:bg-[#007979]/10 transition-all duration-200"
+                    className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:text-[#007979] hover:border-[#007979]/40 hover:bg-[#007979]/10 transition-all duration-200"
                   >
                     <Icon size={15} />
                   </motion.a>
@@ -166,7 +106,7 @@ export default function Footer() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <p className="text-[10px] uppercase tracking-[4px] font-bold text-white/30 mb-6">
+            <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
               Navigation
             </p>
             <ul className="space-y-3">
@@ -174,7 +114,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors duration-200"
+                    className="group flex items-center gap-2 text-sm transition-colors duration-200"
                   >
                     <motion.span
                       className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"
@@ -192,7 +132,7 @@ export default function Footer() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <p className="text-[10px] uppercase tracking-[4px] font-bold text-white/30 mb-6">
+            <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
               Services
             </p>
             <ul className="space-y-3">
@@ -200,7 +140,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors duration-200"
+                    className="group flex items-center gap-2 text-sm transition-colors duration-200"
                   >
                     <motion.span
                       className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"
@@ -218,25 +158,25 @@ export default function Footer() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <p className="text-[10px] uppercase tracking-[4px] font-bold text-white/30 mb-6">
+            <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
               Contact
             </p>
             <div className="space-y-4">
               <div>
-                <p className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1">Email</p>
+                <p className="text-[10px] uppercase tracking-[2px] mb-1">Email</p>
                 <a
                   href="mailto:sumbalnaz@email.com"
-                  className="text-sm text-white/60 hover:text-[#007979] transition-colors duration-200"
+                  className="text-sm  hover:text-[#007979] transition-colors duration-200"
                 >
                   sumbalnaz@email.com
                 </a>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1">Based In</p>
-                <p className="text-sm text-white/60">Pakistan · Remote Worldwide</p>
+                <p className="text-[10px] uppercase tracking-[2px] mb-1">Based In</p>
+                <p className="text-sm">Pakistan · Remote Worldwide</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1">Status</p>
+                <p className="text-[10px] uppercase tracking-[2px] mb-1">Status</p>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#007979] animate-pulse" />
                   <p className="text-sm text-[#007979] font-medium">Available for work</p>
@@ -255,10 +195,10 @@ export default function Footer() {
         className="border-t border-white/[0.06] px-6 lg:px-10 py-6"
       >
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
+          <p className="text-xs">
             © {year} Sumbal Naz. All rights reserved.
           </p>
-          <p className="flex items-center gap-1.5 text-white/25 text-xs">
+          <p className="flex items-center gap-1.5 text-xs">
             Designed &amp; built with
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}

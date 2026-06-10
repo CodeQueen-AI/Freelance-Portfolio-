@@ -3,10 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Poppins, Playfair_Display, Space_Grotesk } from "next/font/google";
-import {
-  SiNextdotjs, SiReact, SiTypescript,
-  SiNodedotjs, SiPython, SiPostgresql, SiOpenai,
-} from "react-icons/si";
+import { SiNextdotjs, SiOpenai } from "react-icons/si";
 import {
   FaRocket, FaShieldAlt, FaBrain, FaHandshake,
   FaCheckCircle, FaBolt, FaCode, FaServer,
@@ -17,248 +14,358 @@ const poppins  = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "60
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["800"], style: ["italic"] });
 const grotesk  = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
-/* ─── Shared viewport config — fire once, generous margin ── */
-const VP = { once: true, margin: "-15%" } as const;
+const VP   = { once: true, margin: "-10%" } as const;
+const ease = [0.22, 1, 0.36, 1] as const;
 
-/* ─── Shared fade-up variant ─────────────────────────────── */
 const fadeUp = (delay = 0) => ({
-  initial:    { opacity: 0, y: 20 },
-  whileInView:{ opacity: 1, y: 0  },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-  viewport:   VP,
+  initial:     { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0  },
+  transition:  { duration: 0.65, delay, ease },
+  viewport:    VP,
 });
 
-/* ═══════════════════════════════════════════════════════════
-   PANEL 1 — Speed
-═══════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   PANEL 1 — Speed & Delivery  (world-class product roadmap)
+════════════════════════════════════════════════════════════ */
 function Panel1() {
-  const metrics = [
-    { label: "Avg. project delivery", value: "2–4 wks", bar: 0.85 },
-    { label: "On-time delivery rate", value: "100%",    bar: 1.0  },
-    { label: "Revision rounds needed", value: "1–2",    bar: 0.3  },
+  const phases = [
+    {
+      num: "01", label: "Discovery", timing: "Day 1", color: "#007979",
+      sub: "Goals, scope & stack aligned",
+      tasks: ["Stakeholder alignment", "Tech stack decision", "Project brief locked"],
+      status: "complete",
+    },
+    {
+      num: "02", label: "Design", timing: "Week 1", color: "#0891b2",
+      sub: "Architecture & wireframes locked",
+      tasks: ["System architecture", "UI wireframes", "Component library"],
+      status: "complete",
+    },
+    {
+      num: "03", label: "Build", timing: "Wk 2–3", color: "#059669",
+      sub: "Daily updates, iterative delivery",
+      tasks: ["Feature development", "Daily standups", "Iterative QA"],
+      status: "active",
+    },
+    {
+      num: "04", label: "Launch", timing: "Week 4", color: "#7c3aed",
+      sub: "QA, deploy & docs handover",
+      tasks: ["Final QA pass", "Production deploy", "Docs & handover"],
+      status: "upcoming",
+    },
   ];
 
   return (
     <div
       className="sticky top-0 h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 60%, #edfdf9 100%)", zIndex: 11 }}
+      style={{ background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 55%, #f5f0ff 100%)", zIndex: 11, marginBottom: "-1px" }}
     >
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.09) 1px, transparent 1px)", backgroundSize: "38px 38px" }}
-        aria-hidden="true" />
-      {/* Ambient glow */}
-      <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full blur-[160px] pointer-events-none"
-        style={{ background: "rgba(0,121,121,0.07)" }} aria-hidden="true" />
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.065) 1px, transparent 1px)",
+          backgroundSize: "34px 34px",
+          maskImage: "radial-gradient(ellipse 78% 72% at 50% 50%, black 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 78% 72% at 50% 50%, black 20%, transparent 100%)",
+        }} aria-hidden="true" />
 
-      {/* Panel enter — single fade from below, fires once */}
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        viewport={VP}
-        className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:px-16"
-      >
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 lg:px-12">
 
-          {/* LEFT: stat + bars */}
-          <div>
-            {/* Eyebrow */}
-            <motion.div {...fadeUp(0)} className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: "rgba(0,121,121,0.12)", color: "#007979", border: "1.5px solid rgba(0,121,121,0.25)" }}>
-                <FaRocket size={15} />
+        {/* ── Top bar: eyebrow + headline + badge in one row ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease }}
+            viewport={VP}
+          >
+            <div className="inline-flex items-center gap-2.5 mb-3">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center"
+                style={{ background: "rgba(0,121,121,0.1)", color: "#007979", border: "1.5px solid rgba(0,121,121,0.18)" }}>
+                <FaRocket size={11} />
               </div>
-              <span className={`${poppins.className} text-[11px] tracking-[4px] uppercase font-semibold text-[#007979]`}>
+              <span className={`${poppins.className} text-[10.5px] tracking-[4px] uppercase font-semibold text-[#007979]`}>
                 01 / Speed & Delivery
               </span>
-            </motion.div>
-
-            {/* Giant outlined number */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              viewport={VP}
-              className="mb-1"
-            >
-              <span
-                className={`${grotesk.className} font-bold leading-none select-none block`}
-                style={{
-                  fontSize: "clamp(6rem, 18vw, 16rem)",
-                  color: "transparent",
-                  WebkitTextStroke: "2px rgba(0,121,121,0.16)",
-                  lineHeight: 0.85,
-                }}
-                aria-hidden="true"
-              >
-                2–4
-              </span>
-              <span className={`${poppins.className} text-gray-400 text-[13px] font-light tracking-widest uppercase ml-1`}>
-                weeks to launch
-              </span>
-            </motion.div>
-
-            {/* Metric bars — staggered but short delays */}
-            <div className="space-y-4 mt-8">
-              {metrics.map((m, i) => (
-                <motion.div key={m.label} {...fadeUp(0.15 + i * 0.08)}>
-                  <div className="flex justify-between mb-1.5">
-                    <span className={`${poppins.className} text-[12px] text-gray-500 font-medium`}>{m.label}</span>
-                    <span className={`${grotesk.className} text-[12px] font-bold text-[#007979]`}>{m.value}</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${m.bar * 100}%` }}
-                      transition={{ delay: 0.3 + i * 0.1, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                      viewport={VP}
-                      className="h-full rounded-full"
-                      style={{ background: "linear-gradient(90deg, #007979, #00c4c4)" }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
             </div>
-          </div>
-
-          {/* RIGHT: copy */}
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              viewport={VP}
-              className={`${playfair.className} text-gray-900 leading-[1.15] mb-5`}
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", fontStyle: "italic" }}
+            <h2
+              className={`${playfair.className} leading-[1.1]`}
+              style={{ fontSize: "clamp(1.9rem, 3.8vw, 3.4rem)", fontStyle: "italic" }}
             >
-              Your idea, live<br />
-              <span style={{ color: "#007979" }}>in weeks — not months.</span>
-            </motion.h2>
+              Your idea, live{" "}
+              <span style={{ color: "#007979" }}>in weeks —</span>{" "}not months.
+            </h2>
+          </motion.div>
 
-            <motion.p {...fadeUp(0.2)}
-              className={`${poppins.className} text-gray-500 text-[15px] leading-[1.9] font-light max-w-md mb-8`}
+          <motion.div
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+            viewport={VP}
+            className="flex items-center gap-3 shrink-0"
+          >
+            {/* Live indicator */}
+            <span className="flex items-center gap-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ background: "#059669" }} />
+                <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#059669" }} />
+              </span>
+              <span className={`${poppins.className} text-[11px] text-gray-500 font-medium`}>Active project</span>
+            </span>
+            <span className="w-px h-4 bg-gray-200" aria-hidden="true" />
+            <span
+              className={`${poppins.className} inline-flex items-center gap-1.5 text-[11px] font-semibold`}
+              style={{ color: "#007979" }}
             >
-              I move fast without cutting corners. From kickoff call to deployed product,
-              my clients consistently launch in 2–4 weeks — on time, every time.
-            </motion.p>
-
-            <motion.div {...fadeUp(0.3)} className="flex flex-wrap gap-3">
-              {["Kickoff → Launch", "Daily Updates", "No Surprises", "100% On-Time"].map((badge) => (
-                <span key={badge}
-                  className={`${poppins.className} inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold`}
-                  style={{ background: "rgba(0,121,121,0.08)", color: "#007979", border: "1px solid rgba(0,121,121,0.2)" }}
-                >
-                  <FaCheckCircle size={9} />
-                  {badge}
-                </span>
-              ))}
-            </motion.div>
-          </div>
+              <FaCheckCircle size={10} />
+              100% On-Time
+            </span>
+          </motion.div>
         </div>
-      </motion.div>
 
-      <PanelDots active={0} accent="#007979" />
+        {/* ── Roadmap board: 4 phase columns ── */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {phases.map((p, pi) => (
+            <motion.div
+              key={p.num}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12 + pi * 0.1, duration: 0.7, ease }}
+              viewport={VP}
+              className="relative flex flex-col rounded-2xl overflow-hidden"
+              style={{
+                background: "#fff",
+                border: `1.5px solid ${p.color}1a`,
+                boxShadow: p.status === "active"
+                  ? `0 4px 28px ${p.color}18, 0 2px 8px rgba(0,0,0,0.04)`
+                  : "0 2px 12px rgba(0,0,0,0.04)",
+              }}
+            >
+              {/* Coloured header band */}
+              <div
+                className="px-4 pt-4 pb-3"
+                style={{ background: `linear-gradient(135deg, ${p.color}0d 0%, ${p.color}06 100%)` }}
+              >
+                {/* Phase number + timing */}
+                <div className="flex items-center justify-between mb-2">
+                  <span
+                    className={`${grotesk.className} text-[10px] font-bold tracking-[2px] uppercase`}
+                    style={{ color: `${p.color}90` }}
+                  >{p.num}</span>
+                  <span
+                    className={`${poppins.className} text-[9.5px] font-semibold px-2 py-0.5 rounded-md`}
+                    style={{ background: `${p.color}12`, color: p.color }}
+                  >{p.timing}</span>
+                </div>
+
+                {/* Phase title */}
+                <p className={`${grotesk.className} font-bold text-gray-900 text-[15px] leading-tight mb-1`}>
+                  {p.label}
+                </p>
+                <p className={`${poppins.className} text-gray-400 text-[11px] font-light leading-snug`}>
+                  {p.sub}
+                </p>
+              </div>
+
+              {/* Thin top accent line */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[3px]"
+                style={{ background: `linear-gradient(90deg, ${p.color} 0%, ${p.color}40 100%)` }}
+                aria-hidden="true"
+              />
+
+              {/* Task list */}
+              <div className="px-4 py-3 flex flex-col gap-2 flex-1">
+                {p.tasks.map((task, ti) => (
+                  <div key={ti} className="flex items-center gap-2.5">
+                    <div
+                      className="w-[18px] h-[18px] rounded-md flex items-center justify-center shrink-0"
+                      style={{
+                        background: p.status === "upcoming" ? "rgba(0,0,0,0.04)" : `${p.color}12`,
+                      }}
+                    >
+                      {p.status === "complete" && (
+                        <FaCheckCircle size={9} style={{ color: p.color }} />
+                      )}
+                      {p.status === "active" && ti === 0 && (
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: p.color }} />
+                      )}
+                      {p.status === "upcoming" && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                      )}
+                      {p.status === "active" && ti > 0 && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-gray-200" />
+                      )}
+                    </div>
+                    <span
+                      className={`${poppins.className} text-[11.5px] font-${p.status === "complete" ? "medium" : "light"} leading-snug`}
+                      style={{ color: p.status === "upcoming" ? "#bbb" : p.status === "complete" ? "#555" : "#333" }}
+                    >{task}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Status footer */}
+              <div
+                className="px-4 py-2.5 flex items-center gap-2"
+                style={{ borderTop: `1px solid ${p.color}10` }}
+              >
+                {p.status === "complete" && (
+                  <>
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#059669" }} />
+                    <span className={`${poppins.className} text-[10px] font-semibold`} style={{ color: "#059669" }}>Completed</span>
+                  </>
+                )}
+                {p.status === "active" && (
+                  <>
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: p.color }} />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: p.color }} />
+                    </span>
+                    <span className={`${poppins.className} text-[10px] font-semibold`} style={{ color: p.color }}>In Progress</span>
+                  </>
+                )}
+                {p.status === "upcoming" && (
+                  <>
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                    <span className={`${poppins.className} text-[10px] font-semibold text-gray-400`}>Upcoming</span>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Bottom timeline bar ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.6, ease }}
+          viewport={VP}
+          className="mt-4 rounded-xl px-5 py-3 flex items-center gap-3 overflow-hidden relative"
+          style={{ background: "rgba(0,121,121,0.04)", border: "1px solid rgba(0,121,121,0.1)" }}
+        >
+          {/* Progress fill */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ delay: 0.7, duration: 1.2, ease }}
+            viewport={VP}
+            className="absolute left-0 top-0 bottom-0 origin-left"
+            style={{ width: "60%", background: "linear-gradient(90deg, rgba(0,121,121,0.1), rgba(0,121,121,0.04))" }}
+            aria-hidden="true"
+          />
+          <span className={`${poppins.className} text-[11px] text-gray-500 font-medium relative z-10`}>
+            Total delivery window
+          </span>
+          <div className="flex-1 flex items-center gap-1 relative z-10">
+            {["Day 1", "Week 1", "Wk 2–3", "Week 4"].map((t, i) => (
+              <React.Fragment key={t}>
+                <span className={`${poppins.className} text-[10px] font-semibold`}
+                  style={{ color: phases[i].color }}>{t}</span>
+                {i < 3 && <span className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${phases[i].color}40, ${phases[i+1].color}40)` }} />}
+              </React.Fragment>
+            ))}
+          </div>
+        </motion.div>
+
+      </div>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   PANEL 2 — Quality
-═══════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   PANEL 2 — Code Quality  (no changes — perfect as-is)
+════════════════════════════════════════════════════════════ */
 function Panel2() {
-  const qualities = [
-    { icon: FaCode,      label: "TypeScript-first",     sub: "Fully typed, zero surprises"      },
-    { icon: FaShieldAlt, label: "Secure by default",    sub: "Auth, CORS, validation built in"  },
-    { icon: FaBolt,      label: "Performance-tuned",    sub: "90+ Lighthouse scores"            },
-    { icon: FaServer,    label: "Scalable architecture", sub: "Grows with your business"        },
+  const pillars = [
+    { icon: FaCode,      label: "TypeScript-first",     sub: "Fully typed — zero runtime surprises" },
+    { icon: FaShieldAlt, label: "Secure by default",    sub: "Auth, CORS & validation baked in"     },
+    { icon: FaBolt,      label: "Performance-obsessed", sub: "90+ Lighthouse, sub-second loads"     },
+    { icon: FaServer,    label: "Scales with you",      sub: "Architecture that grows, not breaks"  },
   ];
 
   return (
     <div
       className="sticky top-0 h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #faf5ff 0%, #ffffff 50%, #f0f9ff 100%)", zIndex: 12 }}
+      style={{ background: "linear-gradient(160deg, #faf5ff 0%, #ffffff 50%, #f0f9ff 100%)", zIndex: 12, marginBottom: "-1px" }}
     >
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(124,58,237,0.07) 1px, transparent 1px)", backgroundSize: "40px 40px" }}
-        aria-hidden="true" />
-      <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
-        style={{ background: "rgba(124,58,237,0.06)" }} aria-hidden="true" />
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(124,58,237,0.07) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          maskImage: "radial-gradient(ellipse 80% 72% at 50% 50%, black 15%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 72% at 50% 50%, black 15%, transparent 100%)",
+        }} aria-hidden="true" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        viewport={VP}
-        className="relative z-10 w-full max-w-6xl mx-auto px-8 lg:px-16"
-      >
-        {/* Eyebrow */}
-        <motion.div {...fadeUp(0)} className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center"
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-8 lg:px-16">
+
+        <motion.div {...fadeUp(0)} className="flex items-center justify-center gap-2.5 mb-5">
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center"
             style={{ background: "rgba(124,58,237,0.1)", color: "#7c3aed", border: "1.5px solid rgba(124,58,237,0.2)" }}>
-            <FaShieldAlt size={15} />
+            <FaShieldAlt size={13} />
           </div>
           <span className={`${poppins.className} text-[11px] tracking-[4px] uppercase font-semibold`} style={{ color: "#7c3aed" }}>
             02 / Code Quality
           </span>
         </motion.div>
 
-        {/* Statement */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.9, delay: 0.08, ease }}
             viewport={VP}
             className={`${playfair.className} leading-[1.1]`}
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", fontStyle: "italic" }}
+            style={{ fontSize: "clamp(2.2rem, 5vw, 4.4rem)", fontStyle: "italic" }}
           >
-            <span style={{ color: "#111" }}>Code that won&apos;t </span>
-            <span style={{ color: "#7c3aed" }}>haunt you at 3am.</span>
+            <span style={{ color: "#111" }}>Built to last.</span>
+            <br />
+            <span style={{ color: "#7c3aed" }}>Not just to ship.</span>
           </motion.h2>
-
-          <motion.p {...fadeUp(0.2)}
-            className={`${poppins.className} text-gray-400 text-[14px] font-light mt-5 max-w-md mx-auto leading-relaxed`}
+          <motion.p {...fadeUp(0.16)}
+            className={`${poppins.className} text-gray-500 text-[14px] font-light mt-4 max-w-lg mx-auto leading-[1.85]`}
           >
-            Clean, documented, maintainable code that your future self — and future team — will thank you for.
+            Anyone can push code. I deliver clean, documented, production-grade software
+            your team can maintain and scale — six months from now and beyond.
           </motion.p>
         </div>
 
-        {/* Quality cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {qualities.map((q, qi) => {
+          {pillars.map((q, qi) => {
             const QIcon = q.icon;
             return (
               <motion.div
                 key={q.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + qi * 0.07, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.1 + qi * 0.09, duration: 0.6, ease }}
                 viewport={VP}
-                whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className="bg-white rounded-2xl p-5 cursor-default"
-                style={{ border: "1.5px solid rgba(124,58,237,0.12)", boxShadow: "0 2px 16px rgba(124,58,237,0.06)" }}
+                whileHover={{ y: -4, transition: { duration: 0.18 } }}
+                className="bg-white rounded-2xl p-5 cursor-default text-center"
+                style={{ border: "1.5px solid rgba(124,58,237,0.11)", boxShadow: "0 2px 18px rgba(124,58,237,0.06)" }}
               >
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
-                  style={{ background: "rgba(124,58,237,0.1)", color: "#7c3aed" }}>
-                  <QIcon size={15} />
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-3"
+                  style={{ background: "rgba(124,58,237,0.09)", color: "#7c3aed" }}>
+                  <QIcon size={14} />
                 </div>
-                <p className={`${grotesk.className} text-gray-900 text-[13px] font-bold leading-snug mb-1`}>{q.label}</p>
-                <p className={`${poppins.className} text-gray-400 text-[11px] font-light leading-snug`}>{q.sub}</p>
+                <p className={`${grotesk.className} text-gray-900 text-[13px] font-bold leading-snug mb-1.5`}>{q.label}</p>
+                <p className={`${poppins.className} text-gray-400 text-[11.5px] font-light leading-snug`}>{q.sub}</p>
               </motion.div>
             );
           })}
         </div>
-      </motion.div>
+
+      </div>
 
       <PanelDots active={1} accent="#7c3aed" />
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   PANEL 3 — AI-Native
-═══════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   PANEL 3 — AI-Native  (right side redesigned, left unchanged)
+════════════════════════════════════════════════════════════ */
 function Panel3() {
   const aiStack = [
     { Icon: SiOpenai,   label: "OpenAI GPT-4",  color: "#10a37f" },
@@ -269,54 +376,74 @@ function Panel3() {
     { Icon: HiSparkles, label: "AI Agents",     color: "#007979" },
   ];
 
-  const webStack = [
-    { Icon: SiNextdotjs,  label: "Next.js",    color: "#000"     },
-    { Icon: SiReact,      label: "React",      color: "#61dafb"  },
-    { Icon: SiTypescript, label: "TypeScript", color: "#3178c6"  },
-    { Icon: SiNodedotjs,  label: "Node.js",    color: "#339933"  },
-    { Icon: SiPython,     label: "Python",     color: "#3776ab"  },
-    { Icon: SiPostgresql, label: "PostgreSQL", color: "#336791"  },
+  const delivers = [
+    {
+      num: "01", icon: SiNextdotjs, color: "#007979",
+      title: "Full-Stack Web Apps",
+      desc:  "Next.js, React & Node — from fast landing pages to complex SaaS platforms, built to perform.",
+      tag:   "SaaS · Dashboards · eCommerce",
+    },
+    {
+      num: "02", icon: FaBrain, color: "#c026d3",
+      title: "AI-Powered Products",
+      desc:  "LLM integrations, RAG pipelines & autonomous agents woven into your product from day one.",
+      tag:   "Chatbots · Agents · GPT APIs",
+    },
+    {
+      num: "03", icon: FaBolt, color: "#d97706",
+      title: "Workflow Automation",
+      desc:  "n8n & custom pipelines that eliminate manual work and unlock scale across your operations.",
+      tag:   "n8n · Zapier · Webhooks",
+    },
+    {
+      num: "04", icon: FaServer, color: "#0891b2",
+      title: "APIs & Integrations",
+      desc:  "Reliable REST/GraphQL backends and third-party integrations built for speed and longevity.",
+      tag:   "REST · GraphQL · OAuth",
+    },
   ];
 
   return (
-    <div className="sticky top-0 h-screen flex items-center overflow-hidden" style={{ zIndex: 13 }}>
-      {/* Split background — purely CSS, no animation */}
+    <div className="sticky top-0 h-screen flex items-center overflow-hidden" style={{ zIndex: 13, marginBottom: "-1px" }}>
+      {/* Split background */}
       <div className="absolute inset-0 flex pointer-events-none" aria-hidden="true">
         <div className="w-1/2 h-full" style={{ background: "#0a0f14" }} />
-        <div className="w-1/2 h-full" style={{ background: "#f5f9ff" }} />
+        <div className="w-1/2 h-full" style={{ background: "#f9fafb" }} />
       </div>
-
-      {/* Static glow on dark side — no pulsing loop */}
-      <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(192,38,211,0.25), rgba(0,121,121,0.15))" }}
-        aria-hidden="true"
-      />
+      {/* Dark-side glow */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full blur-[90px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(192,38,211,0.18), rgba(0,121,121,0.09))" }}
+        aria-hidden="true" />
+      {/* Light-side hatch */}
+      <div className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: "repeating-linear-gradient(-55deg, rgba(0,121,121,0.03) 0px, rgba(0,121,121,0.03) 1px, transparent 1px, transparent 26px)",
+          maskImage: "linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 60%)",
+          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 60%)",
+        }} aria-hidden="true" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-          {/* LEFT: dark copy */}
+          {/* LEFT — dark side (unchanged) */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease }}
             viewport={VP}
           >
-            <div className="flex items-center gap-3 mb-7">
+            <div className="flex items-center gap-3 mb-6">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
                 style={{ background: "rgba(192,38,211,0.2)", color: "#e879f9", border: "1.5px solid rgba(192,38,211,0.35)" }}>
-                <FaBrain size={15} />
+                <FaBrain size={14} />
               </div>
               <span className={`${poppins.className} text-[11px] tracking-[4px] uppercase font-semibold`} style={{ color: "#e879f9" }}>
                 03 / AI-Native
               </span>
             </div>
 
-            <h2
-              className={`${playfair.className} leading-[1.15] mb-6`}
-              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontStyle: "italic", color: "white" }}
-            >
+            <h2 className={`${playfair.className} leading-[1.15] mb-5`}
+              style={{ fontSize: "clamp(1.9rem, 3.8vw, 3.4rem)", fontStyle: "italic", color: "white" }}>
               I don&apos;t just{" "}
               <em style={{ color: "#e879f9", fontStyle: "normal" }}>use</em> AI.
               <br />
@@ -324,82 +451,98 @@ function Panel3() {
               <em style={{ color: "#e879f9", fontStyle: "normal" }}>with</em> it.
             </h2>
 
-            <p className={`${poppins.className} text-[14px] leading-[1.9] font-light mb-7`}
-              style={{ color: "rgba(255,255,255,0.55)" }}>
-              From LLM-powered chatbots to autonomous agents and workflow automation
-              — AI isn&apos;t a feature I bolt on. It&apos;s built into the architecture from day one.
+            <p className={`${poppins.className} text-[13.5px] leading-[1.9] font-light mb-6`}
+              style={{ color: "rgba(255,255,255,0.5)" }}>
+              From LLM-powered chatbots to autonomous agents and workflow automation —
+              AI isn&apos;t a feature I bolt on. It&apos;s baked into the architecture from day one.
             </p>
 
-            {/* AI pills — simple stagger, no scale bounce */}
             <div className="flex flex-wrap gap-2">
               {aiStack.map((tech, ti) => {
                 const TIcon = tech.Icon;
                 return (
-                  <motion.span
-                    key={tech.label}
+                  <motion.span key={tech.label}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.1 + ti * 0.06, duration: 0.5 }}
                     viewport={VP}
                     className={`${poppins.className} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold cursor-default`}
-                    style={{ background: `${tech.color}18`, color: tech.color, border: `1px solid ${tech.color}30` }}
-                  >
-                    <TIcon size={10} />
-                    {tech.label}
+                    style={{ background: `${tech.color}18`, color: tech.color, border: `1px solid ${tech.color}30` }}>
+                    <TIcon size={10} />{tech.label}
                   </motion.span>
                 );
               })}
             </div>
           </motion.div>
 
-          {/* RIGHT: light stack grid */}
+          {/* RIGHT — "What I Deliver" premium redesign */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.1, ease }}
             viewport={VP}
           >
-            <p className={`${grotesk.className} text-[11px] font-bold tracking-[3px] uppercase mb-5`} style={{ color: "#007979" }}>
-              Full Delivery Stack
+            <p className={`${grotesk.className} text-[10.5px] font-bold tracking-[3px] uppercase mb-5`} style={{ color: "#007979" }}>
+              What I Deliver
             </p>
-            <div className="grid grid-cols-2 gap-2.5">
-              {webStack.map((tech, ti) => {
-                const TIcon = tech.Icon;
+
+            <div className="space-y-2">
+              {delivers.map((item, di) => {
+                const DIcon = item.icon;
                 return (
                   <motion.div
-                    key={tech.label}
+                    key={item.title}
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 + ti * 0.07, duration: 0.6 }}
+                    transition={{ delay: 0.15 + di * 0.09, duration: 0.6, ease }}
                     viewport={VP}
-                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                    className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 cursor-default"
-                    style={{ border: `1.5px solid ${tech.color}22`, boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
+                    whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                    className="group relative bg-white rounded-2xl overflow-hidden cursor-default"
+                    style={{
+                      border: `1.5px solid ${item.color}18`,
+                      boxShadow: "0 2px 16px rgba(0,0,0,0.045)",
+                    }}
                   >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ background: `${tech.color}14` }}>
-                      <TIcon size={14} style={{ color: tech.color }} />
+                    {/* Left colour accent bar */}
+                    <div
+                      className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
+                      style={{ background: `linear-gradient(to bottom, ${item.color}, ${item.color}50)` }}
+                      aria-hidden="true"
+                    />
+
+                    <div className="flex items-center gap-4 px-5 py-3.5 pl-6">
+                      {/* Icon */}
+                      <div
+                        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ background: `${item.color}0e` }}
+                      >
+                        <DIcon size={14} style={{ color: item.color }} />
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-baseline gap-2 mb-0.5">
+                          <p className={`${grotesk.className} text-gray-900 font-bold text-[13.5px] leading-tight`}>{item.title}</p>
+                          <span
+                            className={`${grotesk.className} text-[9px] font-bold tracking-[1.5px] shrink-0`}
+                            style={{ color: `${item.color}60` }}
+                          >{item.num}</span>
+                        </div>
+                        <p className={`${poppins.className} text-gray-400 text-[11px] font-light leading-relaxed`}>{item.desc}</p>
+                      </div>
+
+                      {/* Tag */}
+                      <span
+                        className={`${poppins.className} text-[9.5px] font-semibold px-2.5 py-1 rounded-lg whitespace-nowrap shrink-0`}
+                        style={{ background: `${item.color}0c`, color: item.color, border: `1px solid ${item.color}18` }}
+                      >{item.tag}</span>
                     </div>
-                    <span className={`${poppins.className} text-[12.5px] font-semibold text-gray-700`}>{tech.label}</span>
                   </motion.div>
                 );
               })}
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.6 }}
-              viewport={VP}
-              className="mt-4 rounded-xl p-4 flex items-center gap-3"
-              style={{ background: "rgba(0,121,121,0.07)", border: "1px solid rgba(0,121,121,0.18)" }}
-            >
-              <HiSparkles size={16} style={{ color: "#007979", flexShrink: 0 }} />
-              <p className={`${poppins.className} text-[12.5px] text-gray-600 font-medium leading-snug`}>
-                Frontend + Backend + AI — all from one developer who owns the full stack.
-              </p>
-            </motion.div>
           </motion.div>
+
         </div>
       </div>
 
@@ -408,165 +551,144 @@ function Panel3() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   PANEL 4 — Partnership
-═══════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   PANEL 4 — Partnership  (full content restored, centred, no clipping)
+════════════════════════════════════════════════════════════ */
 function Panel4() {
-  const steps = [
-    { num: "01", label: "Discovery Call",   desc: "We align on goals, budget and timeline — no fluff, just clarity.",       color: "#007979" },
-    { num: "02", label: "Build & Iterate",  desc: "Daily updates, weekly demos. You see progress from day one.",            color: "#0891b2" },
-    { num: "03", label: "Launch & Support", desc: "Deployed, tested and handed over — with docs and post-launch support.",  color: "#059669" },
-  ];
-
-  const stats = [
-    { value: "30+",  label: "Projects shipped" },
-    { value: "5★",   label: "Client rating"    },
-    { value: "2+",   label: "Years experience" },
-    { value: "100%", label: "Ownership given"  },
+  const chips = [
+    { label: "Direct communication",       color: "#007979" },
+    { label: "Full IP ownership transfer", color: "#0891b2" },
+    { label: "Transparent pricing",        color: "#059669" },
+    { label: "Post-launch support",        color: "#7c3aed" },
+    { label: "No agencies or middlemen",   color: "#d97706" },
+    { label: "Weekly milestone demos",     color: "#007979" },
   ];
 
   return (
     <div
-      className="sticky top-0 h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #f0fafa 0%, #ffffff 55%, #fffbf0 100%)", zIndex: 14 }}
+      className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+      style={{ background: "linear-gradient(155deg, #f0fafa 0%, #ffffff 55%, #fffbf0 100%)", zIndex: 14 }}
     >
+      {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.08) 1px, transparent 1px)", backgroundSize: "38px 38px" }}
-        aria-hidden="true" />
-      <div className="absolute top-16 right-16 pointer-events-none opacity-[0.06]" aria-hidden="true">
-        <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
-          <circle cx="120" cy="120" r="110" stroke="#007979" strokeWidth="1" strokeDasharray="6 6" />
-          <circle cx="120" cy="120" r="75"  stroke="#007979" strokeWidth="0.75" />
-          <circle cx="120" cy="120" r="40"  stroke="#007979" strokeWidth="0.5" strokeDasharray="3 8" />
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.07) 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+          maskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 20%, transparent 100%)",
+        }} aria-hidden="true" />
+
+      {/* Corner brackets */}
+      <div className="absolute top-10 left-10 pointer-events-none opacity-[0.07] hidden lg:block" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M56 0H32M56 0V24" stroke="#007979" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </div>
+      <div className="absolute bottom-10 right-10 pointer-events-none opacity-[0.07] hidden lg:block" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M0 56H24M0 56V32" stroke="#007979" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        viewport={VP}
-        className="relative z-10 w-full max-w-6xl mx-auto px-8 lg:px-16"
-      >
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.div {...fadeUp(0)} className="flex items-center justify-center gap-3 mb-7">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(217,119,6,0.12)", color: "#d97706", border: "1.5px solid rgba(217,119,6,0.25)" }}>
-              <FaHandshake size={15} />
-            </div>
-            <span className={`${poppins.className} text-[11px] tracking-[4px] uppercase font-semibold`} style={{ color: "#d97706" }}>
-              04 / Partnership
-            </span>
-          </motion.div>
+      {/* All content — centred, py prevents viewport clipping */}
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-8 text-center py-8">
 
-          <motion.h2
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            viewport={VP}
-            className={`${playfair.className} leading-[1.1]`}
-            style={{ fontSize: "clamp(2.6rem, 6.5vw, 5.5rem)", fontStyle: "italic" }}
-          >
-            <span style={{ color: "#111" }}>One developer. </span>
-            <span style={{ color: "#d97706" }}>Full ownership.</span>
-          </motion.h2>
-
-          <motion.p {...fadeUp(0.2)}
-            className={`${poppins.className} text-gray-400 text-[14px] font-light mt-5 max-w-lg mx-auto leading-relaxed`}
-          >
-            No agencies, no handoffs, no communication gaps. You work directly with me — one accountable developer
-            who cares about your outcome as much as you do.
-          </motion.p>
-        </div>
-
-        {/* Process steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {steps.map((step, si) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + si * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              viewport={VP}
-              whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="relative bg-white rounded-2xl p-5 overflow-hidden cursor-default"
-              style={{ border: `1.5px solid ${step.color}18`, boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}
-            >
-              <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
-                style={{ background: `linear-gradient(90deg, ${step.color}, ${step.color}40, transparent)` }}
-                aria-hidden="true" />
-              <div className="flex items-center gap-3 mb-3">
-                <span className={`${grotesk.className} text-[11px] font-bold tracking-[2.5px]`}
-                  style={{ color: `${step.color}80` }}>
-                  {step.num}
-                </span>
-                <span className="flex-1 h-px" style={{ background: `${step.color}18` }} aria-hidden="true" />
-              </div>
-              <p className={`${grotesk.className} text-gray-900 font-bold text-[14px] mb-1.5`}>{step.label}</p>
-              <p className={`${poppins.className} text-gray-400 text-[12px] font-light leading-relaxed`}>{step.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Stat strip + CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.7 }}
-          viewport={VP}
-          className="rounded-2xl px-6 py-4 flex flex-wrap items-center justify-around gap-4"
-          style={{ background: "linear-gradient(135deg, #f0fafa, #ffffff)", border: "1.5px solid rgba(0,121,121,0.13)", boxShadow: "0 2px 20px rgba(0,121,121,0.07)" }}
-        >
-          {stats.map((stat, si) => (
-            <div key={si} className="flex items-center gap-3">
-              {si > 0 && <div className="w-px h-8 bg-gray-200 hidden sm:block" aria-hidden="true" />}
-              <div className="text-center">
-                <span className={`${grotesk.className} text-2xl font-bold text-[#007979] block leading-none`}>{stat.value}</span>
-                <span className={`${poppins.className} text-[10.5px] text-gray-400 font-light`}>{stat.label}</span>
-              </div>
-            </div>
-          ))}
-          <a
-            href="#contact"
-            className={`${poppins.className} inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full text-[13px] font-semibold text-white cursor-pointer transition-transform duration-200 hover:scale-[1.03] hover:-translate-y-0.5`}
-            style={{ background: "linear-gradient(135deg, #007979, #009999)", boxShadow: "0 4px 20px rgba(0,121,121,0.3)" }}
-          >
-            Let&apos;s Work Together →
-          </a>
+        {/* Eyebrow */}
+        <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2.5 mb-6">
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center"
+            style={{ background: "rgba(217,119,6,0.12)", color: "#d97706", border: "1.5px solid rgba(217,119,6,0.25)" }}>
+            <FaHandshake size={13} />
+          </div>
+          <span className={`${poppins.className} text-[11px] tracking-[4px] uppercase font-semibold`} style={{ color: "#d97706" }}>
+            04 / Partnership
+          </span>
         </motion.div>
-      </motion.div>
+
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.08, ease }}
+          viewport={VP}
+          className={`${playfair.className} leading-[1.1] mb-4`}
+          style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.6rem)", fontStyle: "italic" }}
+        >
+          One developer.{" "}
+          <span style={{ color: "#d97706" }}>Full ownership.</span>
+        </motion.h2>
+
+        {/* Supporting copy */}
+        <motion.p {...fadeUp(0.16)}
+          className={`${poppins.className} text-gray-500 text-[14px] font-light leading-[1.85] mb-7 max-w-lg mx-auto`}
+        >
+          No agencies, no handoffs, no communication gaps. You work directly with me —
+          one developer who cares about your outcome as much as you do.
+        </motion.p>
+
+        {/* Commitment chips */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.24, duration: 0.6, ease }}
+          viewport={VP}
+          className="flex flex-wrap justify-center gap-2 mb-7"
+        >
+          {chips.map((c, ci) => (
+            <motion.span
+              key={ci}
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.28 + ci * 0.05, duration: 0.4, ease }}
+              viewport={VP}
+              className={`${poppins.className} inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-medium`}
+              style={{ background: `${c.color}0c`, color: c.color, border: `1px solid ${c.color}20` }}
+            >
+              <FaCheckCircle size={9} />{c.label}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {/* Quote — new text, no attribution, no button */}
+        <motion.blockquote
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.46, duration: 0.65, ease }}
+          viewport={VP}
+          className={`${playfair.className} max-w-lg mx-auto`}
+          style={{ fontSize: "clamp(1rem, 1.9vw, 1.18rem)", fontStyle: "italic", color: "#555", lineHeight: 1.8 }}
+        >
+          &ldquo;Your success defines my reputation. Every project I take on is treated
+          like my own business, with full responsibility and care.&rdquo;
+        </motion.blockquote>
+
+      </div>
 
       <PanelDots active={3} accent="#d97706" />
     </div>
   );
 }
 
-/* ─── Dot indicator ──────────────────────────────────────── */
+/* ─── Panel dots — NO bottom line/border ────────────────── */
 function PanelDots({ active, accent }: { active: number; accent: string }) {
   return (
-    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2" aria-hidden="true">
+    <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2" aria-hidden="true">
       {[0, 1, 2, 3].map((i) => (
-        <div
-          key={i}
-          className="rounded-full"
+        <div key={i} className="rounded-full transition-all duration-300"
           style={{
-            width:      i === active ? 24 : 6,
+            width:      i === active ? 22 : 6,
             height:     6,
             background: i === active ? accent : "rgba(0,0,0,0.12)",
             opacity:    i === active ? 1 : 0.35,
-            transition: "all 0.3s ease",
-          }}
-        />
+          }} />
       ))}
     </div>
   );
 }
 
-/* ─── Section ────────────────────────────────────────────── */
+/* ─── Section wrapper — no border/divider ───────────────── */
 export default function ScrollStack() {
   return (
-    <section id="expertise" aria-label="Why work with me">
+    <section id="expertise" aria-label="Why work with me" style={{ borderTop: "none", borderBottom: "none" }}>
       <Panel1 />
       <Panel2 />
       <Panel3 />

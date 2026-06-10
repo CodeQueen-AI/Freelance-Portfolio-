@@ -20,7 +20,6 @@ import {
   FiGithub,
   FiLinkedin,
   FiTwitter,
-  FiInstagram,
 } from "react-icons/fi";
 import { SiUpwork, SiFiverr } from "react-icons/si";
 
@@ -35,7 +34,6 @@ const SOCIALS = [
     icon: FiGithub,
     color: "#333",
     bg: "#f5f5f5",
-    hoverBg: "#333",
   },
   {
     label: "LinkedIn",
@@ -43,7 +41,6 @@ const SOCIALS = [
     icon: FiLinkedin,
     color: "#0A66C2",
     bg: "#e8f0fb",
-    hoverBg: "#0A66C2",
   },
   {
     label: "Twitter",
@@ -51,23 +48,6 @@ const SOCIALS = [
     icon: FiTwitter,
     color: "#1DA1F2",
     bg: "#e8f5fd",
-    hoverBg: "#1DA1F2",
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com",
-    icon: FiInstagram,
-    color: "#E1306C",
-    bg: "#fde8ef",
-    hoverBg: "#E1306C",
-  },
-  {
-    label: "Upwork",
-    href: "https://upwork.com",
-    icon: SiUpwork,
-    color: "#14a800",
-    bg: "#e8f8e8",
-    hoverBg: "#14a800",
   },
   {
     label: "Fiverr",
@@ -75,7 +55,6 @@ const SOCIALS = [
     icon: SiFiverr,
     color: "#1dbf73",
     bg: "#e8f8f0",
-    hoverBg: "#1dbf73",
   },
 ];
 
@@ -84,8 +63,8 @@ const INFO = [
   {
     icon: FiMail,
     label: "Email",
-    value: "sumbalnaz@email.com",
-    href: "mailto:sumbalnaz@email.com",
+    value: "codeq209@gmail.com",
+    href: "mailto:codeq209@gmail.com",
   },
   {
     icon: FiMessageSquare,
@@ -101,7 +80,7 @@ const INFO = [
   },
 ];
 
-/* ─── Floating social icon ─────────────────────────────── */
+/* ─── Social icon — no hover animation ────────────────── */
 function SocialIcon({
   social,
   index,
@@ -110,20 +89,6 @@ function SocialIcon({
   index: number;
 }) {
   const Icon = social.icon;
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 300, damping: 18 });
-  const sy = useSpring(y, { stiffness: 300, damping: 18 });
-
-  function onMove(e: React.MouseEvent<HTMLAnchorElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - rect.left - rect.width / 2) * 0.4);
-    y.set((e.clientY - rect.top - rect.height / 2) * 0.4);
-  }
-  function onLeave() {
-    x.set(0);
-    y.set(0);
-  }
 
   return (
     <motion.a
@@ -131,7 +96,6 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={social.label}
-      style={{ x: sx, y: sy }}
       initial={{ opacity: 0, scale: 0, y: 30 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true }}
@@ -140,40 +104,24 @@ function SocialIcon({
         duration: 0.55,
         ease: [0.22, 1, 0.36, 1],
       }}
-      whileHover={{ scale: 1.18 }}
-      whileTap={{ scale: 0.92 }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className="group flex flex-col items-center gap-2"
+      className="flex flex-col items-center gap-2"
     >
-      <motion.div
-        className="relative w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden shadow-sm border border-gray-100 transition-shadow duration-300 group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)]"
+      <div
+        className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm border border-gray-100"
         style={{ backgroundColor: social.bg }}
       >
-        {/* Fill on hover */}
-        <motion.span
-          className="absolute inset-0 rounded-2xl"
-          initial={{ scale: 0, opacity: 0 }}
-          whileHover={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          style={{ backgroundColor: social.hoverBg }}
-        />
-        <motion.span
-          className="relative z-10 transition-colors duration-300"
-          style={{ color: social.color }}
-          whileHover={{ color: "#fff" }}
-        >
+        <span style={{ color: social.color }}>
           <Icon size={22} />
-        </motion.span>
-      </motion.div>
-      <span className="text-[10px] font-semibold text-gray-400 tracking-wide uppercase group-hover:text-[#007979] transition-colors duration-200">
+        </span>
+      </div>
+      <span className="text-[10px] font-semibold text-gray-400 tracking-wide uppercase">
         {social.label}
       </span>
     </motion.a>
   );
 }
 
-/* ─── Validated input field ────────────────────────────── */
+/* ─── Input field ──────────────────────────────────────── */
 type FieldProps = {
   id: string;
   label: string;
@@ -202,72 +150,79 @@ function Field({
   const [focused, setFocused] = useState(false);
   const hasValue = value.length > 0;
 
+  /*
+   * Fix: the floating label was positioned with `top-3.5` and used a
+   * negative translateY (-26px) to float above — but the input's own
+   * padding didn't reserve room, so the label overlapped the border and
+   * appeared cut off. Solution: use a static label above the input
+   * (standard pattern) with enough top padding on the input to create
+   * the visual "floating" effect without overflow.
+   */
   return (
-    <div className="relative">
-      {/* Floating label */}
-      <motion.label
+    <div className="flex flex-col gap-1.5">
+      {/* Label — static, above the field */}
+      <label
         htmlFor={id}
-        animate={{
-          y: focused || hasValue ? -26 : 0,
-          scale: focused || hasValue ? 0.82 : 1,
-          color: focused ? "#007979" : "#9ca3af",
-        }}
-        transition={{ duration: 0.2 }}
-        className="absolute left-12 top-3.5 text-sm font-medium origin-left pointer-events-none z-10"
+        className="text-[12px] font-semibold uppercase tracking-[2px] transition-colors duration-200"
+        style={{ color: focused ? "#007979" : "#9ca3af" }}
       >
         {label}
-      </motion.label>
+      </label>
 
-      {/* Icon */}
-      <div
-        className={`absolute left-4 top-3.5 transition-colors duration-200 ${
-          focused ? "text-[#007979]" : "text-gray-400"
-        }`}
-      >
-        <Icon size={16} />
+      {/* Input wrapper */}
+      <div className="relative">
+        {/* Left icon */}
+        <div
+          className={`absolute left-4 pointer-events-none transition-colors duration-200 ${
+            textarea ? "top-3.5" : "top-1/2 -translate-y-1/2"
+          }`}
+          style={{ color: focused ? "#007979" : "#9ca3af" }}
+        >
+          <Icon size={16} />
+        </div>
+
+        {textarea ? (
+          <textarea
+            id={id}
+            value={value}
+            rows={5}
+            placeholder={placeholder}
+            onChange={(e) => onChange(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => {
+              setFocused(false);
+              onBlur();
+            }}
+            className={`w-full pt-3.5 pb-3.5 pl-12 pr-4 rounded-xl bg-gray-50 border-2 text-sm text-gray-800 resize-none outline-none transition-all duration-200 placeholder:text-gray-300 leading-relaxed ${
+              error
+                ? "border-red-300 bg-red-50/30"
+                : focused
+                ? "border-[#007979] bg-white shadow-[0_0_0_4px_rgba(0,121,121,0.08)]"
+                : "border-gray-100 hover:border-gray-200"
+            }`}
+          />
+        ) : (
+          <input
+            id={id}
+            type={type}
+            value={value}
+            placeholder={placeholder}
+            onChange={(e) => onChange(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => {
+              setFocused(false);
+              onBlur();
+            }}
+            className={`w-full py-3.5 pl-12 pr-4 rounded-xl bg-gray-50 border-2 text-sm text-gray-800 outline-none transition-all duration-200 placeholder:text-gray-300 ${
+              error
+                ? "border-red-300 bg-red-50/30"
+                : focused
+                ? "border-[#007979] bg-white shadow-[0_0_0_4px_rgba(0,121,121,0.08)]"
+                : "border-gray-100 hover:border-gray-200"
+            }`}
+          />
+        )}
       </div>
-
-      {textarea ? (
-        <textarea
-          id={id}
-          value={value}
-          rows={5}
-          placeholder={focused ? placeholder : ""}
-          onChange={(e) => onChange(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => {
-            setFocused(false);
-            onBlur();
-          }}
-          className={`w-full pt-5 pb-3 pl-12 pr-4 rounded-xl bg-gray-50 border-2 text-sm text-gray-800 resize-none outline-none transition-all duration-200 placeholder:text-gray-300 ${
-            error
-              ? "border-red-300 bg-red-50/30"
-              : focused
-              ? "border-[#007979] bg-white shadow-[0_0_0_4px_rgba(0,121,121,0.08)]"
-              : "border-gray-100 hover:border-gray-200"
-          }`}
-        />
-      ) : (
-        <input
-          id={id}
-          type={type}
-          value={value}
-          placeholder={focused ? placeholder : ""}
-          onChange={(e) => onChange(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => {
-            setFocused(false);
-            onBlur();
-          }}
-          className={`w-full py-3.5 pl-12 pr-4 rounded-xl bg-gray-50 border-2 text-sm text-gray-800 outline-none transition-all duration-200 placeholder:text-gray-300 ${
-            error
-              ? "border-red-300 bg-red-50/30"
-              : focused
-              ? "border-[#007979] bg-white shadow-[0_0_0_4px_rgba(0,121,121,0.08)]"
-              : "border-gray-100 hover:border-gray-200"
-          }`}
-        />
-      )}
 
       {/* Error */}
       <AnimatePresence>
@@ -277,7 +232,7 @@ function Field({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.2 }}
-            className="mt-1.5 text-xs text-red-500 pl-1"
+            className="text-xs text-red-500 pl-1"
           >
             {error}
           </motion.p>
@@ -292,16 +247,16 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-8%" });
 
-  /* form state */
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [errors, setErrors] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [serverError, setServerError] = useState("");
 
   function validate(field: string, value: string) {
-    if (field === "name") return value.trim().length < 2 ? "Name must be at least 2 characters." : "";
-    if (field === "email") return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Enter a valid email address." : "";
-    if (field === "subject") return value.trim().length < 3 ? "Subject is required." : "";
-    if (field === "message") return value.trim().length < 10 ? "Message must be at least 10 characters." : "";
+    if (field === "name")    return value.trim().length < 2   ? "Name must be at least 2 characters." : "";
+    if (field === "email")   return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Enter a valid email address." : "";
+    if (field === "subject") return value.trim().length < 3   ? "Subject is required." : "";
+    if (field === "message") return value.trim().length < 10  ? "Message must be at least 10 characters." : "";
     return "";
   }
 
@@ -314,11 +269,12 @@ export default function Contact() {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: validate(field, value) }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     const newErrors = {
-      name: validate("name", form.name),
-      email: validate("email", form.email),
+      name:    validate("name",    form.name),
+      email:   validate("email",   form.email),
       subject: validate("subject", form.subject),
       message: validate("message", form.message),
     };
@@ -326,10 +282,29 @@ export default function Contact() {
     if (Object.values(newErrors).some(Boolean)) return;
 
     setStatus("sending");
-    setTimeout(() => {
+    setServerError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setServerError(data.error || "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+
       setStatus("sent");
       setForm({ name: "", email: "", subject: "", message: "" });
-    }, 1800);
+    } catch {
+      setServerError("Network error. Please check your connection and try again.");
+      setStatus("error");
+    }
   }
 
   /* tilt on info card */
@@ -525,11 +500,11 @@ export default function Contact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="space-y-6"
+                  className="space-y-5"
                   noValidate
                 >
                   {/* Row 1 */}
-                  <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="grid sm:grid-cols-2 gap-5">
                     <Field
                       id="name"
                       label="Your Name"
@@ -578,6 +553,20 @@ export default function Contact() {
                     onBlur={() => blurField("message")}
                   />
 
+                  {/* Server error */}
+                  <AnimatePresence>
+                    {status === "error" && serverError && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="text-sm text-red-500 text-center py-2 px-4 bg-red-50 rounded-lg border border-red-100"
+                      >
+                        {serverError}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
                   {/* Submit */}
                   <motion.button
                     type="submit"
@@ -586,9 +575,7 @@ export default function Contact() {
                     whileTap={status !== "sending" ? { scale: 0.98 } : {}}
                     className="group relative w-full py-4 rounded-xl bg-[#007979] text-white font-semibold text-sm tracking-wide overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-[0_12px_40px_rgba(0,121,121,0.4)] transition-shadow duration-300"
                   >
-                    {/* Slide fill */}
                     <span className="absolute inset-0 bg-black translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-
                     <span className="relative z-10 flex items-center justify-center gap-3">
                       {status === "sending" ? (
                         <>

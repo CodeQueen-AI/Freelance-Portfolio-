@@ -16,7 +16,6 @@ const roleItems = [
     category: "Development",
     title: "Frontend & Full Stack",
     accent: "#007979",
-    lightBg: "rgba(0,121,121,0.06)",
     active: true,
   },
   {
@@ -24,7 +23,6 @@ const roleItems = [
     category: "Intelligence",
     title: "AI & Automation Engineer",
     accent: "#0891b2",
-    lightBg: "rgba(8,145,178,0.06)",
     active: false,
   },
   {
@@ -32,7 +30,6 @@ const roleItems = [
     category: "Availability",
     title: "Freelance · Remote Projects",
     accent: "#7c3aed",
-    lightBg: "rgba(124,58,237,0.06)",
     active: false,
   },
   {
@@ -40,12 +37,10 @@ const roleItems = [
     category: "Reach",
     title: "Working with Global Clients",
     accent: "#059669",
-    lightBg: "rgba(5,150,105,0.06)",
     active: false,
   },
 ];
 
-/* stagger children inside a container */
 const containerVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
@@ -58,8 +53,8 @@ const itemVariants: Variants = {
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -55]);
-  const bgY    = useTransform(scrollYProgress, [0, 1], [0,  80]);
+  const imageY  = useTransform(scrollYProgress, [0, 1], [0, -55]);
+  const bgY     = useTransform(scrollYProgress, [0, 1], [0,  60]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
@@ -67,48 +62,229 @@ export default function Hero() {
       ref={ref}
       id="about"
       className={`relative h-screen overflow-hidden pt-20 ${inter.className}`}
+      style={{ background: "#ffffff" }}
     >
-      {/* Parallax gradient bg */}
-      <motion.div
-        style={{ y: bgY }}
-        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(0,121,121,0.10),transparent)]"
+
+      {/* ══════════════════════════════════════════
+          BACKGROUND — clean light system
+      ══════════════════════════════════════════ */}
+
+      {/* L1 — Soft directional wash: teal top-left, lavender bottom-right */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 75% 65% at 0% 0%,   rgba(0,121,121,0.055) 0%, transparent 65%),
+            radial-gradient(ellipse 65% 55% at 100% 100%, rgba(124,58,237,0.04)  0%, transparent 65%),
+            radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0,121,121,0.025) 0%, transparent 60%)
+          `,
+        }}
+        aria-hidden="true"
       />
 
-      {/* Subtle dot grid */}
+      {/* L2 — Fine dot grid, parallax scroll */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.13) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+            maskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 30%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 30%, transparent 100%)",
+          }}
+        />
+      </motion.div>
+
+      {/* L3 — Subtle diagonal hatching strip, right side */}
       <div
-        className="absolute inset-0 opacity-[0.035]"
+        className="absolute inset-y-0 right-0 w-[38%] pointer-events-none hidden lg:block"
         style={{
-          backgroundImage: "radial-gradient(circle,#007979 1px,transparent 1px)",
-          backgroundSize: "40px 40px",
+          backgroundImage: `repeating-linear-gradient(
+            -55deg,
+            rgba(0,121,121,0.04) 0px,
+            rgba(0,121,121,0.04) 1px,
+            transparent 1px,
+            transparent 22px
+          )`,
+          maskImage: "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* L4 — Thin SVG cross-hatch accent, bottom-left zone */}
+      <div
+        className="absolute bottom-0 left-0 w-[30%] h-[45%] pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            rgba(124,58,237,0.035) 0px,
+            rgba(124,58,237,0.035) 1px,
+            transparent 1px,
+            transparent 24px
+          )`,
+          maskImage: "linear-gradient(to top right, rgba(0,0,0,0.5) 0%, transparent 80%)",
+          WebkitMaskImage: "linear-gradient(to top right, rgba(0,0,0,0.5) 0%, transparent 80%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* L5 — Very soft horizontal gradient band through the middle */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(180deg, transparent 0%, rgba(234,247,247,0.35) 45%, rgba(234,247,247,0.2) 65%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* L6 — Accent line below navbar */}
+      <motion.div
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+        className="absolute top-20 left-0 right-0 pointer-events-none origin-left"
+        aria-hidden="true"
+        style={{
+          height: "1px",
+          background: "linear-gradient(to right, transparent, rgba(0,121,121,0.35) 25%, rgba(0,121,121,0.2) 60%, transparent)",
         }}
       />
 
-      {/* Outer flex container fills the remaining height below the navbar */}
-      <div className="relative z-10 h-full flex flex-col mx-auto max-w-7xl px-6 lg:px-10" style={{ paddingTop: "clamp(16px, 3vh, 40px)", paddingBottom: "clamp(12px, 2vh, 24px)" }}>
+      {/* L7 — Accent line at bottom */}
+      <motion.div
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+        className="absolute bottom-0 left-0 right-0 pointer-events-none origin-right"
+        aria-hidden="true"
+        style={{
+          height: "1px",
+          background: "linear-gradient(to left, transparent, rgba(0,121,121,0.3) 30%, rgba(124,58,237,0.15) 65%, transparent)",
+        }}
+      />
+
+      {/* L8 — Corner bracket, top-right */}
+      <motion.svg
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute top-24 right-8 pointer-events-none hidden lg:block"
+        width="48" height="48" viewBox="0 0 48 48" fill="none"
+        aria-hidden="true"
+      >
+        <path d="M48 0H28M48 0V20" stroke="rgba(0,121,121,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+      </motion.svg>
+
+      {/* L9 — Corner bracket, bottom-left */}
+      <motion.svg
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-6 left-8 pointer-events-none hidden lg:block"
+        width="48" height="48" viewBox="0 0 48 48" fill="none"
+        aria-hidden="true"
+      >
+        <path d="M0 48H20M0 48V28" stroke="rgba(0,121,121,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+      </motion.svg>
+
+      {/* L10 — Dot matrix cluster, top-left */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.0, duration: 1.2 }}
+        className="absolute top-28 left-10 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.22) 1.5px, transparent 1.5px)",
+          backgroundSize: "13px 13px",
+          width: "91px",
+          height: "91px",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* L11 — Dot matrix cluster, bottom-right */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 1.2 }}
+        className="absolute bottom-14 right-10 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(124,58,237,0.18) 1.5px, transparent 1.5px)",
+          backgroundSize: "13px 13px",
+          width: "78px",
+          height: "78px",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* L12 — Thin SVG geometric frame lines, top area */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9, duration: 1.4 }}
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        aria-hidden="true"
+      >
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+          {/* Thin vertical rule, left of center */}
+          <line x1="200" y1="80" x2="200" y2="220" stroke="rgba(0,121,121,0.12)" strokeWidth="1" />
+          {/* Thin vertical rule, right of center */}
+          <line x1="1240" y1="680" x2="1240" y2="820" stroke="rgba(124,58,237,0.10)" strokeWidth="1" />
+          {/* Horizontal rule, upper zone */}
+          <line x1="80" y1="160" x2="320" y2="160" stroke="rgba(0,121,121,0.10)" strokeWidth="1" />
+          {/* Horizontal rule, lower zone */}
+          <line x1="1120" y1="740" x2="1360" y2="740" stroke="rgba(124,58,237,0.09)" strokeWidth="1" />
+          {/* Small plus mark, top-right area */}
+          <line x1="1310" y1="175" x2="1330" y2="175" stroke="rgba(0,121,121,0.18)" strokeWidth="1" />
+          <line x1="1320" y1="165" x2="1320" y2="185" stroke="rgba(0,121,121,0.18)" strokeWidth="1" />
+          {/* Small plus mark, bottom-left area */}
+          <line x1="110"  y1="730" x2="130"  y2="730" stroke="rgba(124,58,237,0.16)" strokeWidth="1" />
+          <line x1="120"  y1="720" x2="120"  y2="740" stroke="rgba(124,58,237,0.16)" strokeWidth="1" />
+        </svg>
+      </motion.div>
+
+      {/* L13 — Noise grain for paper-like texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundSize: "180px 180px",
+          opacity: 0.025,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ══════════════════════════════════════════
+          CONTENT
+      ══════════════════════════════════════════ */}
+      <div
+        className="relative z-10 h-full flex flex-col mx-auto max-w-7xl px-6 lg:px-10"
+        style={{ paddingTop: "clamp(16px, 3vh, 40px)", paddingBottom: "clamp(12px, 2vh, 24px)" }}
+      >
 
         {/* ── Name ── */}
-        <motion.div
-          style={{ opacity }}
-          className="text-center shrink-0"
-        >
-          <div>
-            <motion.h1
-              initial={{ y: 110, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              className="leading-none tracking-tight flex justify-center gap-3 flex-wrap"
-            >
-              {["Sumbal", "Naz"].map((word, wi) => (
-                <span
-                  key={wi}
-                  className={`${dancing.className} text-[56px] md:text-[82px] lg:text-[96px]`}
-                >
-                  <span className="text-[#007979]">{word[0]}</span>
-                  <span className="text-black">{word.slice(1)}</span>
-                </span>
-              ))}
-            </motion.h1>
-          </div>
+        <motion.div style={{ opacity }} className="text-center shrink-0">
+          <motion.h1
+            initial={{ y: 110, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="leading-none tracking-tight flex justify-center gap-3 flex-wrap"
+          >
+            {["Sumbal", "Naz"].map((word, wi) => (
+              <span
+                key={wi}
+                className={`${dancing.className} text-[56px] md:text-[82px] lg:text-[96px]`}
+              >
+                <span className="text-[#007979]">{word[0]}</span>
+                <span className="text-black">{word.slice(1)}</span>
+              </span>
+            ))}
+          </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -116,15 +292,19 @@ export default function Hero() {
             transition={{ delay: 0.55, duration: 0.6 }}
             className={`mt-1 flex justify-center ${poppins.className}`}
           >
-            <span className="px-6 py-2 rounded-full border border-gray-300 text-gray-600 text-xs md:text-sm tracking-[3px] uppercase bg-white shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
+            <span className="px-6 py-2 rounded-full border border-gray-200 text-gray-500 text-xs md:text-sm tracking-[3px] uppercase bg-white/80 shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
               Freelance Full Stack &amp; AI Developer
             </span>
           </motion.div>
         </motion.div>
 
-        <div className="relative shrink-0 mt-3 grid lg:grid-cols-[1fr_1.5fr_1fr] items-center gap-8" style={{ height: "clamp(320px, 58vh, 500px)" }}>
+        {/* ── Three-column grid ── */}
+        <div
+          className="relative shrink-0 mt-3 grid lg:grid-cols-[1fr_1.6fr_1fr] items-center gap-8"
+          style={{ height: "clamp(320px, 58vh, 500px)" }}
+        >
 
-          {/* Left */}
+          {/* Left — bio + CTA */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -161,38 +341,38 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Center — image */}
+          {/* Center — hero image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.35, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center items-center relative h-full"
-            style={{ y: imageY }}
+            className="flex justify-center items-center relative"
+            style={{ y: imageY, marginTop: "-40px", marginBottom: "-40px" }}
           >
-            {/* Pulsing glow */}
+            {/* Soft teal glow under image */}
             <motion.div
-              animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute w-[320px] h-[320px] md:w-[460px] md:h-[460px] bg-[#007979]/20 blur-3xl rounded-full"
-            />
-            {/* Rotating ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute w-[240px] h-[240px] md:w-[360px] md:h-[360px] rounded-full border border-dashed border-[#007979]/20"
+              animate={{ scale: [1, 1.12, 1], opacity: [0.18, 0.32, 0.18] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute rounded-full"
+              style={{
+                width: "clamp(300px, 46vh, 440px)",
+                height: "clamp(300px, 46vh, 440px)",
+                background: "radial-gradient(circle, rgba(0,121,121,0.12) 0%, transparent 72%)",
+                filter: "blur(32px)",
+              }}
             />
             <Image
               src="/Hero.png"
               alt="Sumbal Naz"
-              width={600}
-              height={600}
+              width={800}
+              height={800}
               priority
-              className="relative w-auto max-h-full object-contain drop-shadow-2xl"
-              style={{ height: "clamp(300px, 54vh, 480px)" }}
+              className="relative w-auto object-contain drop-shadow-xl"
+              style={{ height: "clamp(380px, 68vh, 580px)" }}
             />
           </motion.div>
 
-          {/* Right — role list */}
+          {/* Right — role cards */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -217,10 +397,10 @@ export default function Hero() {
                     background: `${item.accent}10`,
                     color: item.accent,
                     fontSize: "14px",
+                    border: `1px solid ${item.accent}18`,
                   }}
                 >
                   {item.icon}
-                  {/* Availability dot — first card only */}
                   {item.active && (
                     <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2" aria-label="Available">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50"
@@ -233,19 +413,18 @@ export default function Hero() {
 
                 {/* Text */}
                 <div className="flex-1 min-w-0">
-                  <p className={`${poppins.className} text-[9px] font-semibold tracking-[2px] uppercase mb-0.5`}
-                    style={{ color: `${item.accent}80` }}>
+                  <p
+                    className={`${poppins.className} text-[9px] font-semibold tracking-[2px] uppercase mb-0.5`}
+                    style={{ color: `${item.accent}80` }}
+                  >
                     {item.category}
                   </p>
-                  <h3 className={`${poppins.className} text-[13px] font-medium text-gray-800 leading-tight truncate
-                    group-hover:transition-colors group-hover:duration-200`}
-                    style={{ color: undefined }}
-                  >
+                  <h3 className={`${poppins.className} text-[13px] font-medium text-gray-800 leading-tight truncate`}>
                     {item.title}
                   </h3>
                 </div>
 
-                {/* Accent dot */}
+                {/* Hover dot */}
                 <span
                   className="w-1 h-1 rounded-full shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                   style={{ background: item.accent }}
@@ -265,11 +444,10 @@ export default function Hero() {
           className="flex justify-center pt-2 shrink-0"
         >
           <div className="flex flex-col items-center gap-2">
-            <span className={`text-[10px] tracking-[4px] uppercase text-gray-500 ${poppins.className}`}>
+            <span className={`text-[10px] tracking-[4px] uppercase text-gray-400 ${poppins.className}`}>
               Scroll
             </span>
-            {/* Mouse icon */}
-            <div className="w-5 h-8 rounded-full border-2 border-gray-300 flex justify-center pt-1.5">
+            <div className="w-5 h-8 rounded-full border-2 border-gray-200 flex justify-center pt-1.5">
               <motion.div
                 animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
                 transition={{ duration: 1.6, repeat: Infinity }}

@@ -487,7 +487,13 @@ export default function Experience() {
                       Full Stack &amp; AI Engineer
                     </p>
                   </div>
-                  <motion.div style={{ y: orbitY }} className="shrink-0" aria-hidden="true">
+                  <motion.div
+                    style={{ y: orbitY }}
+                    animate={{ rotate: 360 }}
+                    transition={{ rotate: { duration: 18, repeat: Infinity, ease: "linear" } }}
+                    className="shrink-0"
+                    aria-hidden="true"
+                  >
                     <svg width="60" height="60" viewBox="0 0 64 64" fill="none">
                       <circle cx="32" cy="32" r="28" stroke="rgba(0,121,121,0.2)"  strokeWidth="1" strokeDasharray="4 5" />
                       <circle cx="32" cy="32" r="18" stroke="rgba(0,121,121,0.14)" strokeWidth="1" />
@@ -629,11 +635,17 @@ export default function Experience() {
                     transition={{ delay: 0.32 + i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="relative"
                   >
-                    {/* Connector line between steps */}
+                    {/* Animated connector line between steps */}
                     {i < processSteps.length - 1 && (
-                      <div
-                        className="absolute left-[18px] top-[42px] w-px h-[calc(100%-8px)] pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, ${step.color}50, transparent)` }}
+                      <motion.div
+                        initial={{ scaleY: 0 }}
+                        animate={leftInView ? { scaleY: 1 } : {}}
+                        transition={{ delay: 0.45 + i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute left-[18px] top-[42px] w-px origin-top pointer-events-none"
+                        style={{
+                          height: "calc(100% - 8px)",
+                          background: `linear-gradient(to bottom, ${step.color}50, transparent)`,
+                        }}
                         aria-hidden="true"
                       />
                     )}

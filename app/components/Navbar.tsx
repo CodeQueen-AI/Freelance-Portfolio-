@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Services", href: "#services" },
@@ -58,7 +57,10 @@ export default function Navbar() {
         aria-label="Main Navigation"
       >
         {/* Logo */}
-        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+        <motion.div
+          whileHover={{ scale: 1.05, rotate: -4 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Link href="/" aria-label="Home" className="shrink-0">
             <Image
               src="/Logo Img.png"

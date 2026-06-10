@@ -9,11 +9,9 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
 
   const handleComplete = useCallback(() => {
     setLoaded(true);
-    // re-enable scroll after loader exits
     document.body.style.overflow = "";
   }, []);
 
-  // Lock scroll while loader is showing
   if (typeof window !== "undefined" && !loaded) {
     document.body.style.overflow = "hidden";
   }
@@ -26,9 +24,13 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
         {loaded && (
           <motion.div
             key="page"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0,  filter: "blur(0px)" }}
+            transition={{
+              duration: 0.85,
+              ease: [0.22, 1, 0.36, 1],
+              filter: { duration: 0.6 },
+            }}
           >
             {children}
           </motion.div>

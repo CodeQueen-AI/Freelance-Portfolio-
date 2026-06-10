@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Space_Grotesk, Poppins, Playfair_Display } from "next/font/google";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 
@@ -105,6 +105,10 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[number]; i
   const row    = Math.floor(index / 3);
   const delay  = col * 0.08 + row * 0.06;
 
+  // Subtle parallax on the image — shifts up as the card scrolls into view
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
+
   return (
     <motion.article
       ref={ref}
@@ -129,17 +133,22 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[number]; i
         aria-hidden="true"
       />
 
-      {/* Image */}
+      {/* Image with parallax */}
       <div className="relative overflow-hidden" style={{ height: "210px" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-        />
+        <motion.div
+          style={{ y: imgY }}
+          className="absolute inset-0 will-change-transform"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover scale-[1.18] transition-transform duration-700 group-hover:scale-[1.24]"
+          />
+        </motion.div>
         {/* Soft gradient at bottom of image */}
         <div
-          className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-20 pointer-events-none z-10"
           style={{ background: "linear-gradient(to top, rgba(0,0,0,0.18), transparent)" }}
           aria-hidden="true"
         />

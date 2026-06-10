@@ -46,14 +46,11 @@ const categories = [
     id: "01",
     title: "Full Stack Development",
     tagline: "From idea to production.",
-    description:
-      "End-to-end web products built with Next.js, React, Node.js and TypeScript — from polished frontends to robust APIs, delivered production-ready.",
     Icon: FaRocket,
-    services: ["Custom Web Applications", "SaaS Platforms", "Business Websites", "Landing Pages"],
+    services: ["Web Applications", "SaaS Platforms", "Business Websites", "Landing Pages"],
     techs: [
       { Icon: SiNextdotjs, label: "Next.js" },
       { Icon: SiReact, label: "React" },
-      { Icon: SiTypescript, label: "TypeScript" },
       { Icon: SiNodedotjs, label: "Node.js" },
     ],
     accent: "#007979",
@@ -65,15 +62,12 @@ const categories = [
     id: "02",
     title: "Frontend & Design",
     tagline: "Interfaces that impress.",
-    description:
-      "Pixel-perfect, responsive UI/UX design and fluid animations that create memorable experiences — built in Figma, implemented with precision.",
     Icon: FaPaintBrush,
-    services: ["Responsive UI/UX Design", "Modern Animations & Motion", "Design Systems", "Figma Prototyping"],
+    services: ["UI/UX Design", "Animations & Motion", "Design Systems", "Figma Prototyping"],
     techs: [
       { Icon: SiFigma, label: "Figma" },
       { Icon: SiReact, label: "React" },
       { Icon: SiTypescript, label: "Tailwind" },
-      { Icon: FaPaintBrush, label: "Framer Motion" },
     ],
     accent: "#7c3aed",
     accentDark: "#5b21b6",
@@ -84,15 +78,12 @@ const categories = [
     id: "03",
     title: "Backend Development",
     tagline: "The engine behind the product.",
-    description:
-      "Scalable APIs, secure auth, database architecture and cloud infrastructure — performant backend systems that power everything your users see.",
     Icon: FaServer,
-    services: ["REST & GraphQL APIs", "Database Architecture", "Authentication & Security", "Cloud Deployment"],
+    services: ["REST & GraphQL APIs", "Database Architecture", "Auth & Security", "Cloud Deployment"],
     techs: [
       { Icon: SiNodedotjs, label: "Node.js" },
       { Icon: SiPython, label: "Python" },
       { Icon: SiPostgresql, label: "PostgreSQL" },
-      { Icon: FaServer, label: "FastAPI" },
     ],
     accent: "#0891b2",
     accentDark: "#0e7490",
@@ -103,15 +94,12 @@ const categories = [
     id: "04",
     title: "AI Agent Development",
     tagline: "Intelligent systems that act.",
-    description:
-      "Custom AI agents that converse, reason and execute — from smart chatbots and voice assistants to autonomous booking agents, powered by the latest LLMs.",
     Icon: FaRobot,
-    services: ["AI Chatbots", "AI Voice Assistants", "Appointment Booking Agents", "Autonomous AI Agents"],
+    services: ["AI Chatbots", "Voice Assistants", "Booking Agents", "Autonomous Agents"],
     techs: [
       { Icon: SiOpenai, label: "OpenAI" },
       { Icon: FaBrain, label: "LangChain" },
       { Icon: FaRobot, label: "Agents" },
-      { Icon: FaBrain, label: "RAG" },
     ],
     accent: "#c026d3",
     accentDark: "#a21caf",
@@ -122,15 +110,12 @@ const categories = [
     id: "05",
     title: "AI Automation",
     tagline: "Less manual work. More results.",
-    description:
-      "End-to-end workflow automation, email pipelines and AI-powered process optimisation — so your team focuses on growth, not repetitive tasks.",
     Icon: FaBolt,
-    services: ["Workflow Automation", "Email Automation", "Business Process Automation", "AI-Powered Integrations"],
+    services: ["Workflow Automation", "Email Automation", "Process Automation", "AI Integrations"],
     techs: [
       { Icon: SiOpenai, label: "OpenAI" },
       { Icon: SiPython, label: "Python" },
       { Icon: FaBolt, label: "n8n / Zapier" },
-      { Icon: FaBrain, label: "LangChain" },
     ],
     accent: "#d97706",
     accentDark: "#b45309",
@@ -141,13 +126,10 @@ const categories = [
     id: "06",
     title: "Dashboards & Analytics",
     tagline: "Data that drives decisions.",
-    description:
-      "Beautiful admin panels, analytics dashboards and reporting systems that turn raw data into clear, actionable insights — built for speed and clarity.",
     Icon: FaChartBar,
     services: ["Analytics Dashboards", "Admin Panels", "Data Visualisation", "Reporting Systems"],
     techs: [
       { Icon: SiReact, label: "React" },
-      { Icon: SiTypescript, label: "TypeScript" },
       { Icon: SiPostgresql, label: "PostgreSQL" },
       { Icon: FaChartBar, label: "Recharts" },
     ],
@@ -172,135 +154,96 @@ function CategoryCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 36 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay: 0.08 + index * 0.09, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-      className="group relative bg-white rounded-2xl overflow-hidden flex flex-col cursor-default"
+      transition={{ duration: 0.6, delay: 0.07 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -5, transition: { duration: 0.22, ease: "easeOut" } }}
+      className="group relative bg-white rounded-2xl overflow-hidden flex flex-col h-full cursor-default"
       style={{
         border: "1px solid rgba(0,0,0,0.07)",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.04)",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 3px 16px rgba(0,0,0,0.04)",
       }}
     >
-      {/* ── Hover: elevate shadow ── */}
+      {/* Hover shadow elevation */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{
-          boxShadow: `0 20px 60px ${cat.accent}18, 0 4px 20px rgba(0,0,0,0.08)`,
-        }}
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{ boxShadow: `0 16px 48px ${cat.accent}16, 0 4px 16px rgba(0,0,0,0.07)` }}
         aria-hidden="true"
       />
 
-      {/* ════════════════════════════════
-          HEADER ZONE — colored top half
-      ════════════════════════════════ */}
+      {/* ── Header zone ── */}
       <div
-        className="relative overflow-hidden px-6 pt-6 pb-5"
+        className="relative overflow-hidden px-5 pt-5 pb-4 shrink-0"
         style={{ background: cat.headerBg }}
       >
-        {/* Subtle diagonal stripe texture */}
+        {/* Diagonal texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: `repeating-linear-gradient(
-              -45deg,
-              ${cat.accent}08 0px,
-              ${cat.accent}08 1px,
-              transparent 1px,
-              transparent 14px
-            )`,
+            backgroundImage: `repeating-linear-gradient(-45deg, ${cat.accent}07 0px, ${cat.accent}07 1px, transparent 1px, transparent 14px)`,
           }}
           aria-hidden="true"
         />
-
-        {/* Large blurred icon — background depth */}
+        {/* Watermark icon */}
         <div
-          className="absolute -right-4 -bottom-4 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-8deg] pointer-events-none"
+          className="absolute -right-3 -bottom-3 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-8deg] pointer-events-none"
           aria-hidden="true"
         >
-          <CatIcon size={90} style={{ color: cat.accent, opacity: 0.1 }} />
+          <CatIcon size={68} style={{ color: cat.accent, opacity: 0.1 }} />
         </div>
 
         <div className="relative z-10">
-          {/* Number + icon row */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <span
-              className={`${grotesk.className} text-[10px] font-bold tracking-[3px] uppercase`}
+              className={`${grotesk.className} text-[9.5px] font-bold tracking-[3px] uppercase`}
               style={{ color: `${cat.accent}90` }}
             >
               {cat.id}
             </span>
-
-            {/* Icon pill — pops on hover */}
             <motion.div
               whileHover={{ scale: 1.12, rotate: -8 }}
-              transition={{ duration: 0.22 }}
-              className="w-11 h-11 rounded-2xl flex items-center justify-center shadow-sm"
-              style={{
-                background: "white",
-                color: cat.accent,
-                boxShadow: `0 2px 12px ${cat.accent}25`,
-              }}
+              transition={{ duration: 0.2 }}
+              className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm"
+              style={{ background: "white", color: cat.accent, boxShadow: `0 2px 10px ${cat.accent}22` }}
             >
-              <CatIcon size={20} />
+              <CatIcon size={16} />
             </motion.div>
           </div>
-
-          {/* Title */}
           <h3
-            className={`${grotesk.className} font-bold leading-tight mb-1.5 transition-colors duration-300`}
-            style={{
-              fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
-              color: cat.accentDark,
-            }}
+            className={`${grotesk.className} font-bold leading-tight mb-1`}
+            style={{ fontSize: "0.95rem", color: cat.accentDark }}
           >
             {cat.title}
           </h3>
-
-          {/* Tagline */}
-          <p
-            className={`${poppins.className} text-[11px] font-medium`}
-            style={{ color: `${cat.accent}99` }}
-          >
+          <p className={`${poppins.className} text-[10.5px] font-medium`} style={{ color: `${cat.accent}95` }}>
             {cat.tagline}
           </p>
         </div>
       </div>
 
-      {/* ════════════════════════════════
-          CONTENT ZONE — white bottom half
-      ════════════════════════════════ */}
-      <div className="relative z-10 flex flex-col flex-1 px-6 pt-5 pb-6">
+      {/* ── Content zone — flex-1 so all cards fill available height equally ── */}
+      <div className="relative z-10 flex flex-col flex-1 px-5 pt-4 pb-5">
 
-        {/* Thin color divider at zone boundary */}
+        {/* Divider */}
         <div
-          className="h-px -mx-6 mb-5 opacity-60"
+          className="h-px -mx-5 mb-4 opacity-50"
           style={{ background: `linear-gradient(90deg, transparent, ${cat.accent}30, transparent)` }}
           aria-hidden="true"
         />
 
-        {/* Description */}
-        <p className={`${poppins.className} text-[13px] leading-[1.85] text-gray-500 font-light mb-5`}>
-          {cat.description}
-        </p>
-
-        {/* Sub-services */}
-        <ul className="space-y-2.5 mb-6 flex-1">
+        {/* Services list — exactly 4 items, no wrapping labels → consistent height */}
+        <ul className="space-y-[9px] flex-1">
           {cat.services.map((svc, si) => (
             <motion.li
               key={svc}
-              initial={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, x: -8 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.09 + si * 0.05, duration: 0.4 }}
-              className="flex items-center gap-2.5 group/item"
+              transition={{ delay: 0.28 + index * 0.08 + si * 0.04, duration: 0.36 }}
+              className="flex items-center gap-2 group/item"
             >
-              <FaCheckCircle
-                size={13}
-                style={{ color: cat.accent, flexShrink: 0 }}
-                aria-hidden="true"
-              />
+              <FaCheckCircle size={11} style={{ color: cat.accent, flexShrink: 0 }} aria-hidden="true" />
               <span
-                className={`${poppins.className} text-[12.5px] text-gray-600 font-medium group-hover/item:text-gray-900 transition-colors duration-200`}
+                className={`${poppins.className} text-[12px] text-gray-600 font-medium leading-none group-hover/item:text-gray-900 transition-colors duration-200`}
               >
                 {svc}
               </span>
@@ -308,38 +251,37 @@ function CategoryCard({
           ))}
         </ul>
 
-        {/* Bottom: tech pills + arrow */}
-        <div className="flex items-center justify-between gap-2 flex-wrap">
-          <div className="flex flex-wrap gap-1.5">
-            {cat.techs.map((tech) => {
+        {/* Divider before footer */}
+        <div className="h-px -mx-5 mt-4 mb-3.5 opacity-40 bg-gray-100" aria-hidden="true" />
+
+        {/* Tech pills + arrow — always at the bottom */}
+        <div className="flex items-center justify-between gap-2 shrink-0">
+          <div className="flex flex-wrap gap-1">
+            {cat.techs.map((tech, ti) => {
               const TIcon = tech.Icon;
               return (
-                <span
+                <motion.span
                   key={tech.label}
-                  className={`${poppins.className} inline-flex items-center gap-1 px-2 py-[4px] rounded-md text-[10px] font-semibold`}
-                  style={{
-                    background: cat.lightBg,
-                    color: cat.accent,
-                    border: `1px solid ${cat.accent}22`,
-                  }}
+                  initial={{ opacity: 0, scale: 0.88 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 0.32 + index * 0.08 + ti * 0.055, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                  className={`${poppins.className} inline-flex items-center gap-1 px-2 py-[3px] rounded-md text-[9.5px] font-semibold`}
+                  style={{ background: cat.lightBg, color: cat.accent, border: `1px solid ${cat.accent}20` }}
                 >
-                  <TIcon size={9} />
+                  <TIcon size={8} />
                   {tech.label}
-                </span>
+                </motion.span>
               );
             })}
           </div>
-
-          {/* Arrow — slides right on hover */}
           <motion.div
-            initial={{ x: 0 }}
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.2 }}
-            className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+            whileHover={{ x: 3 }}
+            transition={{ duration: 0.18 }}
+            className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 opacity-35 group-hover:opacity-100 transition-opacity duration-250"
             style={{ background: cat.lightBg, color: cat.accent }}
             aria-hidden="true"
           >
-            <FaArrowRight size={10} />
+            <FaArrowRight size={9} />
           </motion.div>
         </div>
       </div>
@@ -485,8 +427,8 @@ export default function Services() {
           </motion.div>
         </div>
 
-        {/* ── 3 × 2 grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* ── 3 × 2 grid — items-stretch enforces equal card heights per row ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {categories.map((cat, i) => (
             <CategoryCard key={cat.id} cat={cat} index={i} inView={inView} />
           ))}

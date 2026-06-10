@@ -93,16 +93,15 @@ export default function Loader({ onComplete }: LoaderProps) {
                   const cx = R + 20;
                   const cy = R + 20;
                   const r = R + 14;
-                  // Round to 4 dp so SSR and client produce identical attribute strings
-                  const x = Math.round((cx + r * Math.cos(rad)) * 1e4) / 1e4;
-                  const y = Math.round((cy + r * Math.sin(rad)) * 1e4) / 1e4;
+                  const x = cx + r * Math.cos(rad);
+                  const y = cy + r * Math.sin(rad);
                   return (
                     <circle
                       key={i}
                       cx={x}
                       cy={y}
                       r={i % 6 === 0 ? 2 : 1}
-                      fill="#007979"
+                      fill={i % 6 === 0 ? "#007979" : "#007979"}
                       opacity={i % 6 === 0 ? 0.5 : 0.18}
                     />
                   );
@@ -141,11 +140,11 @@ export default function Loader({ onComplete }: LoaderProps) {
                 transform={`rotate(-90 ${R + 12} ${R + 12})`}
                 style={{ transition: "stroke-dashoffset 0.05s linear" }}
               />
-              {/* Glowing tip — only rendered client-side to avoid hydration mismatch */}
+              {/* Glowing tip */}
               {progress > 2 && (
                 <motion.circle
-                  cx={Math.round((R + 12 + R * Math.cos(((progress / 100) * 360 - 90) * (Math.PI / 180))) * 1e4) / 1e4}
-                  cy={Math.round((R + 12 + R * Math.sin(((progress / 100) * 360 - 90) * (Math.PI / 180))) * 1e4) / 1e4}
+                  cx={R + 12 + R * Math.cos(((progress / 100) * 360 - 90) * (Math.PI / 180))}
+                  cy={R + 12 + R * Math.sin(((progress / 100) * 360 - 90) * (Math.PI / 180))}
                   r={STROKE * 1.4}
                   fill="#007979"
                   opacity={0.9}

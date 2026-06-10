@@ -38,7 +38,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="about"
-      className={`relative min-h-screen overflow-hidden pt-20 ${inter.className}`}
+      className={`relative h-screen overflow-hidden pt-20 ${inter.className}`}
     >
       {/* Parallax gradient bg */}
       <motion.div
@@ -55,12 +55,13 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+      {/* Outer flex container fills the remaining height below the navbar */}
+      <div className="relative z-10 h-full flex flex-col mx-auto max-w-7xl px-6 lg:px-10">
 
         {/* ── Name ── */}
         <motion.div
           style={{ opacity }}
-          className="text-center pt-10"
+          className="text-center pt-4 shrink-0"
         >
           <div className="overflow-hidden">
             <motion.h1
@@ -72,7 +73,7 @@ export default function Hero() {
               {["Sumbal", "Naz"].map((word, wi) => (
                 <span
                   key={wi}
-                  className={`${dancing.className} text-[68px] md:text-[118px] lg:text-[155px]`}
+                  className={`${dancing.className} text-[64px] md:text-[96px] lg:text-[110px]`}
                 >
                   <span className="text-[#007979]">{word[0]}</span>
                   <span className="text-black">{word.slice(1)}</span>
@@ -85,7 +86,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.6 }}
-            className={`mt-5 flex justify-center ${poppins.className}`}
+            className={`mt-3 flex justify-center ${poppins.className}`}
           >
             <span className="px-6 py-2 rounded-full border border-gray-300 text-gray-600 text-xs md:text-sm tracking-[3px] uppercase bg-white shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
               Freelance Full Stack &amp; AI Developer
@@ -93,8 +94,8 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── Three columns ── */}
-        <div className="relative mt-14 grid lg:grid-cols-3 items-center gap-10">
+        {/* ── Three columns — flex-1 so it fills remaining space ── */}
+        <div className="relative flex-1 min-h-0 mt-6 grid lg:grid-cols-3 items-center gap-6">
 
           {/* Left */}
           <motion.div
@@ -102,7 +103,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             transition={{ delayChildren: 0.7 }}
-            className="space-y-6"
+            className="space-y-5"
           >
             <motion.p variants={itemVariants} className="leading-[1.85] font-serif text-gray-600 text-[15px]">
               I am a Freelance Full Stack &amp; AI Developer focused on building modern,
@@ -141,7 +142,7 @@ export default function Hero() {
                   <span className={`text-2xl font-serif font-semibold text-[#007979] ${poppins.className}`}>
                     {stat.num}
                   </span>
-                  <span className="text-[11px]  tracking-wide uppercase mt-0.5">
+                  <span className="text-[11px] tracking-wide uppercase mt-0.5">
                     {stat.label}
                   </span>
                 </div>
@@ -149,33 +150,33 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Center — image */}
+          {/* Center — image, constrained to column height */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.35, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center relative"
+            className="flex justify-center items-center relative h-full"
             style={{ y: imageY }}
           >
             {/* Pulsing glow */}
             <motion.div
               animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute w-[280px] h-[280px] md:w-[420px] md:h-[420px] bg-[#007979]/20 blur-3xl rounded-full"
+              className="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px] bg-[#007979]/20 blur-3xl rounded-full"
             />
             {/* Rotating ring */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute w-[220px] h-[220px] md:w-[340px] md:h-[340px] rounded-full border border-dashed border-[#007979]/20"
+              className="absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full border border-dashed border-[#007979]/20"
             />
             <Image
               src="/Hero.png"
               alt="Sumbal Naz"
-              width={900}
-              height={900}
+              width={500}
+              height={500}
               priority
-              className="relative scale-125 md:scale-150 drop-shadow-2xl"
+              className="relative w-auto h-full max-h-[420px] lg:max-h-[480px] object-contain drop-shadow-2xl"
             />
           </motion.div>
 
@@ -192,7 +193,7 @@ export default function Hero() {
                 key={i}
                 variants={itemVariants}
                 whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                className="flex items-center gap-4 py-4 border-b border-gray-100 group cursor-default"
+                className="flex items-center gap-4 py-3 border-b border-gray-100 group cursor-default"
               >
                 <motion.span
                   whileHover={{ rotate: 12, scale: 1.25 }}
@@ -214,7 +215,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.8 }}
           style={{ opacity }}
-          className="flex justify-center pb-10 mt-16"
+          className="flex justify-center py-4 shrink-0"
         >
           <div className="flex flex-col items-center gap-2">
             <span className={`text-[10px] tracking-[4px] uppercase text-gray-500 ${poppins.className}`}>
@@ -230,6 +231,7 @@ export default function Hero() {
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

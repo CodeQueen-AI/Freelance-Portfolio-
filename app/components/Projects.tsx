@@ -34,7 +34,7 @@ const PROJECTS = [
     title: "Luxutick Watch Website",
     description:
       "A modern watch e-commerce website with product listing, product details, cart, checkout, contact, about, and auth system, plus a full admin dashboard to manage products, orders, users, stock, and messages",
-    image: "project2.png",
+    image: "project3.png",
     liveUrl: "#",
     githubUrl: "https://github.com/Sumbal-Naz23/LuxeTick-Watch-Ecom-Website",
   },
@@ -52,7 +52,7 @@ const PROJECTS = [
     title: "Makeup Ecommerce Website",
     description:
       "A modern makeup e-commerce website with a sleek UI/UX, featuring product listing, product detail pages, cart, and checkout functionality, along with AI-powered recommendations for a smooth and personalized shopping experience",
-    image: "Project3.png",
+    image: "Project5.png",
     liveUrl: "https://e-commerce-website-project-hazel.vercel.app/",
     githubUrl: "https://github.com/Sumbal-Naz23/Makeup-Ecommerce-Web",
   },

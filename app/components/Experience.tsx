@@ -13,19 +13,19 @@ const grotesk  = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600
 const experiences = [
   {
     index: "01",
-    period: "Nov 2025 — Dec 2025",
-    duration: "2 months",
-    role: "Frontend Developer",
-    company: "Tech Studio",
-    type: "Contract",
+    period: "July 2025 — Dec 2025",
+    duration: "6 months",
+    role: "Full Stack Dveeloper",
+    company: "Quick Logic",
+    type: "Internship",
     status: "Completed",
     statusColor: "#059669",
     description:
-      "Built responsive, high-performance web interfaces using modern frontend technologies. Delivered pixel-perfect UI components, improved Lighthouse scores by 40%, and established a reusable component library adopted across three projects.",
+      "Completed a Full Stack Developer Internship focused on building responsive web apps, backend APIs, and integrating AI-powered features. Gained hands-on experience in modern UI development, performance optimization, and AI/LLM integrations for real-world, scalable applications",
     highlights: [
-      { value: "40%", label: "Performance gain" },
-      { value: "12+", label: "Components built" },
-      { value: "3",   label: "Projects shipped" },
+      { value: "80%", label: "Performance gain" },
+      { value: "20+", label: "Components built" },
+      { value: "10",   label: "Projects shipped" },
     ],
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     accentColor: "#007979",
@@ -143,7 +143,7 @@ const expertiseTags = [
   { label: "AI / LLM Systems",  color: "#7c3aed" },
   { label: "TS & JS",        color: "#35bddf" },
   { label: "Node.js & APIs",    color: "#49de1c" },
-  { label: "Tailwind CSS",      color: "#bd2793" },
+  { label: "Webhooks & Automation",      color: "#bd2793" },
   { label: "Python & FastAPI",  color: "#8b63da" },
 ];
 
@@ -506,8 +506,7 @@ export default function Experience() {
 
                 {/* Short professional bio */}
                 <p className={`${poppins.className} text-gray-500 text-[13px] leading-[1.85] mb-5 font-light`}>
-                  I design and build modern web applications and intelligent AI systems that help
-                  businesses scale — with a relentless focus on performance, clarity and results.
+                  I build modern web apps and AI systems that solve real problems—automating tasks, improving decision-making and enhancing user experiences with fast, scalable and intelligent solutions
                 </p>
 
                 {/* Expertise tags */}

@@ -130,19 +130,13 @@ img {
   }
 }
 
-/* ─── Mobile: pad body bottom so content clears bottom nav ── */
+/* ─── Mobile global fixes ────────────────────────────────── */
 @media (max-width: 767px) {
-  body {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom));
-  }
-
-  /* Prevent horizontal scroll on mobile */
   html, body {
     overflow-x: hidden;
     max-width: 100vw;
   }
 
-  /* Ensure sections don't overflow on mobile */
   section {
     overflow-x: hidden;
   }

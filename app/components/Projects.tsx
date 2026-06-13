@@ -344,12 +344,12 @@ export default function Projects() {
             </p>
             <div className="flex items-center gap-5">
               <div>
-                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>6+</span>
+                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>20+</span>
                 <span className={`${poppins.className} text-gray-400 text-[12px] ml-1.5`}>Projects</span>
               </div>
               <div className="w-px h-6 bg-gray-200" aria-hidden="true" />
               <div>
-                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>3</span>
+                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>6</span>
                 <span className={`${poppins.className} text-gray-400 text-[12px] ml-1.5`}>Domains</span>
               </div>
               <div className="w-px h-6 bg-gray-200" aria-hidden="true" />
@@ -383,7 +383,7 @@ export default function Projects() {
           className="mt-12 flex justify-center"
         >
           <motion.a
-            href="https://github.com"
+            href="https://github.com/Sumbal-Naz23"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -3 }}

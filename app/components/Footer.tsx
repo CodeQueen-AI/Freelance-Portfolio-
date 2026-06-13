@@ -12,6 +12,7 @@ import {
   FiInstagram,
   FiHeart,
 } from "react-icons/fi";
+import { SiUpwork, SiFiverr } from "react-icons/si";
 
 const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"] });
@@ -33,10 +34,10 @@ const SERVICES_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { icon: FiGithub, href: "https://github.com", label: "GitHub" },
-  { icon: FiLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: FiTwitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: FiInstagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: FiGithub, href: "https://github.com/Sumbal-Naz23", label: "GitHub" },
+  { icon: FiLinkedin, href: "https://www.linkedin.com/in/sumbal-naz/", label: "LinkedIn" },
+  { icon: FiTwitter, href: "https://x.com/sumbal_dev23", label: "Twitter" },
+  { icon: SiFiverr, href: "https://www.fiverr.com/sellers/sumbalnaz_23", label: "Fiverr" },
 ];
 
 const year = new Date().getFullYear();

@@ -30,28 +30,28 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600
 const SOCIALS = [
   {
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/Sumbal-Naz23",
     icon: FiGithub,
     color: "#333",
     bg: "#f5f5f5",
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/sumbal-naz/",
     icon: FiLinkedin,
     color: "#0A66C2",
     bg: "#e8f0fb",
   },
   {
     label: "Twitter",
-    href: "https://twitter.com",
+    href: "https://x.com/sumbal_dev23",
     icon: FiTwitter,
     color: "#1DA1F2",
     bg: "#e8f5fd",
   },
   {
     label: "Fiverr",
-    href: "https://fiverr.com",
+    href: "https://www.fiverr.com/sellers/sumbalnaz_23",
     icon: SiFiverr,
     color: "#1dbf73",
     bg: "#e8f8f0",
@@ -63,7 +63,7 @@ const INFO = [
   {
     icon: FiMail,
     label: "Email",
-    value: "codeq209@gmail.com",
+    value: "sumbal.devstudio@gmail.com",
     href: "mailto:codeq209@gmail.com",
   },
   {

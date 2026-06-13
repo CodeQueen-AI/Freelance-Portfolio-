@@ -61,7 +61,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="about"
-      className={`relative h-screen overflow-hidden pt-20 ${inter.className}`}
+      className={`relative min-h-screen overflow-hidden pt-16 md:pt-20 ${inter.className}`}
       style={{ background: "#ffffff" }}
     >
 
@@ -298,19 +298,19 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── Three-column grid ── */}
+      {/* ── Three-column grid — hidden side cols on mobile ── */}
         <div
-          className="relative shrink-0 mt-3 grid lg:grid-cols-[1fr_1.6fr_1fr] items-center gap-8"
-          style={{ height: "clamp(320px, 58vh, 500px)" }}
+          className="relative shrink-0 mt-3 grid lg:grid-cols-[1fr_1.6fr_1fr] items-center gap-6 lg:gap-8"
+          style={{ minHeight: "clamp(260px, 48vh, 500px)" }}
         >
 
-          {/* Left — bio + CTA */}
+          {/* Left — bio + CTA — hidden on mobile, visible lg+ */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="show"
             transition={{ delayChildren: 0.7 }}
-            className="flex flex-col gap-6"
+            className="hidden lg:flex flex-col gap-6"
           >
             <motion.p
               variants={itemVariants}
@@ -341,13 +341,13 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Center — hero image */}
+          {/* Center — hero image: full width on mobile, centred */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.35, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center items-center relative"
-            style={{ y: imageY, marginTop: "-40px", marginBottom: "-40px" }}
+            className="flex justify-center items-center relative col-span-1 lg:col-auto"
+            style={{ y: imageY }}
           >
             {/* Soft teal glow under image */}
             <motion.div
@@ -368,7 +368,7 @@ export default function Hero() {
               height={800}
               priority
               className="relative w-auto object-contain drop-shadow-xl"
-              style={{ height: "clamp(380px, 68vh, 580px)" }}
+              style={{ height: "clamp(280px, 55vh, 520px)" }}
             />
           </motion.div>
 

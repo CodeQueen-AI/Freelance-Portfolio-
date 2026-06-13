@@ -12,17 +12,21 @@ import Footer from "./components/Footer";
 
 export default function Page() {
   return (
-    <PageWrapper>
+    <>
+      {/* Navbar is outside PageWrapper so its fixed-position children
+          are never trapped inside a CSS transform/filter stacking context */}
       <Navbar />
-      <Hero />
-      <Experience />
-      <Skill />
-      <Projects />
-      <Banner />
-      <Services />
-      <ScrollStack />
-      <Contact />
-      <Footer />
-    </PageWrapper>
+      <PageWrapper>
+        <Hero />
+        <Experience />
+        <Skill />
+        <Projects />
+        <Banner />
+        <Services />
+        <ScrollStack />
+        <Contact />
+        <Footer />
+      </PageWrapper>
+    </>
   );
 }

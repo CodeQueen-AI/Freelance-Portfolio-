@@ -13,6 +13,8 @@ import {
   SiPython,
   SiPostgresql,
 } from "react-icons/si";
+import { SiVectorworks } from "react-icons/si";
+import { SiPandas } from "react-icons/si";
 import {
   FaBrain,
   FaRocket,
@@ -25,6 +27,8 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
+import { SiMongodb } from "react-icons/si";
+import { SiNumpy } from "react-icons/si";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -47,11 +51,12 @@ const categories = [
     title: "Full Stack Development",
     tagline: "From idea to production.",
     Icon: FaRocket,
-    services: ["Web Applications", "SaaS Platforms", "Business Websites", "Landing Pages"],
+    services: ["Full-Stack Application Development", "AI-Powered SaaS Solutions", "Problem-Solving Business Systems","Custom Full-Stack Web & AI Solutions"],
     techs: [
       { Icon: SiNextdotjs, label: "Next.js" },
       { Icon: SiReact, label: "React" },
       { Icon: SiNodedotjs, label: "Node.js" },
+      { Icon: SiMongodb, label: "Mongo DB"}
     ],
     accent: "#007979",
     accentDark: "#005f5f",
@@ -65,9 +70,9 @@ const categories = [
     Icon: FaPaintBrush,
     services: ["UI/UX Design", "Animations & Motion", "Design Systems", "Figma Prototyping"],
     techs: [
-      { Icon: SiFigma, label: "Figma" },
+      { Icon: SiNextdotjs, label: "Next.Js" },
       { Icon: SiReact, label: "React" },
-      { Icon: SiTypescript, label: "Tailwind" },
+      { Icon: SiTypescript, label: "Tailwind CSS" },
     ],
     accent: "#7c3aed",
     accentDark: "#5b21b6",
@@ -98,7 +103,7 @@ const categories = [
     services: ["AI Chatbots", "Voice Assistants", "Booking Agents", "Autonomous Agents"],
     techs: [
       { Icon: SiOpenai, label: "OpenAI" },
-      { Icon: FaBrain, label: "LangChain" },
+      { Icon: FaBrain, label: "Vector Database" },
       { Icon: FaRobot, label: "Agents" },
     ],
     accent: "#c026d3",
@@ -129,9 +134,9 @@ const categories = [
     Icon: FaChartBar,
     services: ["Analytics Dashboards", "Admin Panels", "Data Visualisation", "Reporting Systems"],
     techs: [
-      { Icon: SiReact, label: "React" },
-      { Icon: SiPostgresql, label: "PostgreSQL" },
-      { Icon: FaChartBar, label: "Recharts" },
+      { Icon: SiNumpy, label: "Numpy" },
+      { Icon: SiPandas, label: "Pandas" },
+      { Icon: FaChartBar, label: "MatplotLib" },
     ],
     accent: "#059669",
     accentDark: "#047857",
@@ -189,7 +194,7 @@ function CategoryCard({
           className="absolute -right-3 -bottom-3 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-8deg] pointer-events-none"
           aria-hidden="true"
         >
-          <CatIcon size={68} style={{ color: cat.accent, opacity: 0.1 }} />
+          <CatIcon size={84} style={{ color: cat.accent, opacity: 0.1 }} />
         </div>
 
         <div className="relative z-10">
@@ -203,15 +208,15 @@ function CategoryCard({
             <motion.div
               whileHover={{ scale: 1.12, rotate: -8 }}
               transition={{ duration: 0.2 }}
-              className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm"
-              style={{ background: "white", color: cat.accent, boxShadow: `0 2px 10px ${cat.accent}22` }}
+              className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
+              style={{ background: "white", color: cat.accent, boxShadow: `0 2px 12px ${cat.accent}28` }}
             >
-              <CatIcon size={16} />
+              <CatIcon size={22} />
             </motion.div>
           </div>
           <h3
             className={`${grotesk.className} font-bold leading-tight mb-1`}
-            style={{ fontSize: "0.95rem", color: cat.accentDark }}
+            style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.15rem)", color: cat.accentDark }}
           >
             {cat.title}
           </h3>
@@ -433,70 +438,6 @@ export default function Services() {
             <CategoryCard key={cat.id} cat={cat} index={i} inView={inView} />
           ))}
         </div>
-
-        {/* ── CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-8 rounded-2xl overflow-hidden"
-          style={{
-            border: "1.5px solid rgba(0,121,121,0.13)",
-            boxShadow: "0 2px 24px rgba(0,121,121,0.07)",
-          }}
-        >
-          {/* Tinted top strip */}
-          <div
-            className="px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-6"
-            style={{ background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 60%, #f5fff8 100%)" }}
-          >
-            <div className="flex items-center gap-5">
-              {/* Animated sparkle icon */}
-              <motion.div
-                animate={{ rotate: [0, 15, -10, 0], scale: [1, 1.15, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
-                style={{
-                  background: "rgba(0,121,121,0.1)",
-                  color: "#007979",
-                  border: "1.5px solid rgba(0,121,121,0.18)",
-                }}
-                aria-hidden="true"
-              >
-                <HiSparkles size={19} />
-              </motion.div>
-              <div>
-                <p className={`${grotesk.className} text-gray-900 font-bold text-[1.05rem] leading-snug`}>
-                  Ready to build something great?
-                </p>
-                <p className={`${poppins.className} text-gray-400 text-[13px] mt-0.5 font-light`}>
-                  Let&apos;s talk about your project — no commitment, just a conversation.
-                </p>
-              </div>
-            </div>
-
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className={`${poppins.className} group inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-[13px] font-semibold text-white shrink-0 relative overflow-hidden cursor-pointer`}
-              style={{
-                background: "linear-gradient(135deg, #007979 0%, #009999 100%)",
-                boxShadow: "0 4px 20px rgba(0,121,121,0.32)",
-              }}
-            >
-              <span className="relative z-10">Start a Project</span>
-              <motion.span
-                className="relative z-10"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              >
-                →
-              </motion.span>
-              <span className="absolute inset-0 bg-black/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 rounded-full" />
-            </motion.a>
-          </div>
-        </motion.div>
 
       </div>
     </section>

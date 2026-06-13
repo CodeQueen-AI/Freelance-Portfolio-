@@ -25,33 +25,54 @@ const fadeUp = (delay = 0) => ({
 });
 
 /* ════════════════════════════════════════════════════════════
-   PANEL 1 — Speed & Delivery  (world-class product roadmap)
+   PANEL 1 — Build & Delivery Process
 ════════════════════════════════════════════════════════════ */
 function Panel1() {
-  const phases = [
+  const steps = [
     {
-      num: "01", label: "Discovery", timing: "Day 1", color: "#007979",
-      sub: "Goals, scope & stack aligned",
-      tasks: ["Stakeholder alignment", "Tech stack decision", "Project brief locked"],
-      status: "complete",
+      num: "01",
+      phase: "Discovery",
+      label: "Problem → Strategy",
+      desc: "Deep-dive into your goals, users, and constraints. Define scope, stack, and success metrics before a single line of code is written.",
+      tags: ["Requirements", "Tech Scoping", "Roadmap"],
+      color: "#007979",
+      bg: "rgba(0,121,121,0.07)",
     },
     {
-      num: "02", label: "Design", timing: "Week 1", color: "#0891b2",
-      sub: "Architecture & wireframes locked",
-      tasks: ["System architecture", "UI wireframes", "Component library"],
-      status: "complete",
+      num: "02",
+      phase: "Architecture",
+      label: "System Design → UI",
+      desc: "Data models, API contracts, and system architecture locked first. Then pixel-perfect, accessible UI built with precision.",
+      tags: ["System Design", "API Contracts", "Figma → Code"],
+      color: "#0891b2",
+      bg: "rgba(8,145,178,0.07)",
     },
     {
-      num: "03", label: "Build", timing: "Wk 2–3", color: "#059669",
-      sub: "Daily updates, iterative delivery",
-      tasks: ["Feature development", "Daily standups", "Iterative QA"],
-      status: "active",
+      num: "03",
+      phase: "AI Integration",
+      label: "Intelligence → Core",
+      desc: "LLM pipelines, RAG systems, and autonomous agents embedded into the product architecture — not bolted on as an afterthought.",
+      tags: ["OpenAI", "RAG", "Agents", "LangChain"],
+      color: "#c026d3",
+      bg: "rgba(192,38,211,0.07)",
     },
     {
-      num: "04", label: "Launch", timing: "Week 4", color: "#7c3aed",
-      sub: "QA, deploy & docs handover",
-      tasks: ["Final QA pass", "Production deploy", "Docs & handover"],
-      status: "upcoming",
+      num: "04",
+      phase: "Full-Stack Build",
+      label: "Frontend + Backend",
+      desc: "UI, APIs, and AI layers built in parallel with daily updates. TypeScript-first, test-covered, and production-hardened from day one.",
+      tags: ["Next.js", "Node.js", "PostgreSQL"],
+      color: "#6366f1",
+      bg: "rgba(99,102,241,0.07)",
+    },
+    {
+      num: "05",
+      phase: "Launch & Scale",
+      label: "Deploy → Ownership",
+      desc: "CI/CD pipeline, cloud deployment, performance tuning. Full handover with source code, docs, and post-launch support included.",
+      tags: ["Vercel", "CI/CD", "Docs & Handover"],
+      color: "#059669",
+      bg: "rgba(5,150,105,0.07)",
     },
   ];
 
@@ -69,10 +90,10 @@ function Panel1() {
           WebkitMaskImage: "radial-gradient(ellipse 78% 72% at 50% 50%, black 20%, transparent 100%)",
         }} aria-hidden="true" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 lg:px-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-12">
 
-        {/* ── Top bar: eyebrow + headline + badge in one row ── */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
+        {/* ── Header ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,187 +106,108 @@ function Panel1() {
                 <FaRocket size={11} />
               </div>
               <span className={`${poppins.className} text-[10.5px] tracking-[4px] uppercase font-semibold text-[#007979]`}>
-                01 / Speed & Delivery
+                Build & Delivery Process
               </span>
             </div>
             <h2
               className={`${playfair.className} leading-[1.1]`}
-              style={{ fontSize: "clamp(1.9rem, 3.8vw, 3.4rem)", fontStyle: "italic" }}
+              style={{ fontSize: "clamp(1.7rem, 3.4vw, 3rem)", fontStyle: "italic" }}
             >
-              Your idea, live{" "}
-              <span style={{ color: "#007979" }}>in weeks —</span>{" "}not months.
+              From{" "}
+              <span style={{ color: "#007979" }}>problem</span>
+              {" "}to production —{" "}
+              <span style={{ color: "#007979" }}>startup-grade</span>
+              {" "}delivery.
             </h2>
           </motion.div>
 
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease }}
             viewport={VP}
-            className="flex items-center gap-3 shrink-0"
+            className={`${poppins.className} text-gray-400 text-[13px] font-light max-w-xs leading-relaxed hidden lg:block`}
           >
-            {/* Live indicator */}
-            <span className="flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ background: "#059669" }} />
-                <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#059669" }} />
-              </span>
-              <span className={`${poppins.className} text-[11px] text-gray-500 font-medium`}>Active project</span>
-            </span>
-            <span className="w-px h-4 bg-gray-200" aria-hidden="true" />
-            <span
-              className={`${poppins.className} inline-flex items-center gap-1.5 text-[11px] font-semibold`}
-              style={{ color: "#007979" }}
-            >
-              <FaCheckCircle size={10} />
-              100% On-Time
-            </span>
-          </motion.div>
+            A structured workflow built for speed, quality,
+            and real-world results — across every layer of the stack.
+          </motion.p>
         </div>
 
-        {/* ── Roadmap board: 4 phase columns ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {phases.map((p, pi) => (
+        {/* ── 5 process step cards ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {steps.map((s, si) => (
             <motion.div
-              key={p.num}
-              initial={{ opacity: 0, y: 28 }}
+              key={s.num}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12 + pi * 0.1, duration: 0.7, ease }}
+              transition={{ delay: 0.1 + si * 0.09, duration: 0.65, ease }}
               viewport={VP}
-              className="relative flex flex-col rounded-2xl overflow-hidden"
-              style={{
-                background: "#fff",
-                border: `1.5px solid ${p.color}1a`,
-                boxShadow: p.status === "active"
-                  ? `0 4px 28px ${p.color}18, 0 2px 8px rgba(0,0,0,0.04)`
-                  : "0 2px 12px rgba(0,0,0,0.04)",
-              }}
+              className="relative flex flex-col rounded-2xl overflow-hidden bg-white"
+              style={{ boxShadow: "0 2px 14px rgba(0,0,0,0.05)" }}
             >
-              {/* Coloured header band */}
-              <div
-                className="px-4 pt-4 pb-3"
-                style={{ background: `linear-gradient(135deg, ${p.color}0d 0%, ${p.color}06 100%)` }}
-              >
-                {/* Phase number + timing */}
-                <div className="flex items-center justify-between mb-2">
+              {/* Top accent bar */}
+              <div className="h-[3px]"
+                style={{ background: `linear-gradient(90deg, ${s.color}, ${s.color}40, transparent)` }}
+                aria-hidden="true" />
+
+              <div className="flex flex-col flex-1 p-4">
+                {/* Number + phase badge */}
+                <div className="flex items-center justify-between mb-3">
                   <span
-                    className={`${grotesk.className} text-[10px] font-bold tracking-[2px] uppercase`}
-                    style={{ color: `${p.color}90` }}
-                  >{p.num}</span>
+                    className={`${grotesk.className} text-[10px] font-bold tracking-[2.5px] uppercase`}
+                    style={{ color: `${s.color}80` }}
+                  >{s.num}</span>
                   <span
-                    className={`${poppins.className} text-[9.5px] font-semibold px-2 py-0.5 rounded-md`}
-                    style={{ background: `${p.color}12`, color: p.color }}
-                  >{p.timing}</span>
+                    className={`${poppins.className} text-[9px] font-bold uppercase tracking-[1.5px] px-2 py-0.5 rounded-full`}
+                    style={{ background: s.bg, color: s.color }}
+                  >{s.phase}</span>
                 </div>
 
-                {/* Phase title */}
-                <p className={`${grotesk.className} font-bold text-gray-900 text-[15px] leading-tight mb-1`}>
-                  {p.label}
+                {/* Step title */}
+                <p className={`${grotesk.className} font-bold text-gray-900 text-[13px] leading-snug mb-2`}>
+                  {s.label}
                 </p>
-                <p className={`${poppins.className} text-gray-400 text-[11px] font-light leading-snug`}>
-                  {p.sub}
+
+                {/* Description */}
+                <p className={`${poppins.className} text-gray-400 text-[11px] font-light leading-relaxed flex-1 mb-3`}>
+                  {s.desc}
                 </p>
-              </div>
 
-              {/* Thin top accent line */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[3px]"
-                style={{ background: `linear-gradient(90deg, ${p.color} 0%, ${p.color}40 100%)` }}
-                aria-hidden="true"
-              />
-
-              {/* Task list */}
-              <div className="px-4 py-3 flex flex-col gap-2 flex-1">
-                {p.tasks.map((task, ti) => (
-                  <div key={ti} className="flex items-center gap-2.5">
-                    <div
-                      className="w-[18px] h-[18px] rounded-md flex items-center justify-center shrink-0"
-                      style={{
-                        background: p.status === "upcoming" ? "rgba(0,0,0,0.04)" : `${p.color}12`,
-                      }}
-                    >
-                      {p.status === "complete" && (
-                        <FaCheckCircle size={9} style={{ color: p.color }} />
-                      )}
-                      {p.status === "active" && ti === 0 && (
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: p.color }} />
-                      )}
-                      {p.status === "upcoming" && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                      )}
-                      {p.status === "active" && ti > 0 && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-gray-200" />
-                      )}
-                    </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1 mt-auto">
+                  {s.tags.map((tag) => (
                     <span
-                      className={`${poppins.className} text-[11.5px] font-${p.status === "complete" ? "medium" : "light"} leading-snug`}
-                      style={{ color: p.status === "upcoming" ? "#bbb" : p.status === "complete" ? "#555" : "#333" }}
-                    >{task}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Status footer */}
-              <div
-                className="px-4 py-2.5 flex items-center gap-2"
-                style={{ borderTop: `1px solid ${p.color}10` }}
-              >
-                {p.status === "complete" && (
-                  <>
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#059669" }} />
-                    <span className={`${poppins.className} text-[10px] font-semibold`} style={{ color: "#059669" }}>Completed</span>
-                  </>
-                )}
-                {p.status === "active" && (
-                  <>
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: p.color }} />
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: p.color }} />
-                    </span>
-                    <span className={`${poppins.className} text-[10px] font-semibold`} style={{ color: p.color }}>In Progress</span>
-                  </>
-                )}
-                {p.status === "upcoming" && (
-                  <>
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                    <span className={`${poppins.className} text-[10px] font-semibold text-gray-400`}>Upcoming</span>
-                  </>
-                )}
+                      key={tag}
+                      className={`${poppins.className} text-[9px] font-semibold px-2 py-0.5 rounded-full`}
+                      style={{ background: s.bg, color: s.color }}
+                    >{tag}</span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* ── Bottom timeline bar ── */}
+        {/* ── Bottom strip ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.6, ease }}
+          transition={{ delay: 0.6, duration: 0.6, ease }}
           viewport={VP}
-          className="mt-4 rounded-xl px-5 py-3 flex items-center gap-3 overflow-hidden relative"
+          className="mt-4 rounded-xl px-5 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
           style={{ background: "rgba(0,121,121,0.04)", border: "1px solid rgba(0,121,121,0.1)" }}
         >
-          {/* Progress fill */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ delay: 0.7, duration: 1.2, ease }}
-            viewport={VP}
-            className="absolute left-0 top-0 bottom-0 origin-left"
-            style={{ width: "60%", background: "linear-gradient(90deg, rgba(0,121,121,0.1), rgba(0,121,121,0.04))" }}
-            aria-hidden="true"
-          />
-          <span className={`${poppins.className} text-[11px] text-gray-500 font-medium relative z-10`}>
-            Total delivery window
-          </span>
-          <div className="flex-1 flex items-center gap-1 relative z-10">
-            {["Day 1", "Week 1", "Wk 2–3", "Week 4"].map((t, i) => (
-              <React.Fragment key={t}>
-                <span className={`${poppins.className} text-[10px] font-semibold`}
-                  style={{ color: phases[i].color }}>{t}</span>
-                {i < 3 && <span className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${phases[i].color}40, ${phases[i+1].color}40)` }} />}
-              </React.Fragment>
-            ))}
+          <p className={`${poppins.className} text-[12px] text-gray-500 font-light`}>
+            End-to-end delivery — frontend, backend, and AI — owned by one developer across every layer.
+          </p>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ background: "#059669" }} />
+              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#059669" }} />
+            </span>
+            <span className={`${poppins.className} text-[11px] font-semibold`} style={{ color: "#007979" }}>
+              100% On-Time · Every Project
+            </span>
           </div>
         </motion.div>
 

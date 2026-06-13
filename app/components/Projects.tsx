@@ -25,7 +25,7 @@ const PROJECTS = [
     title: "LearnSphere LMS Website",
     description:
       "A modern LMS website featuring a visually engaging landing page with smooth animations, intuitive UI/UX, tutor search functionality, About and Contact pages and secure Sign Up/Sign In flows for a seamless learning experience",
-    image: "Project5.png",
+    image: "Project2.png",
     liveUrl: "https://lms-ui-website.vercel.app/",
     githubUrl: "https://github.com/Sumbal-Naz23/LMS-UI-Website-",
   },
@@ -34,7 +34,7 @@ const PROJECTS = [
     title: "Luxutick Watch Website",
     description:
       "A modern watch e-commerce website with product listing, product details, cart, checkout, contact, about, and auth system, plus a full admin dashboard to manage products, orders, users, stock, and messages",
-    image: "project3.png",
+    image: "Project3.png",
     liveUrl: "#",
     githubUrl: "https://github.com/Sumbal-Naz23/LuxeTick-Watch-Ecom-Website",
   },

@@ -13,87 +13,57 @@ const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], style: 
 const PROJECTS = [
   {
     id: 1,
-    title: "AI SaaS Dashboard",
+    title: "AromaLux Perfume Website",
     description:
-      "GPT-4 powered analytics platform with real-time charts, role-based auth, and Stripe subscription billing. Built to production scale.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400",
-    tech: ["Next.js", "OpenAI", "Supabase", "TypeScript"],
-    liveUrl: "#",
-    githubUrl: "#",
-    category: "Full Stack",
-    tag: "AI",
-    year: "2026",
-    featured: true,
+      "A modern perfume e-commerce website with cart and checkout functionality. Integrated AI Voice Assistant and Chatbot to instantly answer customer queries, provide product recommendations, and improve the overall shopping experience",
+    image: "/Project1.png",
+    liveUrl: "https://codequeen-perfume-website.vercel.app/",
+    githubUrl: "https://github.com/Sumbal-Naz23/Perfume-Ecommerce-Website",
   },
   {
     id: 2,
-    title: "Agentic RAG System",
+    title: "LearnSphere LMS Website",
     description:
-      "Multi-agent RAG pipeline with LangChain, Pinecone vector store and a Chainlit conversational interface.",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=900",
-    tech: ["Python", "LangChain", "Pinecone", "OpenAI"],
-    liveUrl: "#",
-    githubUrl: "#",
-    category: "AI",
-    tag: "Python",
-    year: "2026",
-    featured: false,
+      "A modern LMS website featuring a visually engaging landing page with smooth animations, intuitive UI/UX, tutor search functionality, About and Contact pages and secure Sign Up/Sign In flows for a seamless learning experience",
+    image: "Project5.png",
+    liveUrl: "https://lms-ui-website.vercel.app/",
+    githubUrl: "https://github.com/Sumbal-Naz23/LMS-UI-Website-",
   },
   {
     id: 3,
-    title: "E-Commerce Platform",
+    title: "Luxutick Watch Website",
     description:
-      "Full-featured storefront with Stripe checkout, inventory management and AI-powered product recommendations.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=900",
-    tech: ["Next.js", "Stripe", "MongoDB", "Tailwind"],
+      "A modern watch e-commerce website with product listing, product details, cart, checkout, contact, about, and auth system, plus a full admin dashboard to manage products, orders, users, stock, and messages",
+    image: "project2.png",
     liveUrl: "#",
-    githubUrl: "#",
-    category: "Full Stack",
-    tag: "E-Commerce",
-    year: "2025",
-    featured: false,
+    githubUrl: "https://github.com/Sumbal-Naz23/LuxeTick-Watch-Ecom-Website",
   },
-  {
+    {
     id: 4,
-    title: "AI Automation Agent",
+    title: "Foodora Website",
     description:
-      "Autonomous workflow agent connecting Slack, Notion & Gmail to eliminate repetitive daily tasks.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900",
-    tech: ["Python", "OpenAI SDK", "FastAPI", "React"],
-    liveUrl: "#",
-    githubUrl: "#",
-    category: "AI",
-    tag: "Automation",
-    year: "2026",
-    featured: false,
+      "A fully functional restaurant website with a modern UI, interactive menu, table booking, gallery, cart system, and contact features, designed to deliver a smooth and engaging user experience",
+    image: "Project4.png",
+    liveUrl: "https://cq-foodora-website.vercel.app/",
+    githubUrl: "https://github.com/Sumbal-Naz23/Restaurant-Foodora-Website",
   },
   {
     id: 5,
-    title: "Portfolio Design System",
+    title: "Makeup Ecommerce Website",
     description:
-      "40+ reusable React components with Radix UI primitives, Tailwind v4 tokens, and Framer Motion animations.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=900",
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    liveUrl: "#",
-    githubUrl: "#",
-    category: "Frontend",
-    tag: "Design",
-    year: "2025",
-    featured: false,
+      "A modern makeup e-commerce website with a sleek UI/UX, featuring product listing, product detail pages, cart, and checkout functionality, along with AI-powered recommendations for a smooth and personalized shopping experience",
+    image: "project3.png",
+    liveUrl: "https://e-commerce-website-project-hazel.vercel.app/",
+    githubUrl: "https://github.com/Sumbal-Naz23/Makeup-Ecommerce-Web",
   },
   {
     id: 6,
-    title: "Real-time Chat App",
+    title: "Nexify Saas Website",
     description:
-      "Messaging platform with topic rooms, file sharing, presence indicators and an embedded AI assistant.",
-    image: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?q=80&w=900",
-    tech: ["Next.js", "Socket.io", "Node.js", "MongoDB"],
-    liveUrl: "#",
-    githubUrl: "#",
-    category: "Full Stack",
-    tag: "Real-time",
-    year: "2026",
-    featured: false,
+      "A professional SaaS-based website with a modern UI/UX, featuring a high-converting landing page, home, features & feature detail pages, pricing, team, FAQ, contact, and a blog system with add/manage posts functionality",
+    image: "Project6.png",
+    liveUrl: "https://nexify-blog.vercel.app/",
+    githubUrl: "https://github.com/Sumbal-Naz23/Nexify-Blog-Website",
   },
 ];
 
@@ -137,14 +107,22 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[number]; i
       <div className="relative overflow-hidden" style={{ height: "210px" }}>
         <motion.div
           style={{ y: imgY }}
-          className="absolute inset-0 will-change-transform"
+          className="absolute inset-[-10%] will-change-transform"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          {/* <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover scale-[1.18] transition-transform duration-700 group-hover:scale-[1.24]"
-          />
+            className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-[1.05]"
+            style={{ display: "block" }}
+          /> */}
+          <div className="relative bg-[#f8f8f8] p-3">
+  <img
+    src={project.image}
+    alt={project.title}
+    className="w-full rounded-lg object-contain"
+  />
+</div>
         </motion.div>
         {/* Soft gradient at bottom of image */}
         <div

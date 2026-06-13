@@ -93,15 +93,16 @@ export default function Loader({ onComplete }: LoaderProps) {
                   const cx = R + 20;
                   const cy = R + 20;
                   const r = R + 14;
-                  const x = cx + r * Math.cos(rad);
-                  const y = cy + r * Math.sin(rad);
+                  // Round to 4 dp so SSR (Node.js) and client (V8) produce identical strings
+                  const x = Math.round((cx + r * Math.cos(rad)) * 1e4) / 1e4;
+                  const y = Math.round((cy + r * Math.sin(rad)) * 1e4) / 1e4;
                   return (
                     <circle
                       key={i}
                       cx={x}
                       cy={y}
                       r={i % 6 === 0 ? 2 : 1}
-                      fill={i % 6 === 0 ? "#007979" : "#007979"}
+                      fill="#007979"
                       opacity={i % 6 === 0 ? 0.5 : 0.18}
                     />
                   );

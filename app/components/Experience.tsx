@@ -40,7 +40,7 @@ const experiences = [
     status: "Active",
     statusColor: "#007979",
     description:
-      "Building modern web applications and AI-powered products for global clients. Managing the full project lifecycle — from scoping and design to development and deployment — with clear communication and on-time delivery.",
+    "Designing and developing intelligent multi-agent systems and AI-powered automation workflows that transform complex business processes into seamless, autonomous operations Focused on building scalable AI solutions, business workflow automation and decision-driven systems that enhance efficiency, reduce manual effort and deliver real-time intelligence for modern digital products",
     highlights: [
       { value: "10+", label: "Client projects" },
       { value: "100%", label: "On-time delivery" },
@@ -369,7 +369,7 @@ export default function Experience() {
       </div>
 
       {/* ═══ Content ════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-28 md:py-36">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20">
 
         {/* ── Section header ─────────────────────────── */}
         <div ref={headerRef} className="mb-20 md:mb-24">
@@ -448,30 +448,30 @@ export default function Experience() {
             <div
               className="relative rounded-2xl overflow-hidden flex-shrink-0"
               style={{
-                background: "linear-gradient(135deg, #f0fafa 0%, #ffffff 60%, #edf9f9 100%)",
-                border: "1px solid rgba(0,121,121,0.14)",
-                boxShadow: "0 4px 24px rgba(0,121,121,0.08), 0 1px 4px rgba(0,0,0,0.04)",
+                background: "linear-gradient(135deg, #f7fdfd 0%, #ffffff 60%, #f4fbfb 100%)",
+                border: "1px solid rgba(0,121,121,0.09)",
+                boxShadow: "0 2px 16px rgba(0,121,121,0.05), 0 1px 3px rgba(0,0,0,0.03)",
               }}
             >
-              {/* Subtle dot grid */}
+              {/* Dot grid — reduced opacity so it doesn't block content */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.18) 1px, transparent 1px)",
+                  backgroundImage: "radial-gradient(circle, rgba(0,121,121,0.09) 1px, transparent 1px)",
                   backgroundSize: "28px 28px",
-                  opacity: 0.35,
+                  opacity: 0.5,
                 }}
                 aria-hidden="true"
               />
-              {/* Soft teal radial glow — top right */}
+              {/* Top-right soft teal glow — reduced */}
               <div
                 className="absolute -top-16 -right-16 w-52 h-52 rounded-full blur-3xl pointer-events-none"
-                style={{ background: "rgba(0,121,121,0.07)" }}
+                style={{ background: "rgba(0,121,121,0.04)" }}
                 aria-hidden="true"
               />
-              {/* Corner rings — now teal on light */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-[#007979]/10" aria-hidden="true" />
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full border border-[#007979]/08" aria-hidden="true" />
+              {/* Corner rings — lighter */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-[#007979]/[0.06]" aria-hidden="true" />
+              <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full border border-[#007979]/[0.05]" aria-hidden="true" />
 
               <div className="relative z-10 p-7">
                 {/* Top: name + orbit */}
@@ -487,6 +487,7 @@ export default function Experience() {
                       Full Stack &amp; AI Engineer
                     </p>
                   </div>
+                  {/* Orbit SVG — lighter strokes */}
                   <motion.div
                     style={{ y: orbitY }}
                     animate={{ rotate: 360 }}
@@ -495,10 +496,10 @@ export default function Experience() {
                     aria-hidden="true"
                   >
                     <svg width="60" height="60" viewBox="0 0 64 64" fill="none">
-                      <circle cx="32" cy="32" r="28" stroke="rgba(0,121,121,0.2)"  strokeWidth="1" strokeDasharray="4 5" />
-                      <circle cx="32" cy="32" r="18" stroke="rgba(0,121,121,0.14)" strokeWidth="1" />
-                      <circle cx="32" cy="32" r="7"  fill="rgba(0,121,121,0.12)" />
-                      <circle cx="32" cy="4"  r="3"  fill="#007979" />
+                      <circle cx="32" cy="32" r="28" stroke="rgba(0,121,121,0.14)" strokeWidth="1" strokeDasharray="4 5" />
+                      <circle cx="32" cy="32" r="18" stroke="rgba(0,121,121,0.09)" strokeWidth="1" />
+                      <circle cx="32" cy="32" r="7"  fill="rgba(0,121,121,0.07)" />
+                      <circle cx="32" cy="4"  r="3"  fill="rgba(0,121,121,0.5)" />
                     </svg>
                   </motion.div>
                 </div>
@@ -695,7 +696,7 @@ export default function Experience() {
                 style={{ fontStyle: "italic" }}
               >
                 I don&apos;t just write code I solve problems, communicate
-                clearly, and deliver results that move businesses forward
+                clearly and deliver results that move businesses forward
               </p>
               <div className="mt-4 flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border border-gray-100" style={{ boxShadow: "0 2px 8px rgba(0,121,121,0.15)" }}>
@@ -713,35 +714,6 @@ export default function Experience() {
                 </div>
               </div>
             </motion.div>
-
-            {/* ── 5. Availability badge ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={leftInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.52, duration: 0.55 }}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl flex-shrink-0"
-              style={{ background: "rgba(5,150,105,0.05)", border: "1px solid rgba(5,150,105,0.2)" }}
-            >
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" aria-hidden="true" />
-              <div>
-                <p className={`${grotesk.className} text-emerald-700 text-[13px] font-bold leading-none`}>
-                  Available for new projects
-                </p>
-                <p className={`${poppins.className}  text-[11px] mt-0.5 font-light`}>
-                  Open to freelance &amp; full-time roles worldwide
-                </p>
-              </div>
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className={`${poppins.className} ml-auto shrink-0 px-4 py-2 rounded-full text-[11px] font-bold text-white`}
-                style={{ background: "#059669" }}
-              >
-                Let&apos;s Talk
-              </motion.a>
-            </motion.div>
-
           </motion.div>
 
           {/* ══════════════════════════════════════════

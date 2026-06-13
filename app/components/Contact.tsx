@@ -322,7 +322,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className={`${poppins.className} relative bg-white py-28 px-6 lg:px-10 overflow-hidden`}
+      className={`${poppins.className} relative bg-white pt-20 pb-14 px-6 lg:px-10 overflow-hidden`}
     >
       {/* Background glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#007979]/5 blur-[120px] rounded-full pointer-events-none" />

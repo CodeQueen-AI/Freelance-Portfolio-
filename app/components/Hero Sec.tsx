@@ -314,11 +314,11 @@ export default function Hero() {
           >
             <motion.p
               variants={itemVariants}
-              className={`${poppins.className} leading-[1.9] text-gray-500 text-[14.5px] font-light`}
+              className="font-serif leading-[1.9] ext-[14.5px] font-light"
             >
               I design and build modern web applications and AI-powered
-              products that help businesses grow. Fast delivery, clean code,
-              and a relentless focus on what actually matters — results.
+              products that help businesses grow Fast delivery, clean code
+              and a relentless focus on what actually matters — Results
             </motion.p>
 
             <motion.div variants={itemVariants}>

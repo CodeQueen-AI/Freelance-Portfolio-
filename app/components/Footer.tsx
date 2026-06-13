@@ -169,7 +169,7 @@ export default function Footer() {
                   href="mailto:sumbalnaz@email.com"
                   className="text-sm  hover:text-[#007979] transition-colors duration-200"
                 >
-                  sumbalnaz@email.com
+                  sumbal.devstudio@gmail.com
                 </a>
               </div>
               <div>

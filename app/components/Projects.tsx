@@ -52,7 +52,7 @@ const PROJECTS = [
     title: "Makeup Ecommerce Website",
     description:
       "A modern makeup e-commerce website with a sleek UI/UX, featuring product listing, product detail pages, cart, and checkout functionality, along with AI-powered recommendations for a smooth and personalized shopping experience",
-    image: "project3.png",
+    image: "Project3.png",
     liveUrl: "https://e-commerce-website-project-hazel.vercel.app/",
     githubUrl: "https://github.com/Sumbal-Naz23/Makeup-Ecommerce-Web",
   },

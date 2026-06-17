@@ -103,9 +103,10 @@ export default function Navbar() {
 
           {/* Desktop resume button */}
           <motion.a
-            href="/resume.pdf.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            type="application/pdf"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.4 }}
@@ -206,7 +207,7 @@ export default function Navbar() {
               />
 
               <a
-                href="/resume.pdf.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}

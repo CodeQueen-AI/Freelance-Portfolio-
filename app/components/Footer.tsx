@@ -4,17 +4,11 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { Space_Grotesk, Poppins } from "next/font/google";
-import {
-  FiGithub,
-  FiLinkedin,
-  FiTwitter,
-  FiInstagram,
-  FiHeart,
-} from "react-icons/fi";
-import { SiUpwork, SiFiverr } from "react-icons/si";
+import { Poppins } from "next/font/google";
+import {FiGithub, FiLinkedin, FiTwitter, FiHeart} from "react-icons/fi";
+import { SiFiverr } from "react-icons/si";
 
-const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+// const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 
 const QUICK_LINKS = [
@@ -49,8 +43,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
-      className={`${poppins.className} relative text-black overflow-hidden`}
-    >
+      className={`${poppins.className} relative text-black overflow-hidden`}>
 
       {/* Main footer grid */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16">
@@ -92,8 +85,9 @@ export default function Footer() {
                     transition={{ delay: 0.4 + i * 0.07 }}
                     whileHover={{ y: -4, scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:text-[#007979] hover:border-[#007979]/40 hover:bg-[#007979]/10 transition-all duration-200"
-                  >
+                    className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center
+                     hover:text-[#007979] hover:border-[#007979]/40 hover:bg-[#007979]/10 transition-all 
+                     duration-200">
                     <Icon size={15} />
                   </motion.a>
                 );
@@ -102,24 +96,16 @@ export default function Footer() {
           </motion.div>
 
           {/* Quick links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
-              Navigation
-            </p>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3, duration: 0.6 }}>
+            <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">Navigation</p>
             <ul className="space-y-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="group flex items-center gap-2 text-sm transition-colors duration-200"
-                  >
+                  <Link href={link.href}
+                    className="group flex items-center gap-2 text-sm transition-colors duration-200">
                     <motion.span
-                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"
-                    />
+                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"/>
                     {link.label}
                   </Link>
                 </li>

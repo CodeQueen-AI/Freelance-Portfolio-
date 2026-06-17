@@ -293,7 +293,7 @@ export default function Hero() {
             className={`mt-1 flex justify-center ${poppins.className}`}
           >
             <span className="px-6 py-2 rounded-full border border-gray-200 text-gray-500 text-xs md:text-sm tracking-[3px] uppercase bg-white/80 shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
-              Freelance Full Stack &amp; AI Developer
+              Full Stack &amp; Agentic AI Developer
             </span>
           </motion.div>
         </motion.div>
@@ -316,9 +316,7 @@ export default function Hero() {
               variants={itemVariants}
               className="font-serif leading-[1.9] ext-[14.5px] font-light"
             >
-              I design and build modern web applications and AI-powered
-              products that help businesses grow Fast delivery, clean code
-              and a relentless focus on what actually matters — Results
+              I help businesses grow through modern web development and AI-powered solutions. From idea to launch, I deliver high-quality products with speed, scalability, and performance in mind
             </motion.p>
 
             <motion.div variants={itemVariants}>
@@ -329,13 +327,6 @@ export default function Hero() {
                 className={`group inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#007979] text-white font-medium tracking-wide overflow-hidden relative cursor-pointer w-fit ${poppins.className}`}
               >
                 <span className="relative z-10">Start a Collaboration</span>
-                <motion.span
-                  className="relative z-10"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
                 <span className="absolute inset-0 bg-black -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
               </motion.a>
             </motion.div>

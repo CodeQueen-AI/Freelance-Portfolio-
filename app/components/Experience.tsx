@@ -25,7 +25,7 @@ const experiences = [
     highlights: [
       { value: "80%", label: "Performance gain" },
       { value: "20+", label: "Components built" },
-      { value: "10",   label: "Projects shipped" },
+      { value: "5",   label: "Projects shipped" },
     ],
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     accentColor: "#007979",
@@ -44,9 +44,9 @@ const experiences = [
     highlights: [
       { value: "10+", label: "Client projects" },
       { value: "100%", label: "On-time delivery" },
-      { value: "5★",  label: "Client rating" },
+      { value: "3★",  label: "Client rating" },
     ],
-    skills: ["Next.js", "React", "Node.js", "AI / LLM", "Python", "Tailwind CSS"],
+    skills: ["Open AI SDK", "Python", "Javascript", "Qdrant", "Fast API", "Node.Js"],
     accentColor: "#007979",
   },
 ];
@@ -424,7 +424,7 @@ export default function Experience() {
                 }}
               >
                 Hire Me
-                <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>→</motion.span>
+ 
               </motion.a>
             </motion.div>
           </div>
@@ -484,7 +484,7 @@ export default function Experience() {
                       Sumbal Naz
                     </h3>
                     <p className={`${poppins.className} text-[#007979] text-[13px] font-medium mt-0.5`}>
-                      Full Stack &amp; AI Engineer
+                      Full Stack &amp; Agentic AI Developer
                     </p>
                   </div>
                   {/* Orbit SVG — lighter strokes */}
@@ -709,7 +709,7 @@ export default function Experience() {
                 </div>
                 <div>
                   <p className={`${grotesk.className} text-gray-700 text-[12px] font-bold leading-none`}>Sumbal Naz</p>
-                  <p className={`${poppins.className} text-[10px] mt-0.5 font-light`}>Full-Stack Engineer &amp; AI Solutions Builder</p>
+                  <p className={`${poppins.className} text-[10px] mt-0.5 font-light`}>Full-Stack &amp; Agentic AI Developer</p>
                 </div>
               </div>
             </motion.div>
@@ -754,7 +754,7 @@ export default function Experience() {
                 className={`${poppins.className} shrink-0 px-4 py-2 rounded-full text-[12px] font-semibold text-[#007979]`}
                 style={{ background: "rgba(0,121,121,0.10)", border: "1px solid rgba(0,121,121,0.25)" }}
               >
-                Contact →
+                Contact 
               </motion.a>
             </motion.div>
           </div>

@@ -210,7 +210,7 @@ function CategoryRow({ group, index }: { group: (typeof GROUPS)[number]; index: 
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="relative"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-5 lg:gap-12 items-start py-9">
+      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-5 lg:gap-12 items-start py-6">
 
         {/* Label column */}
         <div className="flex lg:flex-col gap-2 lg:gap-0 lg:pt-1">
@@ -284,7 +284,7 @@ function MarqueeStrip() {
   const doubled = [...ALL_SKILLS, ...ALL_SKILLS];
   return (
     <div
-      className="relative overflow-hidden py-7"
+      className="relative overflow-hidden py-5"
       style={{ background: "linear-gradient(180deg, rgba(0,121,121,0.025) 0%, rgba(0,121,121,0.018) 100%)" }}
     >
       <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
@@ -310,6 +310,8 @@ function MarqueeStrip() {
     </div>
   );
 }
+
+
 
 /* ─── Main section ─────────────────────────────────────────── */
 export default function SkillsSection() {
@@ -341,33 +343,34 @@ export default function SkillsSection() {
       </div>
 
       {/* Header */}
-      <div ref={headerRef} className="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 pt-14 pb-12">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={headerInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-5"
-            >
-              <motion.span
-                initial={{ width: 0 }}
-                animate={headerInView ? { width: 36 } : {}}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="h-px bg-[#007979] block" aria-hidden="true"
-              />
-              <span className={`${poppins.className} text-[11px] tracking-[5px] uppercase font-semibold text-[#007979]`}>
-                My Expertise
-              </span>
-            </motion.div>
+      <div ref={headerRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-12 sm:pt-16 pb-6 sm:pb-8">
+        {/* Eyebrow — above the flex row, matching Experience structure */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={headerInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-4"
+        >
+          <motion.span
+            initial={{ width: 0 }}
+            animate={headerInView ? { width: 36 } : {}}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="h-px bg-[#007979] block" aria-hidden="true"
+          />
+          <span className={`${poppins.className} text-[11px] tracking-[5px] uppercase font-semibold text-[#007979]`}>
+            My Expertise
+          </span>
+        </motion.div>
 
-            <div className="overflow-visible pb-4">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <div>
+            <div className="overflow-visible pb-2">
               <motion.h2
                 initial={{ y: 64, opacity: 0 }}
                 animate={headerInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className={`${playfair.className} text-gray-900`}
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", fontStyle: "italic", lineHeight: 1.12 }}
+                className={`${playfair.className} text-gray-900 leading-[1.1]`}
+                style={{ fontSize: "clamp(1.9rem, 6.5vw, 5rem)", fontStyle: "italic" }}
               >
                 Tech{" "}
                 <span className="relative inline-block" style={{ color: "#007979" }}>
@@ -430,7 +433,7 @@ export default function SkillsSection() {
       <MarqueeStrip />
 
       {/* Category rows */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 py-10">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6">
         <div className="px-0 lg:px-4">
           {GROUPS.map((group, i) => (
             <CategoryRow key={group.id} group={group} index={i} />
@@ -443,7 +446,7 @@ export default function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-8%" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-center gap-10 sm:gap-16"
+          className="mt-8 flex flex-col items-center sm:flex-row sm:items-center justify-center gap-10 sm:gap-16"
         >
           {[
             { value: `${TOTAL_SKILLS}+`, label: "Technologies",   accent: "#007979" },

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { Poppins, Playfair_Display, Space_Grotesk } from "next/font/google";
 import { SiNextdotjs, SiOpenai } from "react-icons/si";
 import {
-  FaRocket, FaShieldAlt, FaBrain, FaHandshake,
-  FaCheckCircle, FaBolt, FaCode, FaServer,
+  FaRocket, FaBrain, FaHandshake,
+  FaCheckCircle, FaBolt, FaServer,
 } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi2";
 
@@ -152,92 +152,11 @@ function Panel1() {
   );
 }
 
+
 /* ════════════════════════════════════════════════════════════
-   PANEL 2 — Code Quality
+   PANEL 2 — AI-Native
 ════════════════════════════════════════════════════════════ */
 function Panel2() {
-  const pillars = [
-    { icon: FaCode,      label: "TypeScript-first",     sub: "Fully typed — zero runtime surprises" },
-    { icon: FaShieldAlt, label: "Secure by default",    sub: "Auth, CORS & validation baked in"     },
-    { icon: FaBolt,      label: "Performance-obsessed", sub: "90+ Lighthouse, sub-second loads"     },
-    { icon: FaServer,    label: "Scales with you",      sub: "Architecture that grows, not breaks"  },
-  ];
-
-  return (
-    <div
-      className="md:sticky md:top-0 md:h-screen flex items-center overflow-x-hidden"
-      style={{ background: "linear-gradient(160deg, #faf5ff 0%, #ffffff 50%, #f0f9ff 100%)", zIndex: 12, marginBottom: "-1px" }}
-    >
-      <div className="absolute inset-0 pointer-events-none hidden sm:block"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(124,58,237,0.07) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          maskImage: "radial-gradient(ellipse 80% 72% at 50% 50%, black 15%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 72% at 50% 50%, black 15%, transparent 100%)",
-        }} aria-hidden="true" />
-
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 py-12 md:py-0">
-
-        <motion.div {...fadeUp(0)} className="flex items-center justify-center gap-2 mb-4">
-          <div className="w-7 h-7 rounded-xl flex items-center justify-center"
-            style={{ background: "rgba(124,58,237,0.1)", color: "#7c3aed", border: "1.5px solid rgba(124,58,237,0.2)" }}>
-            <FaShieldAlt size={12} />
-          </div>
-          <span className={`${poppins.className} text-[10.5px] tracking-[3px] uppercase font-semibold`} style={{ color: "#7c3aed" }}>
-            02 / Code Quality
-          </span>
-        </motion.div>
-
-        <div className="text-center mb-7 md:mb-10">
-          <motion.h2 {...fadeUp(0.08)}
-            className={`${playfair.className} leading-[1.1]`}
-            style={{ fontSize: "clamp(1.8rem, 5vw, 4.4rem)", fontStyle: "italic" }}
-          >
-            <span style={{ color: "#111" }}>Built to last.</span>
-            <br />
-            <span style={{ color: "#7c3aed" }}>Not just to ship.</span>
-          </motion.h2>
-          <motion.p {...fadeUp(0.16)}
-            className={`${poppins.className} text-gray-500 text-[13px] sm:text-[14px] font-light mt-3 max-w-lg mx-auto leading-[1.85]`}
-          >
-            Clean, documented, production-grade software your team can maintain and scale.
-          </motion.p>
-        </div>
-
-        {/* 2-col on mobile, 4-col on md+ */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
-          {pillars.map((q, qi) => {
-            const QIcon = q.icon;
-            return (
-              <motion.div
-                key={q.label}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + qi * 0.09, duration: 0.6, ease }}
-                viewport={VP}
-                className="bg-white rounded-2xl p-3.5 sm:p-5 cursor-default text-center"
-                style={{ border: "1.5px solid rgba(124,58,237,0.11)", boxShadow: "0 2px 18px rgba(124,58,237,0.06)" }}
-              >
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center mx-auto mb-2.5"
-                  style={{ background: "rgba(124,58,237,0.09)", color: "#7c3aed" }}>
-                  <QIcon size={13} />
-                </div>
-                <p className={`${grotesk.className} text-gray-900 text-[11.5px] sm:text-[13px] font-bold leading-snug mb-1`}>{q.label}</p>
-                <p className={`${poppins.className} text-gray-400 text-[10px] sm:text-[11.5px] font-light leading-snug`}>{q.sub}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-
-      </div>
-    </div>
-  );
-}
-
-/* ════════════════════════════════════════════════════════════
-   PANEL 3 — AI-Native
-════════════════════════════════════════════════════════════ */
-function Panel3() {
   const aiStack = [
     { Icon: SiOpenai,   label: "OpenAI",      color: "#10a37f" },
     { Icon: FaBrain,    label: "LangChain",   color: "#c026d3" },
@@ -301,7 +220,7 @@ function Panel3() {
                 <FaBrain size={13} />
               </div>
               <span className={`${poppins.className} text-[10.5px] tracking-[3px] uppercase font-semibold`} style={{ color: "#e879f9" }}>
-                03 / AI-Native
+                02 / AI-Native
               </span>
             </div>
 
@@ -387,9 +306,9 @@ function Panel3() {
 }
 
 /* ════════════════════════════════════════════════════════════
-   PANEL 4 — Partnership
+   PANEL 3 — Partnership
 ════════════════════════════════════════════════════════════ */
-function Panel4() {
+function Panel3() {
   const chips = [
     { label: "Direct communication",       color: "#007979" },
     { label: "Full IP ownership",          color: "#0891b2" },
@@ -433,7 +352,7 @@ function Panel4() {
             <FaHandshake size={12} />
           </div>
           <span className={`${poppins.className} text-[10.5px] tracking-[3px] uppercase font-semibold`} style={{ color: "#d97706" }}>
-            04 / Partnership
+            03 / Partnership
           </span>
         </motion.div>
 
@@ -503,7 +422,6 @@ export default function ScrollStack() {
       <Panel1 />
       <Panel2 />
       <Panel3 />
-      <Panel4 />
     </section>
   );
 }

@@ -278,7 +278,7 @@ export default function Hero() {
             {["Sumbal", "Naz"].map((word, wi) => (
               <span
                 key={wi}
-                className={`${dancing.className} text-[56px] md:text-[82px] lg:text-[96px]`}
+                className={`${dancing.className} text-[42px] sm:text-[58px] md:text-[82px] lg:text-[96px]`}
               >
                 <span className="text-[#007979]">{word[0]}</span>
                 <span className="text-black">{word.slice(1)}</span>
@@ -292,9 +292,25 @@ export default function Hero() {
             transition={{ delay: 0.55, duration: 0.6 }}
             className={`mt-1 flex justify-center ${poppins.className}`}
           >
-            <span className="px-6 py-2 rounded-full border border-gray-200 text-gray-500 text-xs md:text-sm tracking-[3px] uppercase bg-white/80 shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
+            <span className="px-5 py-2 rounded-full border border-gray-200 text-gray-500 text-[10px] sm:text-xs md:text-sm tracking-[2px] sm:tracking-[3px] uppercase bg-white/80 shadow-sm hover:border-[#007979] hover:text-[#007979] transition-all duration-300 cursor-default">
               Full Stack &amp; Agentic AI Developer
             </span>
+          </motion.div>
+
+          {/* Mobile-only CTA — replaces the hidden lg left-column button */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.75, duration: 0.5 }}
+            className={`mt-5 flex justify-center lg:hidden ${poppins.className}`}
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#007979] text-white text-sm font-medium tracking-wide hover:bg-[#005f5f] transition-colors duration-300"
+            >
+              Start a Collaboration
+              <span aria-hidden="true">→</span>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -369,7 +385,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             transition={{ delayChildren: 0.8 }}
-            className="w-full space-y-1"
+            className="w-full max-w-xs mx-auto lg:max-w-none space-y-1"
           >
             {roleItems.map((item, i) => (
               <motion.div

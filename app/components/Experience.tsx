@@ -187,10 +187,10 @@ function ExperienceCard({ item, i }: { item: typeof experiences[0]; i: number })
           style={{ background: `${item.accentColor}0d` }}
         />
 
-        <div className="p-7 md:p-8">
+        <div className="p-5 sm:p-7 md:p-8">
 
           {/* ── Header row ── */}
-          <div className="flex items-start justify-between mb-6 gap-4">
+          <div className="flex items-start justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
               <span
                 className={`${grotesk.className} w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold shrink-0`}
@@ -226,7 +226,7 @@ function ExperienceCard({ item, i }: { item: typeof experiences[0]; i: number })
           <div className="mb-2 overflow-visible pb-1">
             <h3
               className={`${playfair.className} text-gray-900 leading-[1.1]`}
-              style={{ fontSize: "clamp(1.7rem, 3.5vw, 2.4rem)", fontStyle: "italic" }}
+              style={{ fontSize: "clamp(1.3rem, 3.5vw, 2.4rem)", fontStyle: "italic" }}
             >
               {item.role}
             </h3>
@@ -239,7 +239,7 @@ function ExperienceCard({ item, i }: { item: typeof experiences[0]; i: number })
           </p>
 
           {/* ── Description ── */}
-          <p className={`${poppins.className} text-gray-500 text-[14px] leading-[1.9] mb-7 font-light`}>
+          <p className={`${poppins.className} text-gray-500 text-[13px] sm:text-[14px] leading-[1.9] mb-5 md:mb-7 font-light`}>
             {item.description}
           </p>
 
@@ -248,23 +248,23 @@ function ExperienceCard({ item, i }: { item: typeof experiences[0]; i: number })
             variants={stagger}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
-            className="grid grid-cols-3 gap-3 mb-6"
+            className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 md:mb-6"
           >
             {item.highlights.map((h) => (
               <motion.div
                 key={h.label}
                 variants={fadeUp}
                 whileHover={{ y: -3, scale: 1.03 }}
-                className="rounded-xl p-3.5 text-center cursor-default transition-all duration-200"
+                className="rounded-xl p-2.5 sm:p-3.5 text-center cursor-default transition-all duration-200"
                 style={{ background: `${item.accentColor}08`, border: `1px solid ${item.accentColor}18` }}
               >
                 <p
-                  className={`${grotesk.className} text-[1.15rem] font-bold leading-none mb-1.5`}
+                  className={`${grotesk.className} text-[1rem] sm:text-[1.15rem] font-bold leading-none mb-1`}
                   style={{ color: item.accentColor }}
                 >
                   {h.value}
                 </p>
-                <p className={`${poppins.className} text-[10px] text-gray-400 leading-tight font-medium`}>{h.label}</p>
+                <p className={`${poppins.className} text-[9px] sm:text-[10px] text-gray-400 leading-tight font-medium`}>{h.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -369,15 +369,15 @@ export default function Experience() {
       </div>
 
       {/* ═══ Content ════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 md:py-14">
 
         {/* ── Section header ─────────────────────────── */}
-        <div ref={headerRef} className="mb-20 md:mb-24">
+        <div ref={headerRef} className="mb-10 md:mb-12">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={headerInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="flex items-center gap-3 mb-6"
+            className="flex items-center gap-3 mb-4"
           >
             <motion.span
               initial={{ width: 0 }}
@@ -397,7 +397,7 @@ export default function Experience() {
                 animate={headerInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
                 className={`${playfair.className} text-gray-900 leading-[1.1]`}
-                style={{ fontSize: "clamp(2.8rem, 6.5vw, 5rem)", fontStyle: "italic" }}
+                style={{ fontSize: "clamp(1.9rem, 6.5vw, 5rem)", fontStyle: "italic" }}
               >
                 Technical{" "}
                 <span style={{ color: "#007979" }}>Experience</span>
@@ -431,7 +431,7 @@ export default function Experience() {
         </div>
 
         {/* ── Two-column body ────────────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-stretch">
 
           {/* ══════════════════════════════════════════
               LEFT COLUMN — Editorial panel
@@ -473,7 +473,7 @@ export default function Experience() {
               <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-[#007979]/[0.06]" aria-hidden="true" />
               <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full border border-[#007979]/[0.05]" aria-hidden="true" />
 
-              <div className="relative z-10 p-7">
+              <div className="relative z-10 p-5 sm:p-7">
                 {/* Top: name + orbit */}
                 <div className="flex items-start justify-between mb-5">
                   <div>
@@ -729,18 +729,25 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8%" }}
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              className="flex items-center gap-5 rounded-2xl p-6 cursor-default"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 rounded-2xl p-5 cursor-default"
               style={{ border: "1.5px dashed rgba(0,121,121,0.3)", background: "rgba(0,121,121,0.025)" }}
             >
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-[#007979] shrink-0"
-                style={{ background: "rgba(0,121,121,0.1)", border: "1px solid rgba(0,121,121,0.25)" }}
-                aria-hidden="true"
-              >
-                ✦
+              <div className="flex items-center gap-3 sm:contents">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-[#007979] shrink-0"
+                  style={{ background: "rgba(0,121,121,0.1)", border: "1px solid rgba(0,121,121,0.25)" }}
+                  aria-hidden="true"
+                >
+                  ✦
+                </div>
+                <div className="flex-1 min-w-0 sm:hidden">
+                  <p className={`${grotesk.className} text-gray-700 text-[14px] font-semibold leading-none mb-0.5`}>
+                    Next chapter loading…
+                  </p>
+                </div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className={`${grotesk.className} text-gray-700 text-[14px] font-semibold leading-none mb-1`}>
+                <p className={`${grotesk.className} text-gray-700 text-[14px] font-semibold leading-none mb-1 hidden sm:block`}>
                   Next chapter loading…
                 </p>
                 <p className={`${poppins.className} text-[12px] font-light`}>
@@ -751,10 +758,10 @@ export default function Experience() {
                 href="#contact"
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.96 }}
-                className={`${poppins.className} shrink-0 px-4 py-2 rounded-full text-[12px] font-semibold text-[#007979]`}
+                className={`${poppins.className} self-start sm:self-auto shrink-0 px-4 py-2 rounded-full text-[12px] font-semibold text-[#007979]`}
                 style={{ background: "rgba(0,121,121,0.10)", border: "1px solid rgba(0,121,121,0.25)" }}
               >
-                Contact 
+                Contact
               </motion.a>
             </motion.div>
           </div>

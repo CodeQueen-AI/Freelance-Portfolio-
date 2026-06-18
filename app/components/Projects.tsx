@@ -17,7 +17,7 @@ const PROJECTS = [
     description:
       "A modern perfume e-commerce website with cart and checkout functionality. Integrated AI Voice Assistant and Chatbot to instantly answer customer queries, provide product recommendations, and improve the overall shopping experience",
     image: "/Project1.png",
-    liveUrl: "https://codequeen-perfume-website.vercel.app/",
+    liveUrl: "https://sumbalnazperfume-website.vercel.app/",
     githubUrl: "https://github.com/Sumbal-Naz23/Perfume-Ecommerce-Website",
   },
   {
@@ -133,7 +133,7 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[number]; i
       </div>
 
       {/* Body */}
-      <div className="flex flex-col flex-1 px-6 pt-5 pb-6">
+      <div className="flex flex-col flex-1 px-4 pt-4 pb-5 sm:px-6 sm:pt-5 sm:pb-6">
 
         {/* Index marker */}
         <span
@@ -282,10 +282,10 @@ export default function Projects() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 md:py-14">
 
         {/* ── Header ── */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
+        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
 
           {/* Left */}
           <div>
@@ -293,7 +293,7 @@ export default function Projects() {
               initial={{ opacity: 0, x: -20 }}
               animate={headerInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-5"
+              className="flex items-center gap-3 mb-4"
             >
               <motion.span
                 initial={{ width: 0 }}
@@ -307,13 +307,13 @@ export default function Projects() {
               </span>
             </motion.div>
 
-            <div className="overflow-visible pb-3">
+            <div className="overflow-visible pb-2">
               <motion.h2
                 initial={{ y: 64, opacity: 0 }}
                 animate={headerInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className={`${playfair.className} text-gray-900`}
-                style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)", fontStyle: "italic", lineHeight: 1.12 }}
+                className={`${playfair.className} text-gray-900 leading-[1.1]`}
+                style={{ fontSize: "clamp(1.9rem, 6.5vw, 5rem)", fontStyle: "italic" }}
               >
                 Projects I&apos;ve{" "}
                 <span className="relative inline-block" style={{ color: "#007979" }}>
@@ -349,7 +349,7 @@ export default function Projects() {
               </div>
               <div className="w-px h-6 bg-gray-200" aria-hidden="true" />
               <div>
-                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>6</span>
+                <span className={`${grotesk.className} text-2xl font-bold text-[#007979]`}>9</span>
                 <span className={`${poppins.className} text-gray-400 text-[12px] ml-1.5`}>Domains</span>
               </div>
               <div className="w-px h-6 bg-gray-200" aria-hidden="true" />
@@ -367,7 +367,7 @@ export default function Projects() {
           initial={{ opacity: 0 }}
           animate={gridInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7"
         >
           {PROJECTS.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
@@ -380,7 +380,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 24 }}
           animate={ctaInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 flex justify-center"
+          className="mt-8 flex justify-center"
         >
           <motion.a
             href="https://github.com/Sumbal-Naz23"
@@ -388,7 +388,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.97 }}
-            className={`${poppins.className} group relative inline-flex items-center gap-3 px-10 py-4 text-[13px] font-semibold tracking-wide overflow-hidden`}
+            className={`${poppins.className} group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 text-[13px] font-semibold tracking-wide overflow-hidden w-full sm:w-auto`}
             style={{ border: "1.5px solid #007979", color: "#007979" }}
           >
             {/* Fill on hover */}

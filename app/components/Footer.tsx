@@ -8,7 +8,6 @@ import { Poppins } from "next/font/google";
 import {FiGithub, FiLinkedin, FiTwitter, FiHeart} from "react-icons/fi";
 import { SiFiverr } from "react-icons/si";
 
-// const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 
 const QUICK_LINKS = [
@@ -46,15 +45,15 @@ export default function Footer() {
       className={`${poppins.className} relative text-black overflow-hidden`}>
 
       {/* Main footer grid */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
           {/* Brand column */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="sm:col-span-2 lg:col-span-1"
+            className="sm:col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start"
           >
             <Link href="/" className="inline-block mb-6">
               <Image
@@ -65,12 +64,12 @@ export default function Footer() {
                 className="object-contain opacity-90"
               />
             </Link>
-            <p className="text-sm leading-relaxed max-w-[220px]">
+            <p className="text-sm leading-relaxed max-w-[220px] text-center sm:text-left">
               Full Stack &amp; AI Developer crafting modern digital products with clean code and creative design.
             </p>
 
             {/* Social icons */}
-            <div className="flex gap-3 mt-7">
+            <div className="flex gap-3 mt-7 justify-center sm:justify-start">
               {SOCIAL_LINKS.map((s, i) => {
                 const Icon = s.icon;
                 return (
@@ -97,7 +96,8 @@ export default function Footer() {
 
           {/* Quick links */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}>
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="flex flex-col items-center sm:items-start">
             <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">Navigation</p>
             <ul className="space-y-3">
               {QUICK_LINKS.map((link) => (
@@ -105,7 +105,7 @@ export default function Footer() {
                   <Link href={link.href}
                     className="group flex items-center gap-2 text-sm transition-colors duration-200">
                     <motion.span
-                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"/>
+                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block shrink-0"/>
                     {link.label}
                   </Link>
                 </li>
@@ -118,6 +118,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-col items-center sm:items-start"
           >
             <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
               Services
@@ -130,7 +131,7 @@ export default function Footer() {
                     className="group flex items-center gap-2 text-sm transition-colors duration-200"
                   >
                     <motion.span
-                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block"
+                      className="w-0 h-px bg-[#007979] group-hover:w-4 transition-all duration-300 block shrink-0"
                     />
                     {link.label}
                   </Link>
@@ -144,16 +145,17 @@ export default function Footer() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.6 }}
+            className="flex flex-col items-center sm:items-start"
           >
             <p className="text-[10px] uppercase tracking-[4px] font-bold mb-6">
               Contact
             </p>
-            <div className="space-y-4">
+            <div className="space-y-4 text-center sm:text-left">
               <div>
                 <p className="text-[10px] uppercase tracking-[2px] mb-1">Email</p>
                 <a
-                  href="mailto:sumbalnaz@email.com"
-                  className="text-sm  hover:text-[#007979] transition-colors duration-200"
+                  href="mailto:sumbal.devstudio@gmail.com"
+                  className="text-sm hover:text-[#007979] transition-colors duration-200 break-all"
                 >
                   sumbal.devstudio@gmail.com
                 </a>
@@ -164,8 +166,8 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[2px] mb-1">Status</p>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#007979] animate-pulse" />
+                <div className="flex items-center justify-center sm:justify-start gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#007979] animate-pulse shrink-0" />
                   <p className="text-sm text-[#007979] font-medium">Available for work</p>
                 </div>
               </div>
@@ -181,11 +183,11 @@ export default function Footer() {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="border-t border-white/[0.06] px-6 lg:px-10 py-6"
       >
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-xs">
             © {year} Sumbal Naz. All rights reserved.
           </p>
-          <p className="flex items-center gap-1.5 text-xs">
+          <p className="flex items-center justify-center gap-1.5 text-xs">
             Designed &amp; built with
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}

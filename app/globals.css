@@ -71,7 +71,7 @@ body {
 }
 
 .marquee-track {
-  animation: marquee 30s linear infinite;
+  animation: marquee 120s linear infinite;
   will-change: transform;
 }
 
@@ -127,6 +127,13 @@ img {
 
   .marquee-track {
     animation: none;
+  }
+}
+
+/* ─── Scroll-stack section height (3 panels × 100vh) ────── */
+@media (min-width: 768px) {
+  #expertise {
+    height: 300vh;
   }
 }
 

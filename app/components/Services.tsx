@@ -3,32 +3,10 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Poppins, Playfair_Display, Space_Grotesk } from "next/font/google";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiNodedotjs,
-  SiReact,
-  SiOpenai,
-  SiFigma,
-  SiPython,
-  SiPostgresql,
-} from "react-icons/si";
-import { SiVectorworks } from "react-icons/si";
-import { SiPandas } from "react-icons/si";
-import {
-  FaBrain,
-  FaRocket,
-  FaServer,
-  FaPaintBrush,
-  FaChartBar,
-  FaRobot,
-  FaBolt,
-  FaArrowRight,
-  FaCheckCircle,
-} from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi2";
-import { SiMongodb } from "react-icons/si";
-import { SiNumpy } from "react-icons/si";
+import { TbBrandCodepen } from "react-icons/tb";
+import {SiNextdotjs,SiTypescript,SiNodedotjs,SiReact,SiOpenai,SiFigma,SiPython,SiPostgresql,SiDocker,SiKubernetes,
+  SiWordpress,SiShopify,SiGoogleanalytics,SiScikitlearn,SiTensorflow,SiGooglecloud,SiPhp,SiMysql,SiJavascript,} from "react-icons/si";
+import {FaBrain,FaPalette,FaServer,FaPaintBrush,FaBolt,FaArrowRight,FaCheckCircle,FaCloud,FaSearch,} from "react-icons/fa";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -48,23 +26,6 @@ const grotesk = Space_Grotesk({
 const categories = [
   {
     id: "01",
-    title: "Full Stack Development",
-    tagline: "From idea to production.",
-    Icon: FaRocket,
-    services: ["Full-Stack Application Development", "AI-Powered SaaS Solutions", "Problem-Solving Business Systems","Custom Full-Stack Web & AI Solutions"],
-    techs: [
-      { Icon: SiNextdotjs, label: "Next.js" },
-      { Icon: SiReact, label: "React" },
-      { Icon: SiNodedotjs, label: "Node.js" },
-      { Icon: SiMongodb, label: "Mongo DB"}
-    ],
-    accent: "#007979",
-    accentDark: "#005f5f",
-    lightBg: "#edfafa",
-    headerBg: "linear-gradient(135deg, #edfafa 0%, #d0f5f5 100%)",
-  },
-  {
-    id: "02",
     title: "Frontend & Design",
     tagline: "Interfaces that impress.",
     Icon: FaPaintBrush,
@@ -80,7 +41,7 @@ const categories = [
     headerBg: "linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)",
   },
   {
-    id: "03",
+    id: "02",
     title: "Backend Development",
     tagline: "The engine behind the product.",
     Icon: FaServer,
@@ -96,23 +57,7 @@ const categories = [
     headerBg: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)",
   },
   {
-    id: "04",
-    title: "AI Agent Development",
-    tagline: "Intelligent systems that act.",
-    Icon: FaRobot,
-    services: ["AI Chatbots", "Voice Assistants", "Booking Agents", "Autonomous Agents"],
-    techs: [
-      { Icon: SiOpenai, label: "OpenAI" },
-      { Icon: FaBrain, label: "Vector Database" },
-      { Icon: FaRobot, label: "Agents" },
-    ],
-    accent: "#c026d3",
-    accentDark: "#a21caf",
-    lightBg: "#fdf4ff",
-    headerBg: "linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%)",
-  },
-  {
-    id: "05",
+    id: "03",
     title: "AI Automation",
     tagline: "Less manual work. More results.",
     Icon: FaBolt,
@@ -128,21 +73,116 @@ const categories = [
     headerBg: "linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)",
   },
   {
-    id: "06",
-    title: "Dashboards & Analytics",
-    tagline: "Data that drives decisions.",
-    Icon: FaChartBar,
-    services: ["Analytics Dashboards", "Admin Panels", "Data Visualisation", "Reporting Systems"],
+    id: "04",
+    title: "DevOps & Cloud Deployment",
+    tagline: "Ship faster, scale effortlessly.",
+    Icon: FaCloud,
+    services: ["CI/CD Pipeline Setup", "Docker & Kubernetes", "Cloud Infrastructure", "Monitoring & Logging"],
     techs: [
-      { Icon: SiNumpy, label: "Numpy" },
-      { Icon: SiPandas, label: "Pandas" },
-      { Icon: FaChartBar, label: "MatplotLib" },
+      { Icon: SiDocker,     label: "Docker"     },
+      { Icon: SiKubernetes, label: "Kubernetes" },
+      { Icon: SiGooglecloud,label: "GCP"        },
     ],
-    accent: "#059669",
-    accentDark: "#047857",
-    lightBg: "#f0fdf8",
-    headerBg: "linear-gradient(135deg, #f0fdf8 0%, #d1fae5 100%)",
+    accent: "#0369a1",
+    accentDark: "#075985",
+    lightBg: "#f0f9ff",
+    headerBg: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)",
   },
+  {
+    id: "05",
+    title: "ML / Deep Learning",
+    tagline: "Intelligent models. Real-world impact.",
+    Icon: FaBrain,
+    services: ["Custom ML Models", "Deep Learning (DL)", "Model Training & Fine-tuning", "Data Pipelines"],
+    techs: [
+      { Icon: SiTensorflow, label: "TensorFlow" },
+      { Icon: SiScikitlearn,label: "Scikit-learn"},
+      { Icon: SiPython,     label: "Python"     },
+    ],
+    accent: "#7c3aed",
+    accentDark: "#5b21b6",
+    lightBg: "#f5f3ff",
+    headerBg: "linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)",
+  },
+{
+  id: "06",
+  title: "UI / UX Design",
+  tagline: "Crafting intuitive and user-centered digital experiences.",
+  Icon: FaPaintBrush,
+  services: [
+    "Wireframing & Prototyping",
+    "User Research",
+    "Interaction Design",
+    "Responsive UI Design"
+  ],
+  techs: [
+    { Icon: SiFigma, label: "Figma" },
+    { Icon: FaPalette, label: "Adobe XD" },
+    { Icon: FaPalette, label: "Design Systems" },
+  ],
+  accent: "#c026d3",
+  accentDark: "#a21caf",
+  lightBg: "#fdf4ff",
+  headerBg: "linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%)",
+},
+  {
+    id: "07",
+    title: "SEO Optimization",
+    tagline: "Rank higher. Grow organically.",
+    Icon: FaSearch,
+    services: ["Technical SEO Audit", "On-Page Optimization", "Core Web Vitals", "SEO Analytics & Reporting"],
+    techs: [
+      { Icon: SiGoogleanalytics, label: "Analytics" },
+      { Icon: SiNextdotjs,       label: "Next.js"   },
+      { Icon: FaSearch,          label: "SEO Tools" },
+    ],
+    accent: "#dc2626",
+    accentDark: "#b91c1c",
+    lightBg: "#fff1f2",
+    headerBg: "linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%)",
+  },
+{
+  id: "08",
+  title: "WordPress Development",
+  tagline: "Fast, flexible, scalable websites.",
+  Icon: SiWordpress,
+  services: [
+    "WordPress Development",
+    "Theme Customisation",
+    "Plugin Development",
+    "Website Maintenance"
+  ],
+  techs: [
+    { Icon: SiWordpress, label: "WordPress" },
+    { Icon: SiPhp, label: "PHP" },
+    { Icon: SiMysql, label: "MySQL" },
+  ],
+  accent: "#2563eb",
+  accentDark: "#1d4ed8",
+  lightBg: "#eff6ff",
+  headerBg: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+},
+{
+  id: "09",
+  title: "Shopify Development",
+  tagline: "High-converting eCommerce stores.",
+  Icon: SiShopify,
+  services: [
+    "Shopify Store Setup",
+    "Theme Customisation",
+    "App Integration",
+    "Product & Payment Setup"
+  ],
+  techs: [
+    { Icon: SiShopify, label: "Shopify" },
+    { Icon: SiJavascript, label: "JavaScript" },
+    { Icon: TbBrandCodepen, label: "Liquid (Shopify)" },
+  ],
+  accent: "#10b981",
+  accentDark: "#059669",
+  lightBg: "#ecfdf5",
+  headerBg: "linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)",
+}
 ];
 
 /* ─── Card ───────────────────────────────────────────────── */
@@ -178,7 +218,7 @@ function CategoryCard({
 
       {/* ── Header zone ── */}
       <div
-        className="relative overflow-hidden px-5 pt-5 pb-4 shrink-0"
+        className="relative overflow-hidden px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4 shrink-0"
         style={{ background: cat.headerBg }}
       >
         {/* Diagonal texture */}
@@ -227,7 +267,7 @@ function CategoryCard({
       </div>
 
       {/* ── Content zone — flex-1 so all cards fill available height equally ── */}
-      <div className="relative z-10 flex flex-col flex-1 px-5 pt-4 pb-5">
+      <div className="relative z-10 flex flex-col flex-1 px-4 pt-3 pb-4 sm:px-5 sm:pt-4 sm:pb-5">
 
         {/* Divider */}
         <div
@@ -342,17 +382,17 @@ export default function Services() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 py-24">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16">
 
         {/* ── Header ── */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
           <div>
             {/* Eyebrow */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-5"
+              className="flex items-center gap-3 mb-4"
             >
               <motion.span
                 initial={{ width: 0 }}
@@ -367,13 +407,13 @@ export default function Services() {
             </motion.div>
 
             {/* Heading */}
-            <div className="overflow-visible pb-3">
+            <div className="overflow-visible pb-2">
               <motion.h2
-                initial={{ y: 60, opacity: 0 }}
+                initial={{ y: 64, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
                 className={`${playfair.className} text-gray-900 leading-[1.1]`}
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", fontStyle: "italic" }}
+                style={{ fontSize: "clamp(1.9rem, 6.5vw, 5rem)", fontStyle: "italic" }}
               >
                 My{" "}
                 <span className="relative inline-block" style={{ color: "#007979" }}>
@@ -395,11 +435,11 @@ export default function Services() {
               initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.42, duration: 0.55 }}
-              className="flex items-center gap-6 mt-4"
+              className="flex items-center gap-6 mt-3"
             >
               {[
-                { num: "6", label: "Service areas" },
-                { num: "20+", label: "Deliverables" },
+                { num: "9", label: "Service areas" },
+                { num: "10+", label: "Deliverables" },
                 { num: "100%", label: "End-to-end" },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center gap-2.5">

@@ -14,14 +14,14 @@ const roleItems = [
   {
     icon: <FaLaptopCode />,
     category: "Development",
-    title: "Frontend & Full Stack",
+    title: "Full Stack Developer",
     accent: "#007979",
     active: true,
   },
   {
     icon: <FaRobot />,
     category: "Intelligence",
-    title: "AI & Automation Engineer",
+    title: "Agentic AI & Automation Developer",
     accent: "#0891b2",
     active: false,
   },
